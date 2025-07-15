@@ -57,14 +57,14 @@ export function LanguageSelector() {
           <ChevronDown className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-56 p-0" align="end">
-        <div className="grid">
+      <PopoverContent className="w-64 p-0" align="end">
+        <div className="max-h-80 overflow-y-auto">
           {languages.map((language) => (
             <button
               key={language.code}
               onClick={() => handleLanguageChange(language.code)}
               className={cn(
-                "flex items-center gap-3 px-4 py-3 text-sm hover:bg-accent transition-colors",
+                "flex items-center gap-3 px-4 py-3 text-sm hover:bg-accent transition-colors w-full",
                 i18n.language === language.code && "bg-accent"
               )}
             >
