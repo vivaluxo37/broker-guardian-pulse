@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { LanguageSelector } from "./LanguageSelector";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -104,6 +106,7 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -190,11 +193,9 @@ export function Navigation() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="outline" size="sm">
-              🇵🇭 PH
-            </Button>
+            <LanguageSelector />
             <Button variant="premium" size="sm" onClick={() => handleNavigation({ href: "#match", isRoute: false })}>
-              Match Me
+              {t('nav.matchMe')}
             </Button>
           </div>
 
