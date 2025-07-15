@@ -18,10 +18,16 @@ const navItems = [
     href: "#brokers", 
     isRoute: false,
     submenu: [
-      { name: "CFD Brokers", href: "#cfd-brokers" },
-      { name: "Forex Brokers", href: "#forex-brokers" },
-      { name: "Stock Brokers", href: "#stock-brokers" },
-      { name: "Crypto Brokers", href: "#crypto-brokers" }
+      { name: "Best Online Brokers", href: "#best-online-brokers" },
+      { name: "Best CFD Brokers", href: "#best-cfd-brokers" },
+      { name: "Best Forex Brokers", href: "#best-forex-brokers" },
+      { name: "Best Stock Brokers", href: "#best-stock-brokers" },
+      { name: "Best Crypto Brokers", href: "#best-crypto-brokers" },
+      { name: "Best Day Trading Brokers", href: "#best-day-trading-brokers" },
+      { name: "Best Options Brokers", href: "#best-options-brokers" },
+      { name: "Best Futures Brokers", href: "#best-futures-brokers" },
+      { name: "Low Cost Brokers", href: "#low-cost-brokers" },
+      { name: "Commission Free Brokers", href: "#commission-free-brokers" }
     ]
   },
   { 
@@ -29,10 +35,16 @@ const navItems = [
     href: "#reviews", 
     isRoute: false,
     submenu: [
-      { name: "Interactive Brokers", href: "#interactive-brokers" },
-      { name: "XTB", href: "#xtb" },
-      { name: "IC Markets", href: "#ic-markets" },
-      { name: "All Reviews", href: "#all-reviews" }
+      { name: "Interactive Brokers Review", href: "#interactive-brokers-review" },
+      { name: "XTB Review", href: "#xtb-review" },
+      { name: "IC Markets Review", href: "#ic-markets-review" },
+      { name: "eToro Review", href: "#etoro-review" },
+      { name: "Plus500 Review", href: "#plus500-review" },
+      { name: "IG Review", href: "#ig-review" },
+      { name: "Capital.com Review", href: "#capital-com-review" },
+      { name: "Pepperstone Review", href: "#pepperstone-review" },
+      { name: "OANDA Review", href: "#oanda-review" },
+      { name: "All Broker Reviews", href: "#all-broker-reviews" }
     ]
   },
   { name: "Scam Shield", href: "/scam-broker-shield", isRoute: true },
@@ -41,10 +53,14 @@ const navItems = [
     href: "#tools", 
     isRoute: false,
     submenu: [
-      { name: "Broker Comparison", href: "#comparison" },
-      { name: "Fee Calculator", href: "#calculator" },
-      { name: "Match Me", href: "#match" },
-      { name: "Market Data", href: "#market-data" }
+      { name: "Broker Comparison Tool", href: "#broker-comparison" },
+      { name: "Broker Finder", href: "#broker-finder" },
+      { name: "Trading Fee Calculator", href: "#fee-calculator" },
+      { name: "Forex Calculator", href: "#forex-calculator" },
+      { name: "Pip Calculator", href: "#pip-calculator" },
+      { name: "Margin Calculator", href: "#margin-calculator" },
+      { name: "Currency Converter", href: "#currency-converter" },
+      { name: "Economic Calendar", href: "#economic-calendar" }
     ]
   },
   { 
@@ -52,10 +68,16 @@ const navItems = [
     href: "#beginners", 
     isRoute: false,
     submenu: [
-      { name: "How to Start", href: "#how-to-start" },
-      { name: "Trading Basics", href: "#trading-basics" },
-      { name: "Investment Guide", href: "#investment-guide" },
-      { name: "Risk Management", href: "#risk-management" }
+      { name: "How to Start Trading", href: "#how-to-start-trading" },
+      { name: "How to Choose a Broker", href: "#how-to-choose-broker" },
+      { name: "Trading for Beginners", href: "#trading-for-beginners" },
+      { name: "Forex Trading Basics", href: "#forex-trading-basics" },
+      { name: "Stock Trading Basics", href: "#stock-trading-basics" },
+      { name: "CFD Trading Guide", href: "#cfd-trading-guide" },
+      { name: "Investment Strategies", href: "#investment-strategies" },
+      { name: "Risk Management", href: "#risk-management" },
+      { name: "Trading Psychology", href: "#trading-psychology" },
+      { name: "Trading Glossary", href: "#trading-glossary" }
     ]
   },
   { 
@@ -63,10 +85,16 @@ const navItems = [
     href: "#about", 
     isRoute: false,
     submenu: [
-      { name: "About Us", href: "#about-us" },
-      { name: "Our Methodology", href: "#methodology" },
-      { name: "Contact", href: "#contact" },
-      { name: "Careers", href: "#careers" }
+      { name: "About BROKERANALYSIS", href: "#about-us" },
+      { name: "Our Methodology", href: "#our-methodology" },
+      { name: "Our Team", href: "#our-team" },
+      { name: "Awards & Recognition", href: "#awards" },
+      { name: "Press & Media", href: "#press-media" },
+      { name: "Contact Us", href: "#contact-us" },
+      { name: "Careers", href: "#careers" },
+      { name: "Partners", href: "#partners" },
+      { name: "Privacy Policy", href: "#privacy-policy" },
+      { name: "Terms of Service", href: "#terms-of-service" }
     ]
   },
 ];
