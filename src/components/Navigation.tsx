@@ -1,17 +1,74 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Shield } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavigate, useLocation } from "react-router-dom";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const navItems = [
-  { name: "Home", href: "#home", isRoute: false },
-  { name: "Best Brokers", href: "#brokers", isRoute: false },
+  { 
+    name: "Best Brokers", 
+    href: "#brokers", 
+    isRoute: false,
+    submenu: [
+      { name: "CFD Brokers", href: "#cfd-brokers" },
+      { name: "Forex Brokers", href: "#forex-brokers" },
+      { name: "Stock Brokers", href: "#stock-brokers" },
+      { name: "Crypto Brokers", href: "#crypto-brokers" }
+    ]
+  },
+  { 
+    name: "Broker Reviews", 
+    href: "#reviews", 
+    isRoute: false,
+    submenu: [
+      { name: "Interactive Brokers", href: "#interactive-brokers" },
+      { name: "XTB", href: "#xtb" },
+      { name: "IC Markets", href: "#ic-markets" },
+      { name: "All Reviews", href: "#all-reviews" }
+    ]
+  },
   { name: "Scam Shield", href: "/scam-broker-shield", isRoute: true },
-  { name: "Reviews", href: "#reviews", isRoute: false },
-  { name: "Tools", href: "#tools", isRoute: false },
-  { name: "For Beginners", href: "#beginners", isRoute: false },
-  { name: "About", href: "#about", isRoute: false },
+  { 
+    name: "Tools", 
+    href: "#tools", 
+    isRoute: false,
+    submenu: [
+      { name: "Broker Comparison", href: "#comparison" },
+      { name: "Fee Calculator", href: "#calculator" },
+      { name: "Match Me", href: "#match" },
+      { name: "Market Data", href: "#market-data" }
+    ]
+  },
+  { 
+    name: "For Beginners", 
+    href: "#beginners", 
+    isRoute: false,
+    submenu: [
+      { name: "How to Start", href: "#how-to-start" },
+      { name: "Trading Basics", href: "#trading-basics" },
+      { name: "Investment Guide", href: "#investment-guide" },
+      { name: "Risk Management", href: "#risk-management" }
+    ]
+  },
+  { 
+    name: "About", 
+    href: "#about", 
+    isRoute: false,
+    submenu: [
+      { name: "About Us", href: "#about-us" },
+      { name: "Our Methodology", href: "#methodology" },
+      { name: "Contact", href: "#contact" },
+      { name: "Careers", href: "#careers" }
+    ]
+  },
 ];
 
 export function Navigation() {
@@ -58,26 +115,49 @@ export function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2 group">
-            <div className="p-2 bg-gradient-primary rounded-lg shadow-glow group-hover:shadow-accent-glow transition-all duration-300">
-              <Shield className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              BrokerGuard
+          <div className="flex items-center group">
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight">
+              BROKERANALYSIS
             </span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => handleNavigation(item)}
-                className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-accent/20 rounded-lg transition-all duration-200 hover:scale-105"
-              >
-                {item.name}
-              </button>
-            ))}
+          <div className="hidden md:flex items-center">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {navItems.map((item) => (
+                  <NavigationMenuItem key={item.name}>
+                    {item.submenu ? (
+                      <>
+                        <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground bg-transparent">
+                          {item.name}
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                          <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                            {item.submenu.map((subItem) => (
+                              <NavigationMenuLink
+                                key={subItem.name}
+                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer"
+                                onClick={() => handleNavigation({ href: subItem.href, isRoute: false })}
+                              >
+                                <div className="text-sm font-medium leading-none">{subItem.name}</div>
+                              </NavigationMenuLink>
+                            ))}
+                          </div>
+                        </NavigationMenuContent>
+                      </>
+                    ) : (
+                      <NavigationMenuLink
+                        className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-accent/20 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer"
+                        onClick={() => handleNavigation(item)}
+                      >
+                        {item.name}
+                      </NavigationMenuLink>
+                    )}
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
           {/* CTA Buttons */}
@@ -106,13 +186,28 @@ export function Navigation() {
           <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-border shadow-elegant animate-fade-in">
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavigation(item)}
-                  className="block w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-accent/20 rounded-lg transition-colors"
-                >
-                  {item.name}
-                </button>
+                <div key={item.name}>
+                  <button
+                    onClick={() => handleNavigation(item)}
+                    className="flex items-center justify-between w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-accent/20 rounded-lg transition-colors"
+                  >
+                    {item.name}
+                    {item.submenu && <ChevronDown className="h-4 w-4" />}
+                  </button>
+                  {item.submenu && (
+                    <div className="ml-4 mt-2 space-y-2">
+                      {item.submenu.map((subItem) => (
+                        <button
+                          key={subItem.name}
+                          onClick={() => handleNavigation({ href: subItem.href, isRoute: false })}
+                          className="block w-full text-left px-4 py-2 text-sm text-foreground/60 hover:text-foreground hover:bg-accent/10 rounded-lg transition-colors"
+                        >
+                          {subItem.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <div className="flex flex-col space-y-3 pt-4 border-t border-border">
                 <Button variant="outline" size="sm">

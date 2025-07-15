@@ -41,7 +41,7 @@ const testimonials = [
   {
     name: "Hesham El-gammal",
     role: "Egypt",
-    content: "BrokerGuard easily found me two brokers that are available in my country and fit my exact needs to invest in the international market, it was an enjoyable experience.",
+    content: "BrokerAnalysis easily found me two brokers that are available in my country and fit my exact needs to invest in the international market, it was an enjoyable experience.",
     rating: 5,
     image: "/lovable-uploads/18d09656-4d10-44cf-87c0-34dc7f0d2f45.png"
   }
@@ -62,7 +62,7 @@ export function TestimonialsSection() {
             </span>
           </h2>
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-            Real feedback from traders and investors who found their perfect broker match through BrokerGuard
+            Real feedback from traders and investors who found their perfect broker match through BrokerAnalysis
           </p>
         </div>
 

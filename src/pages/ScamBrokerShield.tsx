@@ -106,7 +106,7 @@ export default function ScamBrokerShield() {
               </h1>
             </div>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Check whether your broker is trusted by BrokerGuard. Protect yourself from scam brokers and fraudulent trading platforms.
+              Check whether your broker is trusted by BrokerAnalysis. Protect yourself from scam brokers and fraudulent trading platforms.
             </p>
             
             {/* Counter */}

@@ -11,12 +11,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-2">
-              <div className="p-2 bg-gradient-primary rounded-lg shadow-glow">
-                <Shield className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                BrokerGuard
+            <div className="flex items-center group">
+              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight">
+                BROKERANALYSIS
               </span>
             </div>
             <p className="text-foreground/70 text-sm leading-relaxed">
@@ -66,7 +63,7 @@ export function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-center space-x-2 text-foreground/70">
                 <Mail className="h-4 w-4" />
-                <span>support@brokerguard.com</span>
+                <span>support@brokeranalysis.com</span>
               </div>
               <div className="flex items-center space-x-2 text-foreground/70">
                 <Phone className="h-4 w-4" />
@@ -110,12 +107,12 @@ export function Footer() {
             <p>
               <strong>Risk Disclaimer:</strong> Please note that by investing in and/or trading financial instruments, 
               commodities and any other assets, you are taking a high degree of risk and you can lose all your deposited money. 
-              You should engage in any such activity only if you are fully aware of the relevant risks. BrokerGuard does not 
+              You should engage in any such activity only if you are fully aware of the relevant risks. BrokerAnalysis does not 
               provide investment or any other advice.
             </p>
             <p>
-              <strong>Advertiser Disclosure:</strong> At BrokerGuard, we consider clarity and transparency as core values. 
-              BrokerGuard is free to use for everyone, but earns a commission from some of its partners with no additional cost to you. 
+              <strong>Advertiser Disclosure:</strong> At BrokerAnalysis, we consider clarity and transparency as core values. 
+              BrokerAnalysis is free to use for everyone, but earns a commission from some of its partners with no additional cost to you.
               All material and information is based on our proprietary professional methodology, which is unbiased and independent 
               from our remuneration structure.
             </p>
@@ -124,7 +121,7 @@ export function Footer() {
           {/* Bottom Bar */}
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-xs text-foreground/60">
-              © {currentYear} BrokerGuard Ltd. All rights reserved. Company Reg#: PH123456789
+              © {currentYear} BrokerAnalysis Ltd. All rights reserved. Company Reg#: PH123456789
             </div>
             <div className="flex space-x-4 text-xs">
               <a href="#" className="text-foreground/60 hover:text-primary transition-colors">Privacy Policy</a>
