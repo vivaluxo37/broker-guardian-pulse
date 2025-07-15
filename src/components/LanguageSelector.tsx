@@ -11,11 +11,29 @@ const languages = [
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  { code: 'pt-br', name: 'Português (BR)', flag: '🇧🇷' },
   { code: 'it', name: 'Italiano', flag: '🇮🇹' },
   { code: 'ja', name: '日本語', flag: '🇯🇵' },
   { code: 'ko', name: '한국어', flag: '🇰🇷' },
   { code: 'zh', name: '中文', flag: '🇨🇳' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦' }
+  { code: 'zh-tw', name: '繁體中文', flag: '🇹🇼' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'af', name: 'Afrikaans', flag: '🇿🇦' },
+  { code: 'sq', name: 'Shqip', flag: '🇦🇱' },
+  { code: 'hy', name: 'Հայերեն', flag: '🇦🇲' },
+  { code: 'bn', name: 'বাংলা', flag: '🇧🇩' },
+  { code: 'eu', name: 'Euskera', flag: '🇪🇸' },
+  { code: 'bs', name: 'Bosanski', flag: '🇧🇦' },
+  { code: 'bg', name: 'Български', flag: '🇧🇬' },
+  { code: 'ca', name: 'Català', flag: '🇪🇸' },
+  { code: 'hr', name: 'Hrvatski', flag: '🇭🇷' },
+  { code: 'cs', name: 'Čeština', flag: '🇨🇿' },
+  { code: 'da', name: 'Dansk', flag: '🇩🇰' },
+  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
+  { code: 'et', name: 'Eesti', flag: '🇪🇪' },
+  { code: 'tl', name: 'Filipino', flag: '🇵🇭' },
+  { code: 'fi', name: 'Suomi', flag: '🇫🇮' },
+  { code: 'el', name: 'Ελληνικά', flag: '🇬🇷' }
 ];
 
 export function LanguageSelector() {

@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, TrendingUp, Users } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function HeroSection() {
+  const { t } = useTranslation();
+  
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -27,18 +30,13 @@ export function HeroSection() {
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl font-bold mb-8 animate-fade-in">
             <span className="bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
-              Get matched with
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-accent via-primary to-foreground bg-clip-text text-transparent">
-              trusted online brokers
+              {t('hero.title')}
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-foreground/80 mb-12 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            Leading the way in broker recommendations with AI-powered matching, 
-            comprehensive reviews, and 9+ years of expertise.
+            {t('hero.subtitle')}
           </p>
 
           {/* CTA Buttons */}
@@ -49,7 +47,7 @@ export function HeroSection() {
               onClick={() => scrollToSection("#match")}
               className="group"
             >
-              Match Me with Brokers
+              {t('hero.matchButton')}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
@@ -57,7 +55,7 @@ export function HeroSection() {
               size="xl"
               onClick={() => scrollToSection("#brokers")}
             >
-              Browse All Brokers
+              {t('hero.learnMore')}
             </Button>
           </div>
 
