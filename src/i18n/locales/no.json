@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Beste meglere",
+    "brokerReviews": "Meglerrangeringer",
+    "tools": "Verktøy",
+    "forBeginners": "For nybegynnere",
+    "about": "Om oss",
+    "bestBrokers_stocks": "Aksjer",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Krypto",
+    "bestBrokers_options": "Opsjoner",
+    "bestBrokers_dayTrading": "Dagshandel",
+    "bestBrokers_international": "Internasjonal",
+    "bestBrokers_lowCost": "Lav kostnad",
+    "bestBrokers_beginners": "Nybegynnere",
+    "brokerReviews_latest": "Nyeste anmeldelser",
+    "brokerReviews_topRated": "Høyest rangert",
+    "brokerReviews_detailed": "Detaljerte anmeldelser",
+    "brokerReviews_comparison": "Sammenligning",
+    "tools_calculator": "Kalkulator",
+    "tools_screener": "Filter",
+    "tools_analysis": "Analyse",
+    "tools_simulator": "Simulator",
+    "forBeginners_guide": "Guide",
+    "forBeginners_basics": "Grunnleggende",
+    "forBeginners_strategies": "Strategier",
+    "forBeginners_education": "Utdanning",
+    "about_company": "Selskap",
+    "about_team": "Team",
+    "about_contact": "Kontakt",
+    "about_careers": "Karriere"
+  },
+  "hero": {
+    "title": "Finn den perfekte megleren for deg",
+    "subtitle": "Sammenlign tusenvis av meglere og få personlige anbefalinger basert på dine handelsbehov",
+    "getStarted": "Kom i gang nå",
+    "learnMore": "Lær mer"
+  }
+}

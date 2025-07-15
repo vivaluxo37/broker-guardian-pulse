@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Madalali Bora",
+    "brokerReviews": "Ukaguzi wa Madalali",
+    "tools": "Zana",
+    "forBeginners": "Kwa Wanaoanza",
+    "about": "Kuhusu",
+    "bestBrokers_stocks": "Hisa",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Crypto",
+    "bestBrokers_options": "Chaguo",
+    "bestBrokers_dayTrading": "Biashara ya Siku",
+    "bestBrokers_international": "Kimataifa",
+    "bestBrokers_lowCost": "Bei Nafuu",
+    "bestBrokers_beginners": "Wanaoanza",
+    "brokerReviews_latest": "Ukaguzi wa Hivi Karibuni",
+    "brokerReviews_topRated": "Wenye Kiwango cha Juu",
+    "brokerReviews_detailed": "Ukaguzi wa Kina",
+    "brokerReviews_comparison": "Ulinganisho",
+    "tools_calculator": "Kikokotoo",
+    "tools_screener": "Kichuja",
+    "tools_analysis": "Uchambuzi",
+    "tools_simulator": "Kielelezo",
+    "forBeginners_guide": "Mwongozo",
+    "forBeginners_basics": "Misingi",
+    "forBeginners_strategies": "Mikakati",
+    "forBeginners_education": "Elimu",
+    "about_company": "Kampuni",
+    "about_team": "Timu",
+    "about_contact": "Mawasiliano",
+    "about_careers": "Kazi"
+  },
+  "hero": {
+    "title": "Pata Mdalalali Mkamilifu Kwako",
+    "subtitle": "Linganisha maelfu ya madalali na upate mapendekezo ya kibinafsi kulingana na mahitaji yako ya biashara",
+    "getStarted": "Anza Sasa",
+    "learnMore": "Jifunze Zaidi"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Лучшие брокеры",
+    "brokerReviews": "Обзоры брокеров",
+    "tools": "Инструменты",
+    "forBeginners": "Для начинающих",
+    "about": "О нас",
+    "bestBrokers_stocks": "Акции",
+    "bestBrokers_forex": "Форекс",
+    "bestBrokers_crypto": "Криптовалюты",
+    "bestBrokers_options": "Опционы",
+    "bestBrokers_dayTrading": "Дневная торговля",
+    "bestBrokers_international": "Международный",
+    "bestBrokers_lowCost": "Низкая стоимость",
+    "bestBrokers_beginners": "Начинающие",
+    "brokerReviews_latest": "Последние обзоры",
+    "brokerReviews_topRated": "Лучшие оценки",
+    "brokerReviews_detailed": "Подробные обзоры",
+    "brokerReviews_comparison": "Сравнение",
+    "tools_calculator": "Калькулятор",
+    "tools_screener": "Скринер",
+    "tools_analysis": "Анализ",
+    "tools_simulator": "Симулятор",
+    "forBeginners_guide": "Руководство",
+    "forBeginners_basics": "Основы",
+    "forBeginners_strategies": "Стратегии",
+    "forBeginners_education": "Образование",
+    "about_company": "Компания",
+    "about_team": "Команда",
+    "about_contact": "Контакты",
+    "about_careers": "Карьера"
+  },
+  "hero": {
+    "title": "Найдите идеального брокера для себя",
+    "subtitle": "Сравните тысячи брокеров и получите персональные рекомендации на основе ваших торговых потребностей",
+    "getStarted": "Начать сейчас",
+    "learnMore": "Узнать больше"
+  }
+}

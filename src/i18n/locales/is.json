@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Bestu miðlarar",
+    "brokerReviews": "Miðlara umsagnir",
+    "tools": "Verkfæri",
+    "forBeginners": "Fyrir byrjendur",
+    "about": "Um okkur",
+    "bestBrokers_stocks": "Hlutabréf",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Crypto",
+    "bestBrokers_options": "Valkostir",
+    "bestBrokers_dayTrading": "Dagviðskipti",
+    "bestBrokers_international": "Alþjóðlegur",
+    "bestBrokers_lowCost": "Lágur kostnaður",
+    "bestBrokers_beginners": "Byrjendur",
+    "brokerReviews_latest": "Nýjustu umsagnir",
+    "brokerReviews_topRated": "Efst í metlista",
+    "brokerReviews_detailed": "Ítarlegar umsagnir",
+    "brokerReviews_comparison": "Samanburður",
+    "tools_calculator": "Reiknivél",
+    "tools_screener": "Síur",
+    "tools_analysis": "Greining",
+    "tools_simulator": "Hermir",
+    "forBeginners_guide": "Leiðbeiningar",
+    "forBeginners_basics": "Grunnatriði",
+    "forBeginners_strategies": "Aðferðir",
+    "forBeginners_education": "Menntun",
+    "about_company": "Fyrirtæki",
+    "about_team": "Teymi",
+    "about_contact": "Tengiliður",
+    "about_careers": "Störf"
+  },
+  "hero": {
+    "title": "Finndu fullkominn miðlara fyrir þig",
+    "subtitle": "Berðu saman þúsundir miðlara og fáðu persónulegar ráðleggingar byggðar á viðskiptaþörfum þínum",
+    "getStarted": "Byrja núna",
+    "learnMore": "Læra meira"
+  }
+}

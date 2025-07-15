@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "بہترین بروکرز",
+    "brokerReviews": "بروکر ریویوز",
+    "tools": "ٹولز",
+    "forBeginners": "ابتدائی افراد کے لیے",
+    "about": "ہمارے بارے میں",
+    "bestBrokers_stocks": "اسٹاکس",
+    "bestBrokers_forex": "فاریکس",
+    "bestBrokers_crypto": "کرپٹو",
+    "bestBrokers_options": "آپشنز",
+    "bestBrokers_dayTrading": "ڈے ٹریڈنگ",
+    "bestBrokers_international": "بین الاقوامی",
+    "bestBrokers_lowCost": "کم لاگت",
+    "bestBrokers_beginners": "ابتدائی",
+    "brokerReviews_latest": "تازہ ترین ریویوز",
+    "brokerReviews_topRated": "اعلیٰ درجہ بندی",
+    "brokerReviews_detailed": "تفصیلی ریویوز",
+    "brokerReviews_comparison": "موازنہ",
+    "tools_calculator": "کیلکولیٹر",
+    "tools_screener": "اسکرینر",
+    "tools_analysis": "تجزیہ",
+    "tools_simulator": "سمیولیٹر",
+    "forBeginners_guide": "گائیڈ",
+    "forBeginners_basics": "بنیادی باتیں",
+    "forBeginners_strategies": "حکمت عملیاں",
+    "forBeginners_education": "تعلیم",
+    "about_company": "کمپنی",
+    "about_team": "ٹیم",
+    "about_contact": "رابطہ",
+    "about_careers": "کیریئر"
+  },
+  "hero": {
+    "title": "اپنے لیے بہترین بروکر تلاش کریں",
+    "subtitle": "ہزاروں بروکرز کا موازنہ کریں اور اپنی ٹریڈنگ ضروریات کی بنیاد پر ذاتی تجاویز حاصل کریں",
+    "getStarted": "ابھی شروع کریں",
+    "learnMore": "مزید جانیں"
+  }
+}

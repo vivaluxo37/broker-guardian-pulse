@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Nhà môi giới tốt nhất",
+    "brokerReviews": "Đánh giá nhà môi giới",
+    "tools": "Công cụ",
+    "forBeginners": "Dành cho người mới",
+    "about": "Về chúng tôi",
+    "bestBrokers_stocks": "Cổ phiếu",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Crypto",
+    "bestBrokers_options": "Quyền chọn",
+    "bestBrokers_dayTrading": "Giao dịch trong ngày",
+    "bestBrokers_international": "Quốc tế",
+    "bestBrokers_lowCost": "Chi phí thấp",
+    "bestBrokers_beginners": "Người mới",
+    "brokerReviews_latest": "Đánh giá mới nhất",
+    "brokerReviews_topRated": "Đánh giá cao nhất",
+    "brokerReviews_detailed": "Đánh giá chi tiết",
+    "brokerReviews_comparison": "So sánh",
+    "tools_calculator": "Máy tính",
+    "tools_screener": "Bộ lọc",
+    "tools_analysis": "Phân tích",
+    "tools_simulator": "Mô phỏng",
+    "forBeginners_guide": "Hướng dẫn",
+    "forBeginners_basics": "Cơ bản",
+    "forBeginners_strategies": "Chiến lược",
+    "forBeginners_education": "Giáo dục",
+    "about_company": "Công ty",
+    "about_team": "Đội ngũ",
+    "about_contact": "Liên hệ",
+    "about_careers": "Nghề nghiệp"
+  },
+  "hero": {
+    "title": "Tìm nhà môi giới hoàn hảo cho bạn",
+    "subtitle": "So sánh hàng nghìn nhà môi giới và nhận được khuyến nghị cá nhân dựa trên nhu cầu giao dịch của bạn",
+    "getStarted": "Bắt đầu ngay",
+    "learnMore": "Tìm hiểu thêm"
+  }
+}

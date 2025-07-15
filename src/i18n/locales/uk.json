@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Найкращі брокери",
+    "brokerReviews": "Огляди брокерів",
+    "tools": "Інструменти",
+    "forBeginners": "Для початківців",
+    "about": "Про нас",
+    "bestBrokers_stocks": "Акції",
+    "bestBrokers_forex": "Форекс",
+    "bestBrokers_crypto": "Криптовалюти",
+    "bestBrokers_options": "Опціони",
+    "bestBrokers_dayTrading": "Денна торгівля",
+    "bestBrokers_international": "Міжнародний",
+    "bestBrokers_lowCost": "Низька вартість",
+    "bestBrokers_beginners": "Початківці",
+    "brokerReviews_latest": "Останні огляди",
+    "brokerReviews_topRated": "Найкращі оцінки",
+    "brokerReviews_detailed": "Детальні огляди",
+    "brokerReviews_comparison": "Порівняння",
+    "tools_calculator": "Калькулятор",
+    "tools_screener": "Скринер",
+    "tools_analysis": "Аналіз",
+    "tools_simulator": "Симулятор",
+    "forBeginners_guide": "Посібник",
+    "forBeginners_basics": "Основи",
+    "forBeginners_strategies": "Стратегії",
+    "forBeginners_education": "Освіта",
+    "about_company": "Компанія",
+    "about_team": "Команда",
+    "about_contact": "Контакти",
+    "about_careers": "Кар'єра"
+  },
+  "hero": {
+    "title": "Знайдіть ідеального брокера для себе",
+    "subtitle": "Порівняйте тисячі брокерів і отримайте персональні рекомендації на основі ваших торгових потреб",
+    "getStarted": "Почати зараз",
+    "learnMore": "Дізнатися більше"
+  }
+}

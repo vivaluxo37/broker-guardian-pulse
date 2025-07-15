@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Cei mai buni brokeri",
+    "brokerReviews": "Recenzii brokeri",
+    "tools": "Instrumente",
+    "forBeginners": "Pentru începători",
+    "about": "Despre noi",
+    "bestBrokers_stocks": "Acțiuni",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Crypto",
+    "bestBrokers_options": "Opțiuni",
+    "bestBrokers_dayTrading": "Tranzacționare zilnică",
+    "bestBrokers_international": "Internațional",
+    "bestBrokers_lowCost": "Cost redus",
+    "bestBrokers_beginners": "Începători",
+    "brokerReviews_latest": "Recenzii recente",
+    "brokerReviews_topRated": "Cele mai bine cotate",
+    "brokerReviews_detailed": "Recenzii detaliate",
+    "brokerReviews_comparison": "Comparație",
+    "tools_calculator": "Calculator",
+    "tools_screener": "Filtru",
+    "tools_analysis": "Analiză",
+    "tools_simulator": "Simulator",
+    "forBeginners_guide": "Ghid",
+    "forBeginners_basics": "Bazele",
+    "forBeginners_strategies": "Strategii",
+    "forBeginners_education": "Educație",
+    "about_company": "Companie",
+    "about_team": "Echipă",
+    "about_contact": "Contact",
+    "about_careers": "Cariere"
+  },
+  "hero": {
+    "title": "Găsește brokerul perfect pentru tine",
+    "subtitle": "Compară mii de brokeri și primește recomandări personalizate pe baza nevoilor tale de tranzacționare",
+    "getStarted": "Începe acum",
+    "learnMore": "Află mai multe"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Amabhroka Angcono Kakhulu",
+    "brokerReviews": "Ukubuyekezwa Kwamabhroka",
+    "tools": "Amathuluzi",
+    "forBeginners": "Kulabo Abaqalayo",
+    "about": "Ngathi",
+    "bestBrokers_stocks": "Ama-Stock",
+    "bestBrokers_forex": "I-Forex",
+    "bestBrokers_crypto": "I-Crypto",
+    "bestBrokers_options": "Izinketho",
+    "bestBrokers_dayTrading": "Ukuhweba Ngosuku",
+    "bestBrokers_international": "Kumazwe Ngamazwe",
+    "bestBrokers_lowCost": "Izindleko Eziphansi",
+    "bestBrokers_beginners": "Abaqalayo",
+    "brokerReviews_latest": "Ukubuyekezwa Kwakamuva",
+    "brokerReviews_topRated": "Okuphakeme Kakhulu",
+    "brokerReviews_detailed": "Ukubuyekezwa Ngokuningiliziwe",
+    "brokerReviews_comparison": "Ukuqhathanisa",
+    "tools_calculator": "Isibali",
+    "tools_screener": "Isihluzi",
+    "tools_analysis": "Ukuhlaziya",
+    "tools_simulator": "Isifanekiso",
+    "forBeginners_guide": "Umhlahlandlela",
+    "forBeginners_basics": "Izisekelo",
+    "forBeginners_strategies": "Amasu",
+    "forBeginners_education": "Imfundo",
+    "about_company": "Inkampani",
+    "about_team": "Ithimba",
+    "about_contact": "Ukuxhumana",
+    "about_careers": "Amakharipha"
+  },
+  "hero": {
+    "title": "Thola Ibhroka Eliphelele Kuwe",
+    "subtitle": "Qhathanisa amakhulu amabhroka futhi uthole izincomo zomuntu siqu ngokusekelwe ezidingweni zakho zokuhweba",
+    "getStarted": "Qala Manje",
+    "learnMore": "Funda Kabanzi"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Legjobb brókerek",
+    "brokerReviews": "Bróker értékelések",
+    "tools": "Eszközök",
+    "forBeginners": "Kezdőknek",
+    "about": "Rólunk",
+    "bestBrokers_stocks": "Részvények",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Kripto",
+    "bestBrokers_options": "Opciók",
+    "bestBrokers_dayTrading": "Napi kereskedés",
+    "bestBrokers_international": "Nemzetközi",
+    "bestBrokers_lowCost": "Alacsony költség",
+    "bestBrokers_beginners": "Kezdők",
+    "brokerReviews_latest": "Legújabb értékelések",
+    "brokerReviews_topRated": "Legjobban értékelt",
+    "brokerReviews_detailed": "Részletes értékelések",
+    "brokerReviews_comparison": "Összehasonlítás",
+    "tools_calculator": "Számológép",
+    "tools_screener": "Szűrő",
+    "tools_analysis": "Elemzés",
+    "tools_simulator": "Szimulátor",
+    "forBeginners_guide": "Útmutató",
+    "forBeginners_basics": "Alapok",
+    "forBeginners_strategies": "Stratégiák",
+    "forBeginners_education": "Oktatás",
+    "about_company": "Cég",
+    "about_team": "Csapat",
+    "about_contact": "Kapcsolat",
+    "about_careers": "Karrier"
+  },
+  "hero": {
+    "title": "Találd meg a tökéletes brókert",
+    "subtitle": "Hasonlítsd össze a brókereket és kapj személyre szabott ajánlásokat a kereskedési igényeid alapján",
+    "getStarted": "Kezdés",
+    "learnMore": "Tudj meg többet"
+  }
+}

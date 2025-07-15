@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "הברוקרים הטובים ביותר",
+    "brokerReviews": "ביקורות ברוקר",
+    "tools": "כלים",
+    "forBeginners": "למתחילים",
+    "about": "אודות",
+    "bestBrokers_stocks": "מניות",
+    "bestBrokers_forex": "פורקס",
+    "bestBrokers_crypto": "קריפטו",
+    "bestBrokers_options": "אופציות",
+    "bestBrokers_dayTrading": "מסחר יומי",
+    "bestBrokers_international": "בינלאומי",
+    "bestBrokers_lowCost": "עלות נמוכה",
+    "bestBrokers_beginners": "מתחילים",
+    "brokerReviews_latest": "הביקורות האחרונות",
+    "brokerReviews_topRated": "דירוג גבוה",
+    "brokerReviews_detailed": "ביקורות מפורטות",
+    "brokerReviews_comparison": "השוואה",
+    "tools_calculator": "מחשבון",
+    "tools_screener": "סקרינר",
+    "tools_analysis": "ניתוח",
+    "tools_simulator": "סימולטור",
+    "forBeginners_guide": "מדריך",
+    "forBeginners_basics": "יסודות",
+    "forBeginners_strategies": "אסטרטגיות",
+    "forBeginners_education": "חינוך",
+    "about_company": "החברה",
+    "about_team": "הצוות",
+    "about_contact": "צור קשר",
+    "about_careers": "קריירה"
+  },
+  "hero": {
+    "title": "מצא את הברוקר המושלם עבורך",
+    "subtitle": "השווה אלפי ברוקרים וקבל המלצות מותאמות אישית בהתבסס על צרכי המסחר שלך",
+    "getStarted": "התחל עכשיו",
+    "learnMore": "למד עוד"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Najboljši posredniki",
+    "brokerReviews": "Ocene posrednikov",
+    "tools": "Orodja",
+    "forBeginners": "Za začetnike",
+    "about": "O nas",
+    "bestBrokers_stocks": "Delnice",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Kripto",
+    "bestBrokers_options": "Opcije",
+    "bestBrokers_dayTrading": "Dnevno trgovanje",
+    "bestBrokers_international": "Mednarodno",
+    "bestBrokers_lowCost": "Nizki stroški",
+    "bestBrokers_beginners": "Začetniki",
+    "brokerReviews_latest": "Najnovejše ocene",
+    "brokerReviews_topRated": "Najbolje ocenjeni",
+    "brokerReviews_detailed": "Podrobne ocene",
+    "brokerReviews_comparison": "Primerjava",
+    "tools_calculator": "Kalkulator",
+    "tools_screener": "Filter",
+    "tools_analysis": "Analiza",
+    "tools_simulator": "Simulator",
+    "forBeginners_guide": "Vodnik",
+    "forBeginners_basics": "Osnove",
+    "forBeginners_strategies": "Strategije",
+    "forBeginners_education": "Izobraževanje",
+    "about_company": "Podjetje",
+    "about_team": "Ekipa",
+    "about_contact": "Kontakt",
+    "about_careers": "Kariera"
+  },
+  "hero": {
+    "title": "Poiščite popolnega posrednika zase",
+    "subtitle": "Primerjajte tisoče posrednikov in prejemite personalizirane priporočila na podlagi vaših trgovinskih potreb",
+    "getStarted": "Začni zdaj",
+    "learnMore": "Izvedi več"
+  }
+}

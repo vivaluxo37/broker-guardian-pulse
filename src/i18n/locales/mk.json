@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Најдобри брокери",
+    "brokerReviews": "Рецензии за брокери",
+    "tools": "Алатки",
+    "forBeginners": "За почетници",
+    "about": "За нас",
+    "bestBrokers_stocks": "Акции",
+    "bestBrokers_forex": "Форекс",
+    "bestBrokers_crypto": "Крипто",
+    "bestBrokers_options": "Опции",
+    "bestBrokers_dayTrading": "Дневна трговија",
+    "bestBrokers_international": "Меѓународен",
+    "bestBrokers_lowCost": "Ниска цена",
+    "bestBrokers_beginners": "Почетници",
+    "brokerReviews_latest": "Најнови рецензии",
+    "brokerReviews_topRated": "Најдобро оценети",
+    "brokerReviews_detailed": "Детални рецензии",
+    "brokerReviews_comparison": "Споредба",
+    "tools_calculator": "Калкулатор",
+    "tools_screener": "Филтер",
+    "tools_analysis": "Анализа",
+    "tools_simulator": "Симулатор",
+    "forBeginners_guide": "Водич",
+    "forBeginners_basics": "Основи",
+    "forBeginners_strategies": "Стратегии",
+    "forBeginners_education": "Образование",
+    "about_company": "Компанија",
+    "about_team": "Тим",
+    "about_contact": "Контакт",
+    "about_careers": "Кариера"
+  },
+  "hero": {
+    "title": "Најдете го совршениот брокер за вас",
+    "subtitle": "Споредете илјадници брокери и добијте персонализирани препораки врз основа на вашите потреби за трговија",
+    "getStarted": "Почни сега",
+    "learnMore": "Дознај повеќе"
+  }
+}

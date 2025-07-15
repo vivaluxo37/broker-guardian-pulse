@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "โบรกเกอร์ที่ดีที่สุด",
+    "brokerReviews": "รีวิวโบรกเกอร์",
+    "tools": "เครื่องมือ",
+    "forBeginners": "สำหรับผู้เริ่มต้น",
+    "about": "เกี่ยวกับเรา",
+    "bestBrokers_stocks": "หุ้น",
+    "bestBrokers_forex": "ฟอเร็กซ์",
+    "bestBrokers_crypto": "คริปโต",
+    "bestBrokers_options": "ออปชั่น",
+    "bestBrokers_dayTrading": "เทรดรายวัน",
+    "bestBrokers_international": "นานาชาติ",
+    "bestBrokers_lowCost": "ต้นทุนต่ำ",
+    "bestBrokers_beginners": "ผู้เริ่มต้น",
+    "brokerReviews_latest": "รีวิวล่าสุด",
+    "brokerReviews_topRated": "คะแนนสูงสุด",
+    "brokerReviews_detailed": "รีวิวโดยละเอียด",
+    "brokerReviews_comparison": "เปรียบเทียบ",
+    "tools_calculator": "เครื่องคิดเลข",
+    "tools_screener": "ตัวกรอง",
+    "tools_analysis": "การวิเคราะห์",
+    "tools_simulator": "จำลอง",
+    "forBeginners_guide": "คู่มือ",
+    "forBeginners_basics": "พื้นฐาน",
+    "forBeginners_strategies": "กลยุทธ์",
+    "forBeginners_education": "การศึกษา",
+    "about_company": "บริษัท",
+    "about_team": "ทีม",
+    "about_contact": "ติดต่อ",
+    "about_careers": "อาชีพ"
+  },
+  "hero": {
+    "title": "ค้นหาโบรกเกอร์ที่เหมาะสมสำหรับคุณ",
+    "subtitle": "เปรียบเทียบโบรกเกอร์หลายพันราย และรับคำแนะนำส่วนบุคคลตามความต้องการการเทรดของคุณ",
+    "getStarted": "เริ่มต้นตอนนี้",
+    "learnMore": "เรียนรู้เพิ่มเติม"
+  }
+}

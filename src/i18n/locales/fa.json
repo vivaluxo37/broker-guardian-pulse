@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "بهترین کارگزارها",
+    "brokerReviews": "بررسی کارگزارها",
+    "tools": "ابزارها",
+    "forBeginners": "برای مبتدیان",
+    "about": "درباره ما",
+    "bestBrokers_stocks": "سهام",
+    "bestBrokers_forex": "فارکس",
+    "bestBrokers_crypto": "ارز دیجیتال",
+    "bestBrokers_options": "اختیار معامله",
+    "bestBrokers_dayTrading": "معاملات روزانه",
+    "bestBrokers_international": "بین‌المللی",
+    "bestBrokers_lowCost": "هزینه پایین",
+    "bestBrokers_beginners": "مبتدیان",
+    "brokerReviews_latest": "آخرین بررسی‌ها",
+    "brokerReviews_topRated": "بالاترین امتیاز",
+    "brokerReviews_detailed": "بررسی‌های تفصیلی",
+    "brokerReviews_comparison": "مقایسه",
+    "tools_calculator": "ماشین حساب",
+    "tools_screener": "غربالگر",
+    "tools_analysis": "تحلیل",
+    "tools_simulator": "شبیه‌ساز",
+    "forBeginners_guide": "راهنما",
+    "forBeginners_basics": "مبانی",
+    "forBeginners_strategies": "استراتژی‌ها",
+    "forBeginners_education": "آموزش",
+    "about_company": "شرکت",
+    "about_team": "تیم",
+    "about_contact": "تماس",
+    "about_careers": "شغل"
+  },
+  "hero": {
+    "title": "کارگزار ایده‌آل خود را پیدا کنید",
+    "subtitle": "هزاران کارگزار را مقایسه کنید و توصیه‌های شخصی بر اساس نیازهای معاملاتی خود دریافت کنید",
+    "getStarted": "همین حالا شروع کنید",
+    "learnMore": "بیشتر بدانید"
+  }
+}

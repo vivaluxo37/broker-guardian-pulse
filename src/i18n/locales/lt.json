@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Geriausi brokeriai",
+    "brokerReviews": "Brokerių apžvalgos",
+    "tools": "Įrankiai",
+    "forBeginners": "Pradedantiesiems",
+    "about": "Apie mus",
+    "bestBrokers_stocks": "Akcijos",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Kripto",
+    "bestBrokers_options": "Opcijos",
+    "bestBrokers_dayTrading": "Dienos prekyba",
+    "bestBrokers_international": "Tarptautinis",
+    "bestBrokers_lowCost": "Žema kaina",
+    "bestBrokers_beginners": "Pradedantieji",
+    "brokerReviews_latest": "Naujausios apžvalgos",
+    "brokerReviews_topRated": "Geriausiai įvertinti",
+    "brokerReviews_detailed": "Detalios apžvalgos",
+    "brokerReviews_comparison": "Palyginimas",
+    "tools_calculator": "Skaičiuoklė",
+    "tools_screener": "Filtras",
+    "tools_analysis": "Analizė",
+    "tools_simulator": "Simuliatorius",
+    "forBeginners_guide": "Vadovas",
+    "forBeginners_basics": "Pagrindai",
+    "forBeginners_strategies": "Strategijos",
+    "forBeginners_education": "Švietimas",
+    "about_company": "Įmonė",
+    "about_team": "Komanda",
+    "about_contact": "Kontaktai",
+    "about_careers": "Karjera"
+  },
+  "hero": {
+    "title": "Raskite sau tobulą brokerį",
+    "subtitle": "Palyginkite tūkstančius brokerių ir gaukite asmeninius rekomendacijas pagal jūsų prekybos poreikius",
+    "getStarted": "Pradėti dabar",
+    "learnMore": "Sužinoti daugiau"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Najlepší brokeri",
+    "brokerReviews": "Recenzie brokerov",
+    "tools": "Nástroje",
+    "forBeginners": "Pre začiatočníkov",
+    "about": "O nás",
+    "bestBrokers_stocks": "Akcie",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Krypto",
+    "bestBrokers_options": "Opcie",
+    "bestBrokers_dayTrading": "Denné obchodovanie",
+    "bestBrokers_international": "Medzinárodný",
+    "bestBrokers_lowCost": "Nízke náklady",
+    "bestBrokers_beginners": "Začiatočníci",
+    "brokerReviews_latest": "Najnovšie recenzie",
+    "brokerReviews_topRated": "Najlepšie hodnotené",
+    "brokerReviews_detailed": "Podrobné recenzie",
+    "brokerReviews_comparison": "Porovnanie",
+    "tools_calculator": "Kalkulačka",
+    "tools_screener": "Filter",
+    "tools_analysis": "Analýza",
+    "tools_simulator": "Simulátor",
+    "forBeginners_guide": "Sprievodca",
+    "forBeginners_basics": "Základy",
+    "forBeginners_strategies": "Stratégie",
+    "forBeginners_education": "Vzdelávanie",
+    "about_company": "Spoločnosť",
+    "about_team": "Tím",
+    "about_contact": "Kontakt",
+    "about_careers": "Kariéra"
+  },
+  "hero": {
+    "title": "Nájdite si ideálneho brokera",
+    "subtitle": "Porovnajte tisíce brokerov a získajte personalizované odporúčania na základe vašich obchodných potrieb",
+    "getStarted": "Začať teraz",
+    "learnMore": "Dozvedieť sa viac"
+  }
+}

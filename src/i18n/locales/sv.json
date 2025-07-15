@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Bästa mäklare",
+    "brokerReviews": "Mäklarrecensioner",
+    "tools": "Verktyg",
+    "forBeginners": "För nybörjare",
+    "about": "Om oss",
+    "bestBrokers_stocks": "Aktier",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Krypto",
+    "bestBrokers_options": "Optioner",
+    "bestBrokers_dayTrading": "Daytrading",
+    "bestBrokers_international": "Internationell",
+    "bestBrokers_lowCost": "Låg kostnad",
+    "bestBrokers_beginners": "Nybörjare",
+    "brokerReviews_latest": "Senaste recensioner",
+    "brokerReviews_topRated": "Högst rankade",
+    "brokerReviews_detailed": "Detaljerade recensioner",
+    "brokerReviews_comparison": "Jämförelse",
+    "tools_calculator": "Kalkylator",
+    "tools_screener": "Filter",
+    "tools_analysis": "Analys",
+    "tools_simulator": "Simulator",
+    "forBeginners_guide": "Guide",
+    "forBeginners_basics": "Grundläggande",
+    "forBeginners_strategies": "Strategier",
+    "forBeginners_education": "Utbildning",
+    "about_company": "Företag",
+    "about_team": "Team",
+    "about_contact": "Kontakt",
+    "about_careers": "Karriär"
+  },
+  "hero": {
+    "title": "Hitta den perfekta mäklaren för dig",
+    "subtitle": "Jämför tusentals mäklare och få personliga rekommendationer baserat på dina handelsbehov",
+    "getStarted": "Kom igång nu",
+    "learnMore": "Lär dig mer"
+  }
+}

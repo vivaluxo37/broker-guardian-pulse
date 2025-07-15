@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Labākie brokeri",
+    "brokerReviews": "Brokeru atsauksmes",
+    "tools": "Rīki",
+    "forBeginners": "Iesācējiem",
+    "about": "Par mums",
+    "bestBrokers_stocks": "Akcijas",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Kripto",
+    "bestBrokers_options": "Opcijas",
+    "bestBrokers_dayTrading": "Dienas tirdzniecība",
+    "bestBrokers_international": "Starptautisks",
+    "bestBrokers_lowCost": "Zemas izmaksas",
+    "bestBrokers_beginners": "Iesācēji",
+    "brokerReviews_latest": "Jaunākās atsauksmes",
+    "brokerReviews_topRated": "Vislabāk novērtētie",
+    "brokerReviews_detailed": "Detalizētas atsauksmes",
+    "brokerReviews_comparison": "Salīdzinājums",
+    "tools_calculator": "Kalkulators",
+    "tools_screener": "Filtrs",
+    "tools_analysis": "Analīze",
+    "tools_simulator": "Simulators",
+    "forBeginners_guide": "Ceļvedis",
+    "forBeginners_basics": "Pamati",
+    "forBeginners_strategies": "Stratēģijas",
+    "forBeginners_education": "Izglītība",
+    "about_company": "Uzņēmums",
+    "about_team": "Komanda",
+    "about_contact": "Kontakti",
+    "about_careers": "Karjera"
+  },
+  "hero": {
+    "title": "Atrodiet sev ideālo brokeri",
+    "subtitle": "Salīdziniet tūkstošiem brokeru un saņemiet personalizētas ieteikumus, pamatojoties uz jūsu tirdzniecības vajadzībām",
+    "getStarted": "Sākt tagad",
+    "learnMore": "Uzziniet vairāk"
+  }
+}

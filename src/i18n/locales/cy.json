@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Gorau Broceriaid",
+    "brokerReviews": "Adolygiadau Brocer",
+    "tools": "Offer",
+    "forBeginners": "I Ddechreuwyr",
+    "about": "Amdanom Ni",
+    "bestBrokers_stocks": "Stociau",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Crypto",
+    "bestBrokers_options": "Opsiynau",
+    "bestBrokers_dayTrading": "Masnachu Dyddiol",
+    "bestBrokers_international": "Rhyngwladol",
+    "bestBrokers_lowCost": "Cost Isel",
+    "bestBrokers_beginners": "Dechreuwyr",
+    "brokerReviews_latest": "Adolygiadau Diweddaraf",
+    "brokerReviews_topRated": "Y Gorau eu Graddio",
+    "brokerReviews_detailed": "Adolygiadau Manwl",
+    "brokerReviews_comparison": "Cymhariaeth",
+    "tools_calculator": "Cyfrifiannell",
+    "tools_screener": "Hidlydd",
+    "tools_analysis": "Dadansoddi",
+    "tools_simulator": "Efelychydd",
+    "forBeginners_guide": "Canllaw",
+    "forBeginners_basics": "Sylfaeni",
+    "forBeginners_strategies": "Strategaethau",
+    "forBeginners_education": "Addysg",
+    "about_company": "Cwmni",
+    "about_team": "Tîm",
+    "about_contact": "Cyswllt",
+    "about_careers": "Gyrfaoedd"
+  },
+  "hero": {
+    "title": "Dewch o hyd i'r brocer perffaith i chi",
+    "subtitle": "Cymharwch filoedd o froceriaid a chael argymhellion personol yn seiliedig ar eich anghenion masnachu",
+    "getStarted": "Dechreuwch Nawr",
+    "learnMore": "Dysgwch Fwy"
+  }
+}

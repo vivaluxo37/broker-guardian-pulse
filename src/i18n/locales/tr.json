@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "En İyi Brokerlar",
+    "brokerReviews": "Broker İncelemeleri",
+    "tools": "Araçlar",
+    "forBeginners": "Yeni Başlayanlar İçin",
+    "about": "Hakkımızda",
+    "bestBrokers_stocks": "Hisse Senetleri",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Kripto",
+    "bestBrokers_options": "Opsiyonlar",
+    "bestBrokers_dayTrading": "Günlük Ticaret",
+    "bestBrokers_international": "Uluslararası",
+    "bestBrokers_lowCost": "Düşük Maliyet",
+    "bestBrokers_beginners": "Yeni Başlayanlar",
+    "brokerReviews_latest": "En Son İncelemeler",
+    "brokerReviews_topRated": "En Yüksek Puanlı",
+    "brokerReviews_detailed": "Detaylı İncelemeler",
+    "brokerReviews_comparison": "Karşılaştırma",
+    "tools_calculator": "Hesap Makinesi",
+    "tools_screener": "Tarayıcı",
+    "tools_analysis": "Analiz",
+    "tools_simulator": "Simülatör",
+    "forBeginners_guide": "Rehber",
+    "forBeginners_basics": "Temeller",
+    "forBeginners_strategies": "Stratejiler",
+    "forBeginners_education": "Eğitim",
+    "about_company": "Şirket",
+    "about_team": "Takım",
+    "about_contact": "İletişim",
+    "about_careers": "Kariyer"
+  },
+  "hero": {
+    "title": "Sizin İçin Mükemmel Broker'ı Bulun",
+    "subtitle": "Binlerce broker'ı karşılaştırın ve ticaret ihtiyaçlarınıza göre kişiselleştirilmiş öneriler alın",
+    "getStarted": "Şimdi Başlayın",
+    "learnMore": "Daha Fazla Öğrenin"
+  }
+}

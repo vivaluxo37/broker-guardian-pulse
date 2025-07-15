@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Broker Terbaik",
+    "brokerReviews": "Ulasan Broker",
+    "tools": "Alat",
+    "forBeginners": "Untuk Pemula",
+    "about": "Tentang",
+    "bestBrokers_stocks": "Saham",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Kripto",
+    "bestBrokers_options": "Opsi",
+    "bestBrokers_dayTrading": "Day Trading",
+    "bestBrokers_international": "Internasional",
+    "bestBrokers_lowCost": "Biaya Rendah",
+    "bestBrokers_beginners": "Pemula",
+    "brokerReviews_latest": "Ulasan Terbaru",
+    "brokerReviews_topRated": "Paling Direkomendasikan",
+    "brokerReviews_detailed": "Ulasan Detail",
+    "brokerReviews_comparison": "Perbandingan",
+    "tools_calculator": "Kalkulator",
+    "tools_screener": "Penyaring",
+    "tools_analysis": "Analisis",
+    "tools_simulator": "Simulator",
+    "forBeginners_guide": "Panduan",
+    "forBeginners_basics": "Dasar-dasar",
+    "forBeginners_strategies": "Strategi",
+    "forBeginners_education": "Edukasi",
+    "about_company": "Perusahaan",
+    "about_team": "Tim",
+    "about_contact": "Kontak",
+    "about_careers": "Karir"
+  },
+  "hero": {
+    "title": "Temukan Broker Yang Tepat Untuk Anda",
+    "subtitle": "Bandingkan ribuan broker dan dapatkan rekomendasi personal berdasarkan kebutuhan trading Anda",
+    "getStarted": "Mulai Sekarang",
+    "learnMore": "Pelajari Lebih Lanjut"
+  }
+}

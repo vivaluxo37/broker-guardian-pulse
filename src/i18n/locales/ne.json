@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "उत्कृष्ट ब्रोकरहरू",
+    "brokerReviews": "ब्रोकर समीक्षाहरू",
+    "tools": "उपकरणहरू",
+    "forBeginners": "शुरुआतीहरूका लागि",
+    "about": "हाम्रो बारेमा",
+    "bestBrokers_stocks": "स्टकहरू",
+    "bestBrokers_forex": "फोरेक्स",
+    "bestBrokers_crypto": "क्रिप्टो",
+    "bestBrokers_options": "विकल्पहरू",
+    "bestBrokers_dayTrading": "दैनिक व्यापार",
+    "bestBrokers_international": "अन्तर्राष्ट्रिय",
+    "bestBrokers_lowCost": "कम लागत",
+    "bestBrokers_beginners": "शुरुआतीहरू",
+    "brokerReviews_latest": "पछिल्ला समीक्षाहरू",
+    "brokerReviews_topRated": "उच्च मूल्याङ्कन",
+    "brokerReviews_detailed": "विस्तृत समीक्षाहरू",
+    "brokerReviews_comparison": "तुलना",
+    "tools_calculator": "क्यालकुलेटर",
+    "tools_screener": "स्क्रिनर",
+    "tools_analysis": "विश्लेषण",
+    "tools_simulator": "सिमुलेटर",
+    "forBeginners_guide": "गाइड",
+    "forBeginners_basics": "आधारभूत कुराहरू",
+    "forBeginners_strategies": "रणनीतिहरू",
+    "forBeginners_education": "शिक्षा",
+    "about_company": "कम्पनी",
+    "about_team": "टिम",
+    "about_contact": "सम्पर्क",
+    "about_careers": "करियर"
+  },
+  "hero": {
+    "title": "तपाईंको लागि उत्तम ब्रोकर खोज्नुहोस्",
+    "subtitle": "हजारौं ब्रोकरहरूको तुलना गर्नुहोस् र तपाईंको व्यापारिक आवश्यकताहरूको आधारमा व्यक्तिगत सिफारिसहरू प्राप्त गर्नुहोस्",
+    "getStarted": "अहिले सुरु गर्नुहोस्",
+    "learnMore": "थप जान्नुहोस्"
+  }
+}

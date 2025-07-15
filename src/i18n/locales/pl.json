@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Najlepsi brokerzy",
+    "brokerReviews": "Recenzje brokerów",
+    "tools": "Narzędzia",
+    "forBeginners": "Dla początkujących",
+    "about": "O nas",
+    "bestBrokers_stocks": "Akcje",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Krypto",
+    "bestBrokers_options": "Opcje",
+    "bestBrokers_dayTrading": "Trading dzienny",
+    "bestBrokers_international": "Międzynarodowy",
+    "bestBrokers_lowCost": "Niski koszt",
+    "bestBrokers_beginners": "Początkujący",
+    "brokerReviews_latest": "Najnowsze recenzje",
+    "brokerReviews_topRated": "Najwyżej oceniane",
+    "brokerReviews_detailed": "Szczegółowe recenzje",
+    "brokerReviews_comparison": "Porównanie",
+    "tools_calculator": "Kalkulator",
+    "tools_screener": "Skaner",
+    "tools_analysis": "Analiza",
+    "tools_simulator": "Symulator",
+    "forBeginners_guide": "Przewodnik",
+    "forBeginners_basics": "Podstawy",
+    "forBeginners_strategies": "Strategie",
+    "forBeginners_education": "Edukacja",
+    "about_company": "Firma",
+    "about_team": "Zespół",
+    "about_contact": "Kontakt",
+    "about_careers": "Kariera"
+  },
+  "hero": {
+    "title": "Znajdź idealnego brokera dla siebie",
+    "subtitle": "Porównaj tysiące brokerów i otrzymaj spersonalizowane rekomendacje na podstawie Twoich potrzeb handlowych",
+    "getStarted": "Zacznij teraz",
+    "learnMore": "Dowiedz się więcej"
+  }
+}

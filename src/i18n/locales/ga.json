@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "bestBrokers": "Na Bróicéirí Is Fearr",
+    "brokerReviews": "Léirmheasanna Bróicéara",
+    "tools": "Uirlisí",
+    "forBeginners": "Do Thosaitheoirí",
+    "about": "Fúinn",
+    "bestBrokers_stocks": "Stoic",
+    "bestBrokers_forex": "Forex",
+    "bestBrokers_crypto": "Crypto",
+    "bestBrokers_options": "Roghanna",
+    "bestBrokers_dayTrading": "Trádáil Lae",
+    "bestBrokers_international": "Idirnáisiúnta",
+    "bestBrokers_lowCost": "Costas Íseal",
+    "bestBrokers_beginners": "Tosaitheoirí",
+    "brokerReviews_latest": "Léirmheasanna Nua",
+    "brokerReviews_topRated": "An Scór Is Airde",
+    "brokerReviews_detailed": "Léirmheasanna Mionsonraithe",
+    "brokerReviews_comparison": "Comparáid",
+    "tools_calculator": "Áireamhán",
+    "tools_screener": "Scagaire",
+    "tools_analysis": "Anailís",
+    "tools_simulator": "Insamhlóir",
+    "forBeginners_guide": "Treoir",
+    "forBeginners_basics": "Bunriachtanais",
+    "forBeginners_strategies": "Straitéisí",
+    "forBeginners_education": "Oideachas",
+    "about_company": "Cuideachta",
+    "about_team": "Foireann",
+    "about_contact": "Teagmháil",
+    "about_careers": "Gairmeacha"
+  },
+  "hero": {
+    "title": "Faigh an Bróicéir Foirfe Duit",
+    "subtitle": "Déan comparáid idir na mílte bróicéir agus faigh moltaí pearsanta bunaithe ar do riachtanais trádála",
+    "getStarted": "Tosaigh Anois",
+    "learnMore": "Foghlaim Níos Mó"
+  }
+}
