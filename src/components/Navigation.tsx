@@ -2,19 +2,23 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Best Brokers", href: "#brokers" },
-  { name: "Reviews", href: "#reviews" },
-  { name: "Tools", href: "#tools" },
-  { name: "For Beginners", href: "#beginners" },
-  { name: "About", href: "#about" },
+  { name: "Home", href: "#home", isRoute: false },
+  { name: "Best Brokers", href: "#brokers", isRoute: false },
+  { name: "Scam Shield", href: "/scam-broker-shield", isRoute: true },
+  { name: "Reviews", href: "#reviews", isRoute: false },
+  { name: "Tools", href: "#tools", isRoute: false },
+  { name: "For Beginners", href: "#beginners", isRoute: false },
+  { name: "About", href: "#about", isRoute: false },
 ];
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +28,21 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+  const handleNavigation = (item: { href: string; isRoute: boolean }) => {
+    if (item.isRoute) {
+      navigate(item.href);
+    } else {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const element = document.querySelector(item.href);
+          element?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const element = document.querySelector(item.href);
+        element?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -56,7 +72,7 @@ export function Navigation() {
             {navItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavigation(item)}
                 className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-accent/20 rounded-lg transition-all duration-200 hover:scale-105"
               >
                 {item.name}
@@ -69,7 +85,7 @@ export function Navigation() {
             <Button variant="outline" size="sm">
               🇵🇭 PH
             </Button>
-            <Button variant="premium" size="sm" onClick={() => scrollToSection("#match")}>
+            <Button variant="premium" size="sm" onClick={() => handleNavigation({ href: "#match", isRoute: false })}>
               Match Me
             </Button>
           </div>
@@ -92,7 +108,7 @@ export function Navigation() {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item)}
                   className="block w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-accent/20 rounded-lg transition-colors"
                 >
                   {item.name}
@@ -102,7 +118,7 @@ export function Navigation() {
                 <Button variant="outline" size="sm">
                   🇵🇭 Philippines
                 </Button>
-                <Button variant="premium" onClick={() => scrollToSection("#match")}>
+                <Button variant="premium" onClick={() => handleNavigation({ href: "#match", isRoute: false })}>
                   Match Me
                 </Button>
               </div>
