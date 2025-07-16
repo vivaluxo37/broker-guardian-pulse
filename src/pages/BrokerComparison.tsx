@@ -6,9 +6,30 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, Plus, X, Star, Shield, TrendingUp, DollarSign } from "lucide-react";
+import { Search, Plus, X, Star, Shield, TrendingUp, DollarSign, AlertTriangle, ExternalLink, Clock, Info } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+
+interface RegulatoryAlert {
+  id: string;
+  type: "warning" | "update" | "scam" | "violation";
+  title: string;
+  description: string;
+  affectedBrokers: string[];
+  severity: "low" | "medium" | "high" | "critical";
+  date: string;
+  source: string;
+  action?: string;
+}
+
+interface Regulator {
+  name: string;
+  fullName: string;
+  website: string;
+  country: string;
+  compensationScheme: string;
+  maxCompensation: string;
+}
 
 interface Broker {
   id: string;
@@ -21,6 +42,9 @@ interface Broker {
       license: string;
       compensation: string;
       established: string;
+      status: "active" | "pending" | "suspended" | "revoked";
+      lastVerified: string;
+      regulatorWebsite: string;
     };
   };
   minDeposit: number;
@@ -114,7 +138,14 @@ const allBrokers: any[] = [
     rating: 4.9,
     regulation: ["FCA", "SEC"],
     regulationDetails: {
-      "FCA": { license: "FRN 208159", compensation: "£85,000", established: "1978" }
+      "FCA": { 
+        license: "FRN 208159", 
+        compensation: "£85,000", 
+        established: "1978",
+        status: "active" as const,
+        lastVerified: "2024-01-15",
+        regulatorWebsite: "https://register.fca.org.uk"
+      }
     },
     minDeposit: 0,
     maxLeverage: "1:30",
@@ -165,7 +196,14 @@ const allBrokers: any[] = [
     rating: 4.4,
     regulation: ["ASIC", "FSA"],
     regulationDetails: {
-      "ASIC": { license: "335692", compensation: "AUD 1,000,000", established: "2007" }
+      "ASIC": { 
+        license: "335692", 
+        compensation: "AUD 1,000,000", 
+        established: "2007",
+        status: "active" as const,
+        lastVerified: "2024-01-10",
+        regulatorWebsite: "https://asic.gov.au"
+      }
     },
     minDeposit: 200,
     maxLeverage: "1:500",
@@ -216,7 +254,14 @@ const allBrokers: any[] = [
     rating: 4.7,
     regulation: ["FCA", "CySEC", "KNF"],
     regulationDetails: {
-      "FCA": { license: "522157", compensation: "£85,000", established: "2002" }
+      "FCA": { 
+        license: "522157", 
+        compensation: "£85,000", 
+        established: "2002",
+        status: "active" as const,
+        lastVerified: "2024-01-12",
+        regulatorWebsite: "https://register.fca.org.uk"
+      }
     },
     minDeposit: 0,
     maxLeverage: "1:30",
@@ -349,8 +394,11 @@ const allBrokers: any[] = [
   regulationDetails: {
     [index % 3 === 0 ? "FCA" : index % 3 === 1 ? "CySEC" : "ASIC"]: {
       license: `${100000 + index}`,
-      compensation: index % 3 === 0 ? "£85,000" : "€20,000",
-      established: `${1990 + (index % 30)}`
+      compensation: index % 3 === 0 ? "£85,000" : index % 3 === 1 ? "€20,000" : "AUD 500,000",
+      established: `${1990 + (index % 30)}`,
+      status: "active" as const,
+      lastVerified: "2024-01-01",
+      regulatorWebsite: index % 3 === 0 ? "https://register.fca.org.uk" : index % 3 === 1 ? "https://cysec.gov.cy" : "https://asic.gov.au"
     }
   },
   minDeposit: [0, 100, 200, 250][index % 4],
@@ -394,7 +442,238 @@ const allBrokers: any[] = [
   publiclyTraded: false,
   pros: ["Professional platform"],
   cons: ["Minimum deposit required"]
-})) as any) as Broker[]
+})) as any) as Broker[];
+
+// Regulatory data
+const regulators: { [key: string]: Regulator } = {
+  "FCA": {
+    name: "FCA",
+    fullName: "Financial Conduct Authority",
+    website: "https://register.fca.org.uk",
+    country: "United Kingdom",
+    compensationScheme: "FSCS",
+    maxCompensation: "£85,000"
+  },
+  "CySEC": {
+    name: "CySEC",
+    fullName: "Cyprus Securities and Exchange Commission",
+    website: "https://cysec.gov.cy",
+    country: "Cyprus",
+    compensationScheme: "ICF",
+    maxCompensation: "€20,000"
+  },
+  "ASIC": {
+    name: "ASIC",
+    fullName: "Australian Securities and Investments Commission",
+    website: "https://asic.gov.au",
+    country: "Australia",
+    compensationScheme: "AFCA",
+    maxCompensation: "AUD 500,000"
+  },
+  "SEC": {
+    name: "SEC",
+    fullName: "Securities and Exchange Commission",
+    website: "https://sec.gov",
+    country: "United States",
+    compensationScheme: "SIPC",
+    maxCompensation: "$500,000"
+  },
+  "FSA": {
+    name: "FSA",
+    fullName: "Financial Services Authority",
+    website: "https://fsa.gov.sc",
+    country: "Seychelles",
+    compensationScheme: "None",
+    maxCompensation: "Not Available"
+  },
+  "KNF": {
+    name: "KNF",
+    fullName: "Polish Financial Supervision Authority",
+    website: "https://knf.gov.pl",
+    country: "Poland",
+    compensationScheme: "BFG",
+    maxCompensation: "€100,000"
+  }
+};
+
+// Mock regulatory alerts data
+const regulatoryAlerts: RegulatoryAlert[] = [
+  {
+    id: "alert-001",
+    type: "warning",
+    title: "FCA Issues Warning Against Unlicensed Broker",
+    description: "The FCA has issued a warning against CryptoFX Pro, an unauthorized firm targeting UK investors with high-risk investments.",
+    affectedBrokers: [],
+    severity: "high",
+    date: "2024-01-15",
+    source: "FCA",
+    action: "Do not invest with this firm"
+  },
+  {
+    id: "alert-002",
+    type: "scam",
+    title: "ESMA Warning: Forex Scam Operations",
+    description: "ESMA warns against several forex trading platforms operating without proper authorization across EU member states.",
+    affectedBrokers: [],
+    severity: "critical",
+    date: "2024-01-12",
+    source: "ESMA",
+    action: "Check broker authorization before investing"
+  },
+  {
+    id: "alert-003",
+    type: "update",
+    title: "CySEC Updates Leverage Restrictions",
+    description: "CySEC has updated leverage restrictions for retail clients, effective February 1st, 2024.",
+    affectedBrokers: ["markets-com", "plus500"],
+    severity: "medium",
+    date: "2024-01-10",
+    source: "CySEC",
+    action: "Review updated terms and conditions"
+  },
+  {
+    id: "alert-004",
+    type: "violation",
+    title: "ASIC Fines Broker for Misleading Marketing",
+    description: "ASIC has fined QuickTrade Australia $50,000 for misleading advertisements about trading success rates.",
+    affectedBrokers: [],
+    severity: "medium",
+    date: "2024-01-08",
+    source: "ASIC"
+  }
+];
+
+// Regulatory News Component
+const RegulatoryAlertsWidget = () => {
+  return (
+    <Card className="mb-6">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2 text-foreground">
+          <AlertTriangle className="h-5 w-5 text-orange-500" />
+          Regulatory Alerts & News
+        </CardTitle>
+        <CardDescription className="text-muted-foreground">
+          Latest regulatory updates and warnings from financial authorities
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4 max-h-80 overflow-y-auto">
+          {regulatoryAlerts.map((alert) => (
+            <div key={alert.id} className="border border-border rounded-lg p-4">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <Badge 
+                    variant={alert.severity === "critical" ? "destructive" : 
+                            alert.severity === "high" ? "destructive" :
+                            alert.severity === "medium" ? "secondary" : "outline"}
+                    className={`${alert.severity === "critical" ? "bg-red-100 text-red-800 border-red-200" :
+                               alert.severity === "high" ? "bg-orange-100 text-orange-800 border-orange-200" :
+                               alert.severity === "medium" ? "bg-yellow-100 text-yellow-800 border-yellow-200" :
+                               "bg-blue-100 text-blue-800 border-blue-200"}`}
+                  >
+                    {alert.type.toUpperCase()}
+                  </Badge>
+                  <Badge variant="outline" className="text-muted-foreground">
+                    {alert.source}
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <Clock className="h-3 w-3" />
+                  {alert.date}
+                </div>
+              </div>
+              <h4 className="font-medium text-foreground mb-1">{alert.title}</h4>
+              <p className="text-sm text-muted-foreground mb-2">{alert.description}</p>
+              {alert.action && (
+                <p className="text-xs font-medium text-orange-700 bg-orange-50 px-2 py-1 rounded">
+                  Action Required: {alert.action}
+                </p>
+              )}
+              {alert.affectedBrokers.length > 0 && (
+                <div className="mt-2 text-xs text-muted-foreground">
+                  Affected Brokers: {alert.affectedBrokers.join(", ")}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Regulatory Information Component
+const RegulatoryInfo = ({ broker }: { broker: Broker }) => {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2 mb-3">
+        <Shield className="h-5 w-5 text-green-600" />
+        <h4 className="font-semibold text-foreground">Regulatory Information</h4>
+      </div>
+      
+      {broker.regulation.map((regulator) => {
+        const regulatorInfo = regulators[regulator];
+        const details = broker.regulationDetails?.[regulator];
+        
+        return (
+          <div key={regulator} className="border border-border rounded-lg p-4 bg-muted/30">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h5 className="font-medium text-foreground">{regulatorInfo?.fullName || regulator}</h5>
+                <p className="text-sm text-muted-foreground">{regulatorInfo?.country}</p>
+              </div>
+              <Badge 
+                variant={details?.status === "active" ? "default" : "destructive"}
+                className={details?.status === "active" ? "bg-green-100 text-green-800 border-green-200" : ""}
+              >
+                {details?.status || "Unknown"}
+              </Badge>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <span className="font-medium text-foreground">License Number:</span>
+                <p className="text-muted-foreground">{details?.license || "Not Available"}</p>
+              </div>
+              <div>
+                <span className="font-medium text-foreground">Established:</span>
+                <p className="text-muted-foreground">{details?.established || "Unknown"}</p>
+              </div>
+              <div>
+                <span className="font-medium text-foreground">Compensation:</span>
+                <p className="text-muted-foreground">{regulatorInfo?.maxCompensation || "Not Available"}</p>
+              </div>
+              <div>
+                <span className="font-medium text-foreground">Last Verified:</span>
+                <p className="text-muted-foreground">{details?.lastVerified || "Unknown"}</p>
+              </div>
+            </div>
+            
+            <div className="mt-3 pt-3 border-t border-border">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-foreground">Compensation Scheme:</span>
+                <span className="text-sm text-muted-foreground">{regulatorInfo?.compensationScheme || "Unknown"}</span>
+              </div>
+            </div>
+            
+            {regulatorInfo?.website && (
+              <div className="mt-3">
+                <a 
+                  href={regulatorInfo.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
+                >
+                  Verify License <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 const BrokerComparison = () => {
   const [selectedBrokers, setSelectedBrokers] = useState<Broker[]>([]);
@@ -462,11 +741,17 @@ const BrokerComparison = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
         </div>
 
+        {/* Regulatory Alerts Widget */}
+        <RegulatoryAlertsWidget />
+
         <Tabs defaultValue="select" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm border border-slate-200">
+          <TabsList className="grid w-full grid-cols-3 bg-white/80 backdrop-blur-sm border border-slate-200">
             <TabsTrigger value="select" className="data-[state=active]:bg-primary data-[state=active]:text-white">Select Brokers</TabsTrigger>
             <TabsTrigger value="compare" disabled={selectedBrokers.length < 2} className="data-[state=active]:bg-primary data-[state=active]:text-white disabled:opacity-50">
               Compare ({selectedBrokers.length})
+            </TabsTrigger>
+            <TabsTrigger value="regulatory" className="data-[state=active]:bg-primary data-[state=active]:text-white">
+              Regulatory Info
             </TabsTrigger>
           </TabsList>
 
@@ -584,9 +869,19 @@ const BrokerComparison = () => {
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold text-slate-800">{broker.name}</h3>
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 mb-2">
                               <div className="flex">{renderStars(broker.rating)}</div>
                               <span className="text-sm text-slate-500">({broker.rating})</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Shield className="h-4 w-4 text-green-600" />
+                              <div className="flex gap-1">
+                                {broker.regulation.map((reg) => (
+                                  <Badge key={reg} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                                    {reg}
+                                  </Badge>
+                                ))}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1093,6 +1388,163 @@ const BrokerComparison = () => {
                     }}>
                       Select Brokers
                     </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
+          {/* Regulatory Information Tab */}
+          <TabsContent value="regulatory" className="space-y-6">
+            <div className="grid gap-6 lg:grid-cols-2">
+              {/* Regulator Directory */}
+              <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-foreground">
+                    <Shield className="h-5 w-5 text-green-600" />
+                    Financial Regulators Directory
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    Complete guide to financial regulatory authorities and their compensation schemes
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {Object.values(regulators).map((regulator) => (
+                      <div key={regulator.name} className="border border-border rounded-lg p-4 bg-muted/30">
+                        <div className="flex items-center justify-between mb-3">
+                          <div>
+                            <h4 className="font-semibold text-foreground">{regulator.fullName}</h4>
+                            <p className="text-sm text-muted-foreground">{regulator.country}</p>
+                          </div>
+                          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                            {regulator.name}
+                          </Badge>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                          <div>
+                            <span className="font-medium text-foreground">Protection Scheme:</span>
+                            <p className="text-muted-foreground">{regulator.compensationScheme}</p>
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground">Max Compensation:</span>
+                            <p className="text-muted-foreground">{regulator.maxCompensation}</p>
+                          </div>
+                        </div>
+                        <div className="mt-3">
+                          <a 
+                            href={regulator.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
+                          >
+                            Visit Regulator <ExternalLink className="h-3 w-3" />
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Regulatory Guide */}
+              <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-foreground">
+                    <Info className="h-5 w-5 text-blue-600" />
+                    Regulatory Protection Guide
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    Understanding financial protection and how to verify broker licenses
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Why Regulation Matters</h4>
+                      <ul className="text-sm text-muted-foreground space-y-2">
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span>Ensures fair trading practices and market integrity</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span>Provides compensation if the broker fails</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span>Offers dispute resolution mechanisms</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span>Requires segregated client fund protection</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Red Flags to Watch</h4>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-sm text-red-600">
+                          <AlertTriangle className="h-4 w-4" />
+                          <span>No regulatory license displayed</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-red-600">
+                          <AlertTriangle className="h-4 w-4" />
+                          <span>Guarantees of profits or no-risk trading</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-red-600">
+                          <AlertTriangle className="h-4 w-4" />
+                          <span>Pressure to deposit large amounts quickly</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-red-600">
+                          <AlertTriangle className="h-4 w-4" />
+                          <span>Offshore jurisdiction with no compensation scheme</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Verification Steps</h4>
+                      <ol className="text-sm text-green-700 space-y-1">
+                        <li>1. Check the broker's regulatory license number</li>
+                        <li>2. Verify license on the regulator's official website</li>
+                        <li>3. Confirm the license is active and current</li>
+                        <li>4. Review compensation scheme coverage</li>
+                        <li>5. Check for any regulatory warnings or actions</li>
+                      </ol>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Brokers with Detailed Regulatory Info */}
+            {selectedBrokers.length > 0 && (
+              <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="text-foreground">Selected Brokers - Regulatory Details</CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    Detailed regulatory information for your selected brokers
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-6">
+                    {selectedBrokers.map((broker) => (
+                      <div key={broker.id} className="border border-border rounded-lg p-6 bg-white">
+                        <div className="flex items-center gap-4 mb-4">
+                          <img src={broker.logo} alt={broker.name} className="w-12 h-12 object-contain" />
+                          <div>
+                            <h3 className="text-lg font-semibold text-foreground">{broker.name}</h3>
+                            <div className="flex items-center gap-1">
+                              {renderStars(broker.rating)}
+                              <span className="text-sm text-muted-foreground ml-1">({broker.rating})</span>
+                            </div>
+                          </div>
+                        </div>
+                        <RegulatoryInfo broker={broker} />
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
