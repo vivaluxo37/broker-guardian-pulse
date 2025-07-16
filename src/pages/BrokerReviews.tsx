@@ -443,7 +443,7 @@ const brokers: Broker[] = [
   {
     id: "avatrade",
     name: "AvaTrade",
-    logo: "/lovable-uploads/b094e518-a4da-4e48-be19-574b603a007b.png",
+    logo: "/lovable-uploads/772feeb8-fc62-46e4-9bf5-373281326501.png",
     rating: 4.2,
     isAwardWinner: false,
     peopleCount: 4762,
@@ -458,7 +458,7 @@ const brokers: Broker[] = [
   {
     id: "pepperstone",
     name: "Pepperstone",
-    logo: "/lovable-uploads/1dade8f3-b2f6-4392-95c6-d032cd37179e.png",
+    logo: "/lovable-uploads/aac12076-ca4e-439d-a1e6-2755b626d8ec.png",
     rating: 4.4,
     isAwardWinner: false,
     peopleCount: 10497,
@@ -663,7 +663,7 @@ const brokers: Broker[] = [
   {
     id: "vantage-markets",
     name: "Vantage",
-    logo: "/lovable-uploads/58b8b910-84c4-4bbc-80fe-5e8b9e0d3738.png",
+    logo: "/lovable-uploads/99e27fa7-6c7f-45d9-910c-14d726505db0.png",
     rating: 4.2,
     isAwardWinner: false,
     peopleCount: 5616,
