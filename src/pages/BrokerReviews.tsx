@@ -348,10 +348,15 @@ const BrokerReviews = () => {
                   </div>
                 )}
 
-                {/* Read Review Button */}
-                <Button className="w-full" variant="outline">
-                  Read review
-                </Button>
+                {/* Action Buttons */}
+                <div className="flex gap-2">
+                  <Button className="flex-1" variant="outline">
+                    Read review
+                  </Button>
+                  <Button className="flex-1">
+                    Visit broker
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}
