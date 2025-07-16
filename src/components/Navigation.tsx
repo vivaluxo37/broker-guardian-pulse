@@ -169,7 +169,10 @@ export function Navigation() {
                               <NavigationMenuLink
                                 key={subItem.name}
                                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer"
-                                onClick={() => handleNavigation({ href: subItem.href, isRoute: false })}
+                                onClick={() => handleNavigation({ 
+                                  href: subItem.href, 
+                                  isRoute: subItem.href.startsWith('/') 
+                                })}
                               >
                                 <div className="text-sm font-medium leading-none">{subItem.name}</div>
                               </NavigationMenuLink>
@@ -228,7 +231,10 @@ export function Navigation() {
                       {item.submenu.map((subItem) => (
                         <button
                           key={subItem.name}
-                          onClick={() => handleNavigation({ href: subItem.href, isRoute: false })}
+                          onClick={() => handleNavigation({ 
+                            href: subItem.href, 
+                            isRoute: subItem.href.startsWith('/') 
+                          })}
                           className="block w-full text-left px-4 py-2 text-sm text-foreground/60 hover:text-foreground hover:bg-accent/10 rounded-lg transition-colors"
                         >
                           {subItem.name}
