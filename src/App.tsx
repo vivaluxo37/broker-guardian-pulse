@@ -8,6 +8,8 @@ import ScamBrokerShield from "./pages/ScamBrokerShield";
 import BrokerReviews from "./pages/BrokerReviews";
 import InteractiveTools from "./pages/InteractiveTools";
 import BrokerComparison from "./pages/BrokerComparison";
+import Community from "./pages/Community";
+import UserProfile from "./pages/UserProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/broker-reviews" element={<BrokerReviews />} />
           <Route path="/interactive-tools" element={<InteractiveTools />} />
           <Route path="/broker-comparison" element={<BrokerComparison />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/profile/:userId" element={<UserProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

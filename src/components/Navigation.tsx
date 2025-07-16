@@ -65,6 +65,7 @@ const navItems = [
       { name: "Currency Converter", href: "#currency-converter" }
     ]
   },
+  { name: "Community", href: "/community", isRoute: true },
   { 
     name: "For Beginners", 
     href: "#beginners", 
