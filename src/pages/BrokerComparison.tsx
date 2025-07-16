@@ -394,7 +394,7 @@ const allBrokers: any[] = [
   publiclyTraded: false,
   pros: ["Professional platform"],
   cons: ["Minimum deposit required"]
-})) as any) as Broker[])
+})) as any) as Broker[]
 
 const BrokerComparison = () => {
   const [selectedBrokers, setSelectedBrokers] = useState<Broker[]>([]);
