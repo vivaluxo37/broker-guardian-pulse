@@ -1,317 +1,58 @@
 import { useState } from "react";
-import { Search, Shield, AlertTriangle, CheckCircle, X, Download, ExternalLink, Filter, AlertCircle, Star, Calendar } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { 
+  Shield, 
+  AlertTriangle, 
+  Search, 
+  TrendingUp, 
+  Users, 
+  FileText,
+  CheckCircle,
+  XCircle,
+  Eye,
+  Flag,
+  ExternalLink,
+  Download,
+  AlertCircle,
+  Star
+} from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScamReportForm } from "@/components/ScamReportForm";
+import { FraudDetectionDisplay, brokerFraudData } from "@/components/FraudDetectionSystem";
 import { useToast } from "@/hooks/use-toast";
 
-// Comprehensive scam brokers database compiled from regulatory warnings and reports
-const scamBrokers = [
-  // FCA Warning List & Binary Options Scams
-  {
-    name: "Quotex",
-    status: "SCAM",
-    type: "Binary Options",
-    reason: "Unregulated binary options broker - FCA banned all binary options sales",
-    regulatoryWarning: "FCA",
-    complaints: 682,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-12",
-    website: "quotex.io",
-    riskLevel: "Critical"
-  },
-  {
-    name: "GMZ Global",
-    status: "SCAM", 
-    type: "Forex",
-    reason: "Multiple reports of withdrawal issues and fund freezing",
-    regulatoryWarning: "CFTC",
-    complaints: 582,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-11",
-    website: "gmzglobal.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "DUTTFX",
-    status: "SCAM",
-    type: "Forex",
-    reason: "Unregulated operations with numerous fraud reports",
-    regulatoryWarning: "FCA",
-    complaints: 560,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-12",
-    website: "duttfx.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "Stonewall Capital",
-    status: "SCAM",
-    type: "Multi-Asset",
-    reason: "Fake regulatory claims and withdrawal difficulties",
-    regulatoryWarning: "SEC",
-    complaints: 477,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-10",
-    website: "stonewallcapital.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "Inefex",
-    status: "SCAM",
-    type: "Forex",
-    reason: "High volume of complaints regarding trading manipulation",
-    regulatoryWarning: "ASIC",
-    complaints: 402,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-11",
-    website: "inefex.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "Inveslo",
-    status: "SCAM",
-    type: "Crypto",
-    reason: "Unverified regulation and suspicious trading practices",
-    regulatoryWarning: "CFTC",
-    complaints: 425,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-12",
-    website: "inveslo.com",
-    riskLevel: "Critical"
-  },
-  // Binary Options Scam List
-  {
-    name: "24Option",
-    status: "SCAM",
-    type: "Binary Options",
-    reason: "Binary options broker - banned by multiple regulators",
-    regulatoryWarning: "FCA",
-    complaints: 890,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-01",
-    website: "24option.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "Banc De Binary",
-    status: "SCAM",
-    type: "Binary Options", 
-    reason: "Ceased operations, multiple regulatory violations",
-    regulatoryWarning: "CFTC",
-    complaints: 1200,
-    satisfactionRate: "0%",
-    lastUpdate: "2023-12",
-    website: "bancdebinary.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "Cedar Finance",
-    status: "SCAM",
-    type: "Binary Options",
-    reason: "Unregulated binary options, withdrawal issues",
-    regulatoryWarning: "FCA",
-    complaints: 567,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-02",
-    website: "cedarfinance.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "TradeRush",
-    status: "SCAM",
-    type: "Binary Options",
-    reason: "Binary options scam, regulatory warnings issued",
-    regulatoryWarning: "SEC",
-    complaints: 445,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-01",
-    website: "traderush.com",
-    riskLevel: "Critical"
-  },
-  // Crypto Scams from SEC/CFTC warnings
-  {
-    name: "PGI Global",
-    status: "SCAM",
-    type: "Crypto",
-    reason: "SEC charged for $198M crypto and forex fraud scheme",
-    regulatoryWarning: "SEC",
-    complaints: 1500,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-04",
-    website: "pgiglobal.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "CryptoFX LLC",
-    status: "SCAM",
-    type: "Crypto",
-    reason: "SEC charged 17 individuals in $300M Ponzi scheme",
-    regulatoryWarning: "SEC",
-    complaints: 2100,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-03",
-    website: "cryptofx.com",
-    riskLevel: "Critical"
-  },
-  {
-    name: "Strike Chain Inc",
-    status: "SCAM",
-    type: "Crypto",
-    reason: "Fake crypto trading platform targeting investors",
-    regulatoryWarning: "DFPI",
-    complaints: 234,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-05",
-    website: "strikechain.com",
-    riskLevel: "High"
-  },
-  {
-    name: "UKBTC",
-    status: "SCAM",
-    type: "Crypto",
-    reason: "FCA official warning issued for unauthorized operations",
-    regulatoryWarning: "FCA",
-    complaints: 456,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-02",
-    website: "ukbtc.com",
-    riskLevel: "Critical"
-  },
-  // Additional scams
-  {
-    name: "XLibre (ExaLibre)",
-    status: "SCAM",
-    type: "Forex",
-    reason: "Multiple fraud reports, fake contact information",
-    regulatoryWarning: "FCA",
-    complaints: 189,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-06",
-    website: "exalibre.com",
-    riskLevel: "High"
-  },
-  {
-    name: "Nexa Forex",
-    status: "SCAM",
-    type: "Forex",
-    reason: "FCA flagged as high-risk entity, unauthorized operations",
-    regulatoryWarning: "FCA",
-    complaints: 167,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-04",
-    website: "nexaforex.com",
-    riskLevel: "High"
-  },
-  {
-    name: "Pocket Option",
-    status: "SCAM",
-    type: "Binary Options",
-    reason: "Unregulated binary options broker with numerous complaints",
-    regulatoryWarning: "CNMV",
-    complaints: 834,
-    satisfactionRate: "0%",
-    lastUpdate: "2024-12",
-    website: "po.trade",
-    riskLevel: "Critical"
-  },
-  {
-    name: "Bybit",
-    status: "WARNING",
-    type: "Crypto",
-    reason: "Not regulated by top-tier authorities, operates in gray areas",
-    regulatoryWarning: "FCA",
-    complaints: 234,
-    satisfactionRate: "15%",
-    lastUpdate: "2024-11",
-    website: "bybit.com",
-    riskLevel: "Medium"
-  }
-];
-
-const trustedBrokers = [
-  {
-    name: "Exness",
-    status: "SAFE",
-    type: "Multi-Asset",
-    reason: "FCA and CySEC regulated with excellent track record",
-    regulation: "FCA, CySEC, FSA",
-    satisfactionRate: "100%",
-    lastUpdate: "2024-12",
-    website: "exness.com",
-    rating: 4.8
-  },
-  {
-    name: "FP Markets", 
-    status: "SAFE",
-    type: "Multi-Asset",
-    reason: "ASIC regulated with strong client protection",
-    regulation: "ASIC, CySEC",
-    satisfactionRate: "100%",
-    lastUpdate: "2024-12",
-    website: "fpmarkets.com",
-    rating: 4.7
-  },
-  {
-    name: "Vantage Markets",
-    status: "SAFE",
-    type: "Multi-Asset",
-    reason: "Multiple regulatory licenses and transparent operations",
-    regulation: "ASIC, FCA, CIMA",
-    satisfactionRate: "100%",
-    lastUpdate: "2024-12",
-    website: "vantagemarkets.com",
-    rating: 4.6
-  },
-  {
-    name: "IC Markets",
-    status: "SAFE",
-    type: "Forex",
-    reason: "ASIC regulated, excellent execution and spreads",
-    regulation: "ASIC, CySEC",
-    satisfactionRate: "98%",
-    lastUpdate: "2024-12",
-    website: "icmarkets.com",
-    rating: 4.7
-  },
-  {
-    name: "OANDA",
-    status: "SAFE",
-    type: "Forex",
-    reason: "Well-established, regulated by multiple authorities",
-    regulation: "FCA, CFTC, ASIC",
-    satisfactionRate: "97%",
-    lastUpdate: "2024-12",
-    website: "oanda.com",
-    rating: 4.5
-  },
-  {
-    name: "eToro",
-    status: "SAFE",
-    type: "Multi-Asset",
-    reason: "FCA and CySEC regulated, social trading leader",
-    regulation: "FCA, CySEC, ASIC",
-    satisfactionRate: "94%",
-    lastUpdate: "2024-12",
-    website: "etoro.com",
-    rating: 4.3
-  }
-];
-
-export default function ScamBrokerShield() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResult, setSearchResult] = useState<{type: 'safe' | 'unsafe' | 'unknown', message: string, details?: any} | null>(null);
-  const [filterType, setFilterType] = useState("all");
-  const [filterRisk, setFilterRisk] = useState("all");
+const ScamBrokerShield = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeTab, setActiveTab] = useState("check");
+  const [searchResult, setSearchResult] = useState<any>(null);
   const { toast } = useToast();
 
+  // Get high-risk brokers for the blacklist
+  const highRiskBrokers = Object.entries(brokerFraudData)
+    .filter(([_, data]) => data.riskScore >= 60)
+    .map(([id, data]) => ({
+      id,
+      name: id.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      riskScore: data.riskScore,
+      warnings: data.warnings,
+      status: data.regulatoryStatus,
+      complaints: data.complaintCount
+    }));
+
+  const filteredBrokers = highRiskBrokers.filter(broker =>
+    broker.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleSearch = () => {
-    if (!searchQuery.trim()) {
+    if (!searchTerm.trim()) {
       toast({
         title: "Please enter a broker name",
         description: "Enter the name of the broker you want to check.",
@@ -320,41 +61,20 @@ export default function ScamBrokerShield() {
       return;
     }
 
-    const query = searchQuery.toLowerCase().trim();
+    const query = searchTerm.toLowerCase().trim();
     
-    // Check if it's in scam brokers
-    const scamBroker = scamBrokers.find(broker => 
-      broker.name.toLowerCase().includes(query) || broker.website.toLowerCase().includes(query)
-    );
-    
-    if (scamBroker) {
-      setSearchResult({
-        type: 'unsafe',
-        message: `${scamBroker.name} is ${scamBroker.status}! This broker has ${scamBroker.complaints} complaints and is flagged by ${scamBroker.regulatoryWarning}.`,
-        details: scamBroker
-      });
-      return;
-    }
+    // Check our fraud detection database
+    const matchedBrokers = Object.entries(brokerFraudData)
+      .filter(([id, _]) => 
+        id.includes(query.replace(/\s+/g, '-')) || 
+        id.replace(/[-_]/g, ' ').toLowerCase().includes(query)
+      );
 
-    // Check if it's in trusted brokers
-    const trustedBroker = trustedBrokers.find(broker => 
-      broker.name.toLowerCase().includes(query) || broker.website.toLowerCase().includes(query)
-    );
-    
-    if (trustedBroker) {
-      setSearchResult({
-        type: 'safe',
-        message: `${trustedBroker.name} is TRUSTED! This broker is regulated by ${trustedBroker.regulation} with ${trustedBroker.satisfactionRate} satisfaction rate.`,
-        details: trustedBroker
-      });
-      return;
+    if (matchedBrokers.length > 0) {
+      setSearchResult(matchedBrokers);
+    } else {
+      setSearchResult("not_found");
     }
-
-    // Unknown broker
-    setSearchResult({
-      type: 'unknown',
-      message: `We don't have information about "${searchQuery}" in our database. Please verify their regulatory status independently before investing.`
-    });
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -363,341 +83,411 @@ export default function ScamBrokerShield() {
     }
   };
 
-  const filteredScamBrokers = scamBrokers.filter(broker => {
-    const typeMatch = filterType === "all" || broker.type === filterType;
-    const riskMatch = filterRisk === "all" || broker.riskLevel === filterRisk;
-    return typeMatch && riskMatch;
-  });
-
-  const getRiskBadgeColor = (risk: string) => {
-    switch(risk) {
-      case "Critical": return "destructive";
-      case "High": return "destructive";
-      case "Medium": return "secondary";
-      default: return "secondary";
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-white via-slate-50/30 to-white">
       <Navigation />
       
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary/5">
-          <div className="container mx-auto px-4 text-center max-w-7xl">
-            <div className="flex items-center justify-center mb-6">
-              <Shield className="h-16 w-16 text-primary mr-4" />
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
-                Scam Broker Shield
-              </h1>
-            </div>
-            <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-3xl mx-auto leading-relaxed">
-              Comprehensive database of scam brokers and regulatory warnings. Protect yourself from fraud with our real-time verification system.
-            </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-8"></div>
-            
-            
-            {/* Stats */}
-            <div className="grid md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
-              <div className="text-center p-6 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg">
-                <div className="text-4xl font-bold text-primary mb-2">5,760,141</div>
-                <div className="text-sm text-slate-600">Users Protected</div>
-              </div>
-              <div className="text-center p-6 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg">
-                <div className="text-4xl font-bold text-primary mb-2">{scamBrokers.length}</div>
-                <div className="text-sm text-slate-600">Scam Brokers Identified</div>
-              </div>
-              <div className="text-center p-6 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg">
-                <div className="text-4xl font-bold text-primary mb-2">$47M+</div>
-                <div className="text-sm text-slate-600">Fraud Prevented</div>
-              </div>
-            </div>
+      <div className="container mx-auto px-4 py-8 mt-20 max-w-7xl">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center mb-6">
+            <Shield className="h-16 w-16 text-primary mr-4" />
+            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
+              Scam Broker Shield
+            </h1>
+          </div>
+          <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-3xl mx-auto leading-relaxed">
+            Advanced fraud detection system protecting traders from scam brokers and financial fraud
+          </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+        </div>
 
-            {/* Search Tool */}
-            <Card className="max-w-2xl mx-auto mb-8 bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <Card className="text-center p-4 bg-white/80 backdrop-blur-sm border border-slate-200">
+            <div className="flex items-center justify-center mb-2">
+              <Shield className="h-8 w-8 text-green-600" />
+            </div>
+            <div className="text-2xl font-bold text-foreground">5.7M</div>
+            <div className="text-sm text-muted-foreground">Protected Users</div>
+          </Card>
+          <Card className="text-center p-4 bg-white/80 backdrop-blur-sm border border-slate-200">
+            <div className="flex items-center justify-center mb-2">
+              <AlertTriangle className="h-8 w-8 text-red-600" />
+            </div>
+            <div className="text-2xl font-bold text-foreground">{highRiskBrokers.length}</div>
+            <div className="text-sm text-muted-foreground">High-Risk Brokers</div>
+          </Card>
+          <Card className="text-center p-4 bg-white/80 backdrop-blur-sm border border-slate-200">
+            <div className="flex items-center justify-center mb-2">
+              <Flag className="h-8 w-8 text-orange-600" />
+            </div>
+            <div className="text-2xl font-bold text-foreground">847</div>
+            <div className="text-sm text-muted-foreground">Scam Reports</div>
+          </Card>
+          <Card className="text-center p-4 bg-white/80 backdrop-blur-sm border border-slate-200">
+            <div className="flex items-center justify-center mb-2">
+              <Users className="h-8 w-8 text-blue-600" />
+            </div>
+            <div className="text-2xl font-bold text-foreground">$47M</div>
+            <div className="text-sm text-muted-foreground">Fraud Prevented</div>
+          </Card>
+        </div>
+
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+          <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm border border-slate-200">
+            <TabsTrigger value="check" className="data-[state=active]:bg-primary data-[state=active]:text-white">
+              Broker Check
+            </TabsTrigger>
+            <TabsTrigger value="blacklist" className="data-[state=active]:bg-primary data-[state=active]:text-white">
+              Blacklist
+            </TabsTrigger>
+            <TabsTrigger value="report" className="data-[state=active]:bg-primary data-[state=active]:text-white">
+              Report Scam
+            </TabsTrigger>
+            <TabsTrigger value="education" className="data-[state=active]:bg-primary data-[state=active]:text-white">
+              Protection Guide
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Broker Check Tab */}
+          <TabsContent value="check" className="space-y-6">
+            <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
               <CardHeader>
-                <CardTitle className="flex items-center justify-center text-slate-800">
-                  <Search className="h-6 w-6 mr-2" />
-                  Broker Safety Check
+                <CardTitle className="flex items-center gap-2 text-foreground">
+                  <Search className="h-5 w-5 text-primary" />
+                  Advanced Broker Safety Check
                 </CardTitle>
-                <CardDescription className="text-slate-600">
-                  Enter broker name or website to check our comprehensive scam database
+                <CardDescription className="text-muted-foreground">
+                  Enter a broker name to check for fraud alerts, regulatory status, and community warnings
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex gap-3">
-                  <Input
-                    placeholder="Enter broker name or website..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    className="flex-1 border-slate-200 focus:border-primary"
-                  />
-                  <Button onClick={handleSearch} className="px-8 bg-primary text-white hover:bg-primary/90">
-                    <Search className="h-4 w-4 mr-2" />
-                    Check
-                  </Button>
-                </div>
-                
-                {searchResult && (
-                  <div className={`mt-4 p-4 rounded-lg border ${
-                    searchResult.type === 'safe' 
-                      ? 'bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800' 
-                      : searchResult.type === 'unsafe'
-                      ? 'bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800'
-                      : 'bg-yellow-50 border-yellow-200 dark:bg-yellow-950 dark:border-yellow-800'
-                  }`}>
-                    <div className="flex items-start">
-                      {searchResult.type === 'safe' ? (
-                        <CheckCircle className="h-5 w-5 text-green-600 mr-2 mt-0.5" />
-                      ) : searchResult.type === 'unsafe' ? (
-                        <AlertTriangle className="h-5 w-5 text-red-600 mr-2 mt-0.5" />
-                      ) : (
-                        <AlertCircle className="h-5 w-5 text-yellow-600 mr-2 mt-0.5" />
-                      )}
-                      <div className="flex-1">
-                        <p className={`text-sm font-medium ${
-                          searchResult.type === 'safe' 
-                            ? 'text-green-800 dark:text-green-200' 
-                            : searchResult.type === 'unsafe'
-                            ? 'text-red-800 dark:text-red-200'
-                            : 'text-yellow-800 dark:text-yellow-200'
-                        }`}>
-                          {searchResult.message}
-                        </p>
-                        {searchResult.details && (
-                          <div className="mt-2 text-xs text-muted-foreground">
-                            Type: {searchResult.details.type} | 
-                            Last Updated: {searchResult.details.lastUpdate}
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <Input
+                      placeholder="Enter broker name (e.g., IC Markets, Plus500)"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      className="flex-1 bg-white border-slate-200"
+                    />
+                    <Button onClick={handleSearch} className="bg-primary text-white hover:bg-primary/90">
+                      <Search className="h-4 w-4 mr-2" />
+                      Check Now
+                    </Button>
+                  </div>
+
+                  {/* Search Results */}
+                  {searchResult && searchResult !== "not_found" && (
+                    <div className="space-y-4">
+                      {searchResult.map(([brokerId, data]: [string, any]) => (
+                        <div key={brokerId} className="border border-slate-200 rounded-lg p-6 bg-white">
+                          <div className="mb-4">
+                            <h4 className="font-semibold text-foreground text-lg capitalize mb-2">
+                              {brokerId.replace(/[-_]/g, ' ')} - Safety Assessment
+                            </h4>
                           </div>
-                        )}
+                          <FraudDetectionDisplay 
+                            brokerId={brokerId} 
+                            brokerName={brokerId.replace(/[-_]/g, ' ')} 
+                            compact={false}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {searchResult === "not_found" && (
+                    <Alert className="border-yellow-200 bg-yellow-50">
+                      <AlertCircle className="h-4 w-4 text-yellow-600" />
+                      <AlertDescription className="text-yellow-800">
+                        <span className="font-bold">Broker Not Found</span>
+                        <br />
+                        We don't have information about "{searchTerm}" in our database. Please verify their regulatory status independently before investing, or submit a report if you have concerns.
+                      </AlertDescription>
+                    </Alert>
+                  )}
+
+                  {/* Quick Check Examples */}
+                  {!searchResult && (
+                    <div className="mt-6">
+                      <h5 className="font-medium text-foreground mb-3">Quick Check Examples:</h5>
+                      <div className="grid md:grid-cols-3 gap-3">
+                        {["IC Markets", "XTB", "Plus500"].map((name) => (
+                          <Button 
+                            key={name}
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => {
+                              setSearchTerm(name);
+                              handleSearch();
+                            }}
+                            className="justify-start"
+                          >
+                            Check {name}
+                          </Button>
+                        ))}
                       </div>
                     </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Chrome Extension */}
-            <Card className="max-w-lg mx-auto bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
-              <CardContent className="pt-6">
-                <div className="text-center">
-                  <Download className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2 text-slate-800">Chrome Extension</h3>
-                  <p className="text-sm text-slate-600 mb-4">
-                    Real-time scam detection while browsing. Get instant warnings about fraudulent broker websites.
-                  </p>
-                  <Button className="w-full bg-primary text-white hover:bg-primary/90">
-                    Download Extension
-                  </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
-          </div>
-        </section>
 
-        {/* Main Content Tabs */}
-        <section className="py-16">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <Tabs defaultValue="scam-database" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8 bg-white/80 backdrop-blur-sm border border-slate-200">
-                <TabsTrigger value="scam-database" className="data-[state=active]:bg-primary data-[state=active]:text-white">Scam Database</TabsTrigger>
-                <TabsTrigger value="trusted-brokers" className="data-[state=active]:bg-primary data-[state=active]:text-white">Trusted Brokers</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="scam-database">
-                <div className="mb-12">
-                  <div className="text-center mb-8">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">Comprehensive Scam Broker Database</h2>
-                    <p className="text-lg text-slate-600 mb-6 max-w-4xl mx-auto">
-                      Our database includes brokers flagged by FCA, SEC, CFTC, ASIC, and other major regulatory authorities worldwide.
-                    </p>
+            {/* Chrome Extension Promo */}
+            <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-blue-100 rounded-lg">
+                    <Download className="h-8 w-8 text-blue-600" />
                   </div>
-                  
-                  {/* Filters */}
-                  <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl max-w-2xl mx-auto mb-8">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Select value={filterType} onValueChange={setFilterType}>
-                          <SelectTrigger className="w-full sm:w-[200px] border-slate-200 focus:border-primary bg-white z-50">
-                            <SelectValue placeholder="Filter by type" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-white border-slate-200 shadow-xl z-50">
-                            <SelectItem value="all">All Types</SelectItem>
-                            <SelectItem value="Binary Options">Binary Options</SelectItem>
-                            <SelectItem value="Forex">Forex</SelectItem>
-                            <SelectItem value="Crypto">Crypto</SelectItem>
-                            <SelectItem value="Multi-Asset">Multi-Asset</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        
-                        <Select value={filterRisk} onValueChange={setFilterRisk}>
-                          <SelectTrigger className="w-full sm:w-[200px] border-slate-200 focus:border-primary bg-white z-50">
-                            <SelectValue placeholder="Filter by risk" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-white border-slate-200 shadow-xl z-50">
-                            <SelectItem value="all">All Risk Levels</SelectItem>
-                            <SelectItem value="Critical">Critical</SelectItem>
-                            <SelectItem value="High">High</SelectItem>
-                            <SelectItem value="Medium">Medium</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-                  {filteredScamBrokers.map((broker, index) => (
-                    <Card key={index} className="group relative hover:shadow-2xl transition-all duration-300 border border-red-200 bg-white shadow-sm overflow-hidden">
-                      <CardHeader className="space-y-4 p-6">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <CardTitle className="flex items-center text-xl font-bold text-slate-800 mb-3">
-                              <AlertTriangle className="h-5 w-5 text-red-500 mr-2" />
-                              {broker.name}
-                            </CardTitle>
-                            <div className="flex flex-wrap items-center gap-2">
-                              <Badge variant={getRiskBadgeColor(broker.riskLevel)} className="font-semibold">
-                                {broker.riskLevel} Risk
-                              </Badge>
-                              <Badge variant="outline" className="border-slate-300 text-slate-600">{broker.type}</Badge>
-                              <Badge variant="destructive" className="bg-red-100 text-red-700 border-red-200">
-                                {broker.status}
-                              </Badge>
-                            </div>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-4 p-6 pt-0">
-                        <p className="text-slate-600 leading-relaxed bg-red-50 p-3 rounded-lg border border-red-100">{broker.reason}</p>
-                        
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
-                            <span className="text-sm font-medium text-slate-600">Regulatory Warning:</span>
-                            <span className="font-semibold text-red-600 bg-red-100 px-2 py-1 rounded text-sm">{broker.regulatoryWarning}</span>
-                          </div>
-                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
-                            <span className="text-sm font-medium text-slate-600">Complaints:</span>
-                            <span className="font-semibold text-slate-800">{broker.complaints}</span>
-                          </div>
-                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
-                            <span className="text-sm font-medium text-slate-600">Website:</span>
-                            <span className="font-medium text-slate-600 text-sm">{broker.website}</span>
-                          </div>
-                          <div className="flex justify-between items-center py-2">
-                            <span className="text-sm font-medium text-slate-600">Last Updated:</span>
-                            <span className="font-medium text-slate-600 text-sm">{broker.lastUpdate}</span>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="trusted-brokers">
-                <div className="mb-12">
-                  <div className="text-center mb-8">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">Verified Trusted Brokers</h2>
-                    <p className="text-lg text-slate-600 mb-6 max-w-4xl mx-auto">
-                      These brokers are properly regulated by top-tier financial authorities and have excellent track records.
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-blue-900 mb-1">Browser Protection Extension</h3>
+                    <p className="text-sm text-blue-700 mb-3">
+                      Get real-time warnings when visiting potentially fraudulent broker websites
                     </p>
+                    <Button size="sm" className="bg-blue-600 text-white hover:bg-blue-700">
+                      Download for Chrome
+                    </Button>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-                  {trustedBrokers.map((broker, index) => (
-                    <Card key={index} className="group relative hover:shadow-2xl transition-all duration-300 border border-green-200 bg-white shadow-sm overflow-hidden">
-                      <CardHeader className="space-y-4 p-6">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <CardTitle className="flex items-center text-xl font-bold text-slate-800 mb-3">
-                              <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-                              {broker.name}
-                            </CardTitle>
-                            <div className="flex flex-wrap items-center gap-2">
-                              <Badge variant="outline" className="border-green-500 text-green-700 bg-green-50 font-semibold">
-                                Trusted
-                              </Badge>
-                              <Badge variant="outline" className="border-slate-300 text-slate-600">{broker.type}</Badge>
-                              <div className="flex items-center bg-yellow-50 px-2 py-1 rounded border border-yellow-200">
-                                <Star className="h-3 w-3 text-yellow-500 mr-1" />
-                                <span className="text-xs font-medium text-yellow-700">{broker.rating}</span>
+          {/* Blacklist Tab */}
+          <TabsContent value="blacklist" className="space-y-6">
+            <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-foreground">
+                  <AlertTriangle className="h-5 w-5 text-red-600" />
+                  High-Risk Broker Blacklist
+                </CardTitle>
+                <CardDescription className="text-muted-foreground">
+                  Brokers with high fraud risk scores, regulatory warnings, or multiple complaints
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <Input
+                      placeholder="Search blacklisted brokers..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="flex-1 bg-white border-slate-200"
+                    />
+                    <Select defaultValue="all">
+                      <SelectTrigger className="w-48">
+                        <SelectValue placeholder="Filter by risk" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Risk Levels</SelectItem>
+                        <SelectItem value="critical">Critical Risk</SelectItem>
+                        <SelectItem value="high">High Risk</SelectItem>
+                        <SelectItem value="medium">Medium Risk</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {filteredBrokers.length === 0 ? (
+                    <p className="text-center text-muted-foreground py-8">No brokers found matching your search.</p>
+                  ) : (
+                    <div className="space-y-4">
+                      {filteredBrokers.map((broker, index) => (
+                        <div key={index} className="border border-red-200 bg-red-50 rounded-lg p-4">
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-red-800 text-lg">{broker.name}</h4>
+                              <div className="flex items-center gap-2 mt-1">
+                                <Badge className="bg-red-100 text-red-800 border-red-200">
+                                  Risk: {broker.riskScore}/100
+                                </Badge>
+                                <Badge className={`border ${
+                                  broker.status === "revoked" ? "bg-red-100 text-red-800 border-red-200" :
+                                  broker.status === "warning" ? "bg-orange-100 text-orange-800 border-orange-200" :
+                                  "bg-yellow-100 text-yellow-800 border-yellow-200"
+                                }`}>
+                                  {broker.status.toUpperCase()}
+                                </Badge>
                               </div>
                             </div>
+                            <div className="text-right">
+                              <div className="text-sm text-red-600 font-medium">HIGH RISK</div>
+                              <div className="text-xs text-muted-foreground">{broker.complaints} complaints</div>
+                            </div>
                           </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-4 p-6 pt-0">
-                        <p className="text-slate-600 leading-relaxed bg-green-50 p-3 rounded-lg border border-green-100">{broker.reason}</p>
-                        
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
-                            <span className="text-sm font-medium text-slate-600">Regulation:</span>
-                            <span className="font-semibold text-green-600 bg-green-100 px-2 py-1 rounded text-sm">{broker.regulation}</span>
+                          
+                          <div className="space-y-2">
+                            <div className="text-sm text-red-700">
+                              <span className="font-medium">Primary Issues:</span>
+                            </div>
+                            <div className="flex flex-wrap gap-1">
+                              {broker.warnings.slice(0, 3).map((warning, i) => (
+                                <Badge key={i} variant="outline" className="bg-red-50 text-red-700 border-red-200 text-xs">
+                                  {warning}
+                                </Badge>
+                              ))}
+                              {broker.warnings.length > 3 && (
+                                <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 text-xs">
+                                  +{broker.warnings.length - 3} more
+                                </Badge>
+                              )}
+                            </div>
                           </div>
-                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
-                            <span className="text-sm font-medium text-slate-600">Satisfaction Rate:</span>
-                            <span className="font-semibold text-slate-800">{broker.satisfactionRate}</span>
-                          </div>
-                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
-                            <span className="text-sm font-medium text-slate-600">Website:</span>
-                            <span className="font-medium text-slate-600 text-sm">{broker.website}</span>
-                          </div>
-                          <div className="flex justify-between items-center py-2">
-                            <span className="text-sm font-medium text-slate-600">Last Updated:</span>
-                            <span className="font-medium text-slate-600 text-sm">{broker.lastUpdate}</span>
-                          </div>
-                        </div>
-                        
-                        <Button variant="outline" size="sm" className="w-full mt-4 border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900">
-                          <ExternalLink className="h-3 w-3 mr-2" />
-                          View Review
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </section>
 
-        {/* Warning Notice */}
-        <section className="py-12 bg-gradient-to-br from-slate-50 via-white to-primary/5">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <Card className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm border border-yellow-200 shadow-xl">
-              <CardContent className="pt-6">
-                <div className="flex items-start">
-                  <AlertTriangle className="h-6 w-6 text-yellow-500 mr-4 mt-1" />
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2 text-slate-800">Important Warning</h3>
-                    <p className="text-slate-600 mb-4 leading-relaxed">
-                      Always verify a broker's regulatory status before investing. Check with official regulatory bodies like FCA (UK), 
-                      SEC/CFTC (US), ASIC (Australia), or CySEC (Cyprus). Never invest more than you can afford to lose.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <Button variant="outline" size="sm" className="border-slate-200 text-slate-700 hover:bg-slate-50">
-                        FCA Check
-                      </Button>
-                      <Button variant="outline" size="sm" className="border-slate-200 text-slate-700 hover:bg-slate-50">
-                        SEC Check
-                      </Button>
-                      <Button variant="outline" size="sm" className="border-slate-200 text-slate-700 hover:bg-slate-50">
-                        ASIC Check
-                      </Button>
+                          <div className="flex items-center justify-between pt-3 border-t border-red-200 mt-3">
+                            <div className="text-xs text-red-600">
+                              ⚠️ Avoid depositing funds with this broker
+                            </div>
+                            <Button variant="outline" size="sm" className="text-red-700 border-red-300 hover:bg-red-100">
+                              <ExternalLink className="h-3 w-3 mr-1" />
+                              View Details
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
                     </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Report Scam Tab */}
+          <TabsContent value="report" className="space-y-6">
+            <ScamReportForm />
+          </TabsContent>
+
+          {/* Protection Guide Tab */}
+          <TabsContent value="education" className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-foreground">
+                    <Shield className="h-5 w-5 text-green-600" />
+                    How to Protect Yourself
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                      <div>
+                        <h4 className="font-medium text-foreground">Verify Regulation</h4>
+                        <p className="text-sm text-muted-foreground">Always check if the broker is regulated by a reputable authority like FCA, ASIC, or CySEC.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                      <div>
+                        <h4 className="font-medium text-foreground">Check License Status</h4>
+                        <p className="text-sm text-muted-foreground">Visit the regulator's website to confirm the license is active and valid.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                      <div>
+                        <h4 className="font-medium text-foreground">Read Reviews</h4>
+                        <p className="text-sm text-muted-foreground">Look for independent reviews and check multiple sources for balanced opinions.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold">4</div>
+                      <div>
+                        <h4 className="font-medium text-foreground">Start Small</h4>
+                        <p className="text-sm text-muted-foreground">Begin with the minimum deposit to test withdrawal processes before committing larger amounts.</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-foreground">
+                    <AlertTriangle className="h-5 w-5 text-red-600" />
+                    Red Flags to Watch
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5" />
+                      <div>
+                        <h4 className="font-medium text-foreground">Guaranteed Profits</h4>
+                        <p className="text-sm text-muted-foreground">No legitimate broker can guarantee profits in trading.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5" />
+                      <div>
+                        <h4 className="font-medium text-foreground">Pressure Tactics</h4>
+                        <p className="text-sm text-muted-foreground">Avoid brokers that pressure you to deposit immediately or claim limited-time offers.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5" />
+                      <div>
+                        <h4 className="font-medium text-foreground">No Contact Information</h4>
+                        <p className="text-sm text-muted-foreground">Legitimate brokers provide clear contact details and physical addresses.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5" />
+                      <div>
+                        <h4 className="font-medium text-foreground">Withdrawal Difficulties</h4>
+                        <p className="text-sm text-muted-foreground">Complex withdrawal processes or excessive documentation requests are warning signs.</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-blue-50 border border-blue-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-blue-800">
+                  <FileText className="h-5 w-5" />
+                  Regulatory Resources
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-blue-800">FCA (UK)</h4>
+                    <p className="text-sm text-blue-700 mb-2">Financial Conduct Authority</p>
+                    <Button variant="outline" size="sm" className="w-full text-blue-700 border-blue-300">
+                      <ExternalLink className="h-3 w-3 mr-1" />
+                      Check FCA Register
+                    </Button>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-blue-800">ASIC (Australia)</h4>
+                    <p className="text-sm text-blue-700 mb-2">Securities & Investments Commission</p>
+                    <Button variant="outline" size="sm" className="w-full text-blue-700 border-blue-300">
+                      <ExternalLink className="h-3 w-3 mr-1" />
+                      Check ASIC Register
+                    </Button>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-blue-800">CySEC (Cyprus)</h4>
+                    <p className="text-sm text-blue-700 mb-2">Cyprus Securities Commission</p>
+                    <Button variant="outline" size="sm" className="w-full text-blue-700 border-blue-300">
+                      <ExternalLink className="h-3 w-3 mr-1" />
+                      Check CySEC Register
+                    </Button>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </div>
-        </section>
-      </main>
+          </TabsContent>
+        </Tabs>
+      </div>
 
       <Footer />
     </div>
   );
-}
+};
+
+export default ScamBrokerShield;
