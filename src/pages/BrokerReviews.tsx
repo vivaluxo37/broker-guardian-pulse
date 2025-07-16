@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Star, CheckCircle, XCircle, Smartphone, Trophy } from "lucide-react";
+import { Star, CheckCircle, XCircle, Smartphone, Trophy, FilterX } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Broker {
   id: string;
@@ -1222,6 +1223,11 @@ const BrokerReviews = () => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedAssets, setSelectedAssets] = useState<string[]>([]);
+  const [selectedFeeLevel, setSelectedFeeLevel] = useState<string>("");
+  const [minRating, setMinRating] = useState<number>(0);
+  const [hasInvestorProtection, setHasInvestorProtection] = useState<boolean | null>(null);
+  const [hasMobilePlatform, setHasMobilePlatform] = useState<boolean | null>(null);
+  const [isAwardWinner, setIsAwardWinner] = useState<boolean | null>(null);
 
   const toggleAssetFilter = (asset: string) => {
     setSelectedAssets(prev => 
@@ -1231,10 +1237,37 @@ const BrokerReviews = () => {
     );
   };
 
+  const resetFilters = () => {
+    setSearchTerm("");
+    setSelectedAssets([]);
+    setSelectedFeeLevel("");
+    setMinRating(0);
+    setHasInvestorProtection(null);
+    setHasMobilePlatform(null);
+    setIsAwardWinner(null);
+  };
+
   const filteredBrokers = brokers.filter(broker => {
     const matchesSearch = broker.name.toLowerCase().includes(searchTerm.toLowerCase());
-    // For now, showing all brokers regardless of asset filter
-    return matchesSearch;
+    
+    // Asset filter - for this demo, we'll show all if no assets selected
+    const matchesAssets = selectedAssets.length === 0 || selectedAssets.some(asset => {
+      // This is a simplified asset matching - in a real app, each broker would have asset types
+      // For now, we'll match based on broker characteristics
+      if (asset === "Stock, ETF") return !broker.riskDisclaimer; // Traditional brokers
+      if (asset === "Forex" || asset === "CFD") return broker.riskDisclaimer; // CFD/Forex brokers
+      if (asset === "Crypto") return broker.name.toLowerCase().includes("robinhood") || broker.name.toLowerCase().includes("webull");
+      return true; // Show all for other asset types
+    });
+    
+    const matchesFeeLevel = !selectedFeeLevel || broker.feeLevel === selectedFeeLevel;
+    const matchesRating = broker.rating >= minRating;
+    const matchesInvestorProtection = hasInvestorProtection === null || broker.investorProtection === hasInvestorProtection;
+    const matchesMobilePlatform = hasMobilePlatform === null || broker.mobilePlatform === hasMobilePlatform;
+    const matchesAwardWinner = isAwardWinner === null || broker.isAwardWinner === isAwardWinner;
+    
+    return matchesSearch && matchesAssets && matchesFeeLevel && matchesRating && 
+           matchesInvestorProtection && matchesMobilePlatform && matchesAwardWinner;
   });
 
   const renderStars = (rating: number) => {
@@ -1276,25 +1309,128 @@ const BrokerReviews = () => {
 
         {/* Filters */}
         <div className="mb-8 space-y-6">
-          {/* Search Filter */}
-          <div>
-            <h3 className="text-lg font-medium mb-3">Filter by name</h3>
-            <Input
-              placeholder="Type broker name"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="max-w-md"
-            />
+          {/* Filter Header with Reset */}
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold">Filter Brokers</h3>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={resetFilters}
+              className="flex items-center gap-2"
+            >
+              <FilterX size={16} />
+              Clear Filters
+            </Button>
+          </div>
+
+          {/* Filter Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {/* Search Filter */}
+            <div>
+              <label className="text-sm font-medium mb-2 block">Search by name</label>
+              <Input
+                placeholder="Type broker name"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+
+            {/* Fee Level Filter */}
+            <div>
+              <label className="text-sm font-medium mb-2 block">Fee Level</label>
+              <Select value={selectedFeeLevel} onValueChange={setSelectedFeeLevel}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select fee level" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All levels</SelectItem>
+                  <SelectItem value="Low">Low fees</SelectItem>
+                  <SelectItem value="Average">Average fees</SelectItem>
+                  <SelectItem value="High">High fees</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Minimum Rating Filter */}
+            <div>
+              <label className="text-sm font-medium mb-2 block">Minimum Rating</label>
+              <Select value={minRating.toString()} onValueChange={(value) => setMinRating(Number(value))}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select minimum rating" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="0">Any rating</SelectItem>
+                  <SelectItem value="3">3+ stars</SelectItem>
+                  <SelectItem value="4">4+ stars</SelectItem>
+                  <SelectItem value="4.5">4.5+ stars</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Award Winner Filter */}
+            <div>
+              <label className="text-sm font-medium mb-2 block">Award Winners</label>
+              <Select 
+                value={isAwardWinner === null ? "" : isAwardWinner.toString()} 
+                onValueChange={(value) => setIsAwardWinner(value === "" ? null : value === "true")}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Filter by awards" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All brokers</SelectItem>
+                  <SelectItem value="true">Award winners only</SelectItem>
+                  <SelectItem value="false">Non-award winners</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Investor Protection Filter */}
+            <div>
+              <label className="text-sm font-medium mb-2 block">Investor Protection</label>
+              <Select 
+                value={hasInvestorProtection === null ? "" : hasInvestorProtection.toString()} 
+                onValueChange={(value) => setHasInvestorProtection(value === "" ? null : value === "true")}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Protection status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All brokers</SelectItem>
+                  <SelectItem value="true">With protection</SelectItem>
+                  <SelectItem value="false">Without protection</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Mobile Platform Filter */}
+            <div>
+              <label className="text-sm font-medium mb-2 block">Mobile Platform</label>
+              <Select 
+                value={hasMobilePlatform === null ? "" : hasMobilePlatform.toString()} 
+                onValueChange={(value) => setHasMobilePlatform(value === "" ? null : value === "true")}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Mobile app availability" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All brokers</SelectItem>
+                  <SelectItem value="true">With mobile app</SelectItem>
+                  <SelectItem value="false">No mobile app</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           {/* Asset Type Filters */}
           <div>
+            <label className="text-sm font-medium mb-3 block">Asset Types</label>
             <div className="flex flex-wrap gap-2">
               {assetTypes.map((asset) => (
                 <Badge
                   key={asset}
                   variant={selectedAssets.includes(asset) ? "default" : "outline"}
-                  className="cursor-pointer hover:bg-primary/90"
+                  className="cursor-pointer hover:bg-primary/90 transition-colors"
                   onClick={() => toggleAssetFilter(asset)}
                 >
                   {asset}
@@ -1303,11 +1439,14 @@ const BrokerReviews = () => {
             </div>
           </div>
 
-          {/* Location */}
-          <div>
-            <h3 className="text-lg font-medium text-center">
+          {/* Results Counter */}
+          <div className="flex items-center justify-between border-t pt-4">
+            <p className="text-sm text-muted-foreground">
+              Showing {filteredBrokers.length} of {brokers.length} brokers
+            </p>
+            <p className="text-lg font-medium text-center">
               Brokers available in France in 2025
-            </h3>
+            </p>
           </div>
         </div>
 
