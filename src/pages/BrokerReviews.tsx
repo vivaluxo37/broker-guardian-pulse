@@ -974,6 +974,48 @@ const brokers: Broker[] = [
     investorProtection: true,
     mobilePlatform: true,
     mobileRating: 4.3
+  },
+  {
+    id: "vectorvest",
+    name: "VectorVest",
+    logo: "/lovable-uploads/ed5e517d-34aa-41be-810c-f1d337ea7870.png",
+    rating: 3.8,
+    isAwardWinner: false,
+    peopleCount: 1250,
+    feeLevel: "High",
+    feeRating: 2.5,
+    inactivityFee: true,
+    investorProtection: false,
+    mobilePlatform: true,
+    mobileRating: 3.6
+  },
+  {
+    id: "charles-schwab",
+    name: "Charles Schwab",
+    logo: "/lovable-uploads/bb2f8d3b-7447-4c62-9464-f0281149d637.png",
+    rating: 4.7,
+    isAwardWinner: true,
+    peopleCount: 32500,
+    feeLevel: "Low",
+    feeRating: 4.6,
+    inactivityFee: false,
+    investorProtection: true,
+    mobilePlatform: true,
+    mobileRating: 4.5
+  },
+  {
+    id: "fidelity",
+    name: "Fidelity",
+    logo: "/lovable-uploads/77588c06-34ed-4525-b1be-92e787d2b42d.png",
+    rating: 4.8,
+    isAwardWinner: true,
+    peopleCount: 40000,
+    feeLevel: "Low",
+    feeRating: 4.7,
+    inactivityFee: false,
+    investorProtection: true,
+    mobilePlatform: true,
+    mobileRating: 4.6
   }
 ];
 
