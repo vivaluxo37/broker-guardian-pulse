@@ -1477,7 +1477,7 @@ const BrokerReviews = () => {
         {/* Broker Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredBrokers.map((broker) => (
-            <Card key={broker.id} className="group relative hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm overflow-hidden">
+            <Card key={broker.id} className="group relative hover:shadow-2xl transition-all duration-300 border border-slate-200 bg-white shadow-sm overflow-hidden">
               {broker.recommended && (
                 <div className="absolute -top-2 -right-2 bg-gradient-to-r from-accent to-accent/80 text-slate-800 px-5 py-2.5 rounded-full text-sm font-bold shadow-lg z-10 whitespace-nowrap">
                   ⭐ Recommended
@@ -1506,10 +1506,8 @@ const BrokerReviews = () => {
                   <h3 className="text-xl font-bold text-slate-800 group-hover:text-primary transition-colors duration-200">
                     {broker.name}
                   </h3>
-                  <div className="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl shadow-sm">
-                    <div className="flex items-center filter contrast-125 brightness-110">
-                      {renderStars(broker.rating)}
-                    </div>
+                  <div className="flex items-center gap-2">
+                    {renderStars(broker.rating)}
                   </div>
                 </div>
                 
@@ -1530,10 +1528,8 @@ const BrokerReviews = () => {
                     }`}>
                       {broker.feeLevel}
                     </span>
-                    <div className="flex items-center p-2 bg-white border border-slate-200 rounded-lg shadow-sm">
-                      <div className="flex items-center filter contrast-125 brightness-110">
-                        {renderStars(broker.feeRating)}
-                      </div>
+                    <div className="flex items-center">
+                      {renderStars(broker.feeRating)}
                     </div>
                   </div>
                 </div>
