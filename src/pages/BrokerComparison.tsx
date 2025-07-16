@@ -288,7 +288,7 @@ const allBrokers: any[] = [
   { id: "activtrades", name: "ActivTrades", logo: "/lovable-uploads/91c39f00-9431-40b8-8e77-ba0a9e1cdec6.png", rating: 4.2 },
   { id: "avatrade", name: "AvaTrade", logo: "/lovable-uploads/772feeb8-fc62-46e4-9bf5-373281326501.png", rating: 4.2 },
   { id: "pepperstone", name: "Pepperstone", logo: "/lovable-uploads/aac12076-ca4e-439d-a1e6-2755b626d8ec.png", rating: 4.4 },
-  { id: "questrade", name: "Questrade", logo: "/lovable-uploads/834dabc4-fc46-49e2-86f7-67369c91b5c2.png", rating: 4.3 },
+  
   { id: "xm-group", name: "XM", logo: "/lovable-uploads/f7f47809-36d2-4a02-95c6-faaab34c365a.png", rating: 4.2 },
   { id: "axi", name: "Axi", logo: "/lovable-uploads/08a94209-3538-484a-9f2a-f19f59e5762e.png", rating: 4.3 },
   { id: "fxcm", name: "FXCM", logo: "/lovable-uploads/21d1e132-74e2-49fb-a628-2559b0b52e0d.png", rating: 4.3 },
