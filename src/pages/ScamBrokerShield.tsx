@@ -379,47 +379,49 @@ export default function ScamBrokerShield() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
       <Navigation />
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-subtle">
-          <div className="container mx-auto px-4 text-center">
+        <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary/5">
+          <div className="container mx-auto px-4 text-center max-w-7xl">
             <div className="flex items-center justify-center mb-6">
               <Shield className="h-16 w-16 text-primary mr-4" />
-              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
                 Scam Broker Shield
               </h1>
             </div>
-            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-3xl mx-auto leading-relaxed">
               Comprehensive database of scam brokers and regulatory warnings. Protect yourself from fraud with our real-time verification system.
             </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-8"></div>
+            
             
             {/* Stats */}
             <div className="grid md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
-              <div className="text-center">
+              <div className="text-center p-6 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg">
                 <div className="text-4xl font-bold text-primary mb-2">5,760,141</div>
-                <div className="text-sm text-muted-foreground">Users Protected</div>
+                <div className="text-sm text-slate-600">Users Protected</div>
               </div>
-              <div className="text-center">
+              <div className="text-center p-6 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg">
                 <div className="text-4xl font-bold text-primary mb-2">{scamBrokers.length}</div>
-                <div className="text-sm text-muted-foreground">Scam Brokers Identified</div>
+                <div className="text-sm text-slate-600">Scam Brokers Identified</div>
               </div>
-              <div className="text-center">
+              <div className="text-center p-6 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg">
                 <div className="text-4xl font-bold text-primary mb-2">$47M+</div>
-                <div className="text-sm text-muted-foreground">Fraud Prevented</div>
+                <div className="text-sm text-slate-600">Fraud Prevented</div>
               </div>
             </div>
 
             {/* Search Tool */}
-            <Card className="max-w-2xl mx-auto mb-8 shadow-elegant border-border/50">
+            <Card className="max-w-2xl mx-auto mb-8 bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
               <CardHeader>
-                <CardTitle className="flex items-center justify-center">
+                <CardTitle className="flex items-center justify-center text-slate-800">
                   <Search className="h-6 w-6 mr-2" />
                   Broker Safety Check
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-slate-600">
                   Enter broker name or website to check our comprehensive scam database
                 </CardDescription>
               </CardHeader>
@@ -430,9 +432,9 @@ export default function ScamBrokerShield() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    className="flex-1"
+                    className="flex-1 border-slate-200 focus:border-primary"
                   />
-                  <Button onClick={handleSearch} className="px-8">
+                  <Button onClick={handleSearch} className="px-8 bg-primary text-white hover:bg-primary/90">
                     <Search className="h-4 w-4 mr-2" />
                     Check
                   </Button>
@@ -478,15 +480,15 @@ export default function ScamBrokerShield() {
             </Card>
 
             {/* Chrome Extension */}
-            <Card className="max-w-lg mx-auto shadow-elegant border-border/50">
+            <Card className="max-w-lg mx-auto bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
               <CardContent className="pt-6">
                 <div className="text-center">
                   <Download className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">Chrome Extension</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <h3 className="text-lg font-semibold mb-2 text-slate-800">Chrome Extension</h3>
+                  <p className="text-sm text-slate-600 mb-4">
                     Real-time scam detection while browsing. Get instant warnings about fraudulent broker websites.
                   </p>
-                  <Button variant="premium" className="w-full">
+                  <Button className="w-full bg-primary text-white hover:bg-primary/90">
                     Download Extension
                   </Button>
                 </div>
@@ -497,7 +499,7 @@ export default function ScamBrokerShield() {
 
         {/* Main Content Tabs */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 max-w-7xl">
             <Tabs defaultValue="scam-database" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-8">
                 <TabsTrigger value="scam-database">Scam Database</TabsTrigger>

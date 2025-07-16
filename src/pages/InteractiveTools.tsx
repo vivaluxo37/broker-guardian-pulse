@@ -9,30 +9,31 @@ import { BarChart3, Calculator, Calendar, Globe, TrendingUp } from "lucide-react
 
 const InteractiveTools = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white text-slate-800">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-background via-background to-primary/5">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary/5">
+        <div className="container mx-auto px-4 mt-20 max-w-7xl">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
                 Interactive Trading Tools
               </span>
             </h1>
-            <p className="text-xl text-foreground/70 mb-8">
+            <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-3xl mx-auto leading-relaxed">
               Professional trading tools to help you make informed decisions. From live market data to advanced calculators and broker comparisons.
             </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
           </div>
         </div>
       </section>
 
       {/* Tools Section */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-8">
+            <TabsList className="grid w-full grid-cols-4 mb-8 bg-white/80 backdrop-blur-sm border border-slate-200">
               <TabsTrigger value="overview" className="flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" />
                 <span className="hidden sm:inline">Overview</span>

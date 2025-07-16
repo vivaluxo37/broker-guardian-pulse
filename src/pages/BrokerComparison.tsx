@@ -549,54 +549,55 @@ const BrokerComparison = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-4">
+      <div className="container mx-auto px-4 py-8 mt-20 max-w-7xl">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
             Broker Comparison Tool
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-3xl mx-auto leading-relaxed">
             Compare brokers side-by-side to find the perfect match for your trading needs. 
             Select up to 4 brokers and instantly compare their features, fees, and services.
           </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
         </div>
 
-        <Tabs defaultValue="select" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="select">Select Brokers</TabsTrigger>
-            <TabsTrigger value="compare" disabled={selectedBrokers.length < 2}>
+        <Tabs defaultValue="select" className="space-y-8">
+          <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm border border-slate-200">
+            <TabsTrigger value="select" className="data-[state=active]:bg-primary data-[state=active]:text-white">Select Brokers</TabsTrigger>
+            <TabsTrigger value="compare" disabled={selectedBrokers.length < 2} className="data-[state=active]:bg-primary data-[state=active]:text-white disabled:opacity-50">
               Compare ({selectedBrokers.length})
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="select" className="space-y-6">
             {/* Search and Filters */}
-            <Card>
+            <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-slate-800">
                   <Search className="w-5 h-5" />
                   Find Your Perfect Broker
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-slate-600">
                   Use filters to narrow down brokers based on your requirements
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
                 <div className="relative">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
                   <Input
                     placeholder="Search brokers..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-9"
+                    className="pl-9 border-slate-200 focus:border-primary"
                   />
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <Select value={filters.minDeposit} onValueChange={(value) => setFilters({...filters, minDeposit: value})}>
-                    <SelectTrigger>
+                    <SelectTrigger className="border-slate-200 focus:border-primary">
                       <SelectValue placeholder="Min Deposit" />
                     </SelectTrigger>
                     <SelectContent>
@@ -608,7 +609,7 @@ const BrokerComparison = () => {
                   </Select>
 
                   <Select value={filters.regulation} onValueChange={(value) => setFilters({...filters, regulation: value})}>
-                    <SelectTrigger>
+                    <SelectTrigger className="border-slate-200 focus:border-primary">
                       <SelectValue placeholder="Regulation" />
                     </SelectTrigger>
                     <SelectContent>
@@ -643,7 +644,7 @@ const BrokerComparison = () => {
                   </Select>
                 </div>
 
-                <Button variant="outline" onClick={clearFilters} className="w-full">
+                <Button variant="outline" onClick={clearFilters} className="w-full border-slate-200 text-slate-700 hover:bg-slate-50">
                   Clear All Filters
                 </Button>
               </CardContent>
@@ -651,14 +652,14 @@ const BrokerComparison = () => {
 
             {/* Selected Brokers */}
             {selectedBrokers.length > 0 && (
-              <Card>
+              <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-lg">
                 <CardHeader>
-                  <CardTitle>Selected Brokers ({selectedBrokers.length}/4)</CardTitle>
+                  <CardTitle className="text-slate-800">Selected Brokers ({selectedBrokers.length}/4)</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
                     {selectedBrokers.map((broker) => (
-                      <Badge key={broker.id} variant="secondary" className="flex items-center gap-2">
+                      <Badge key={broker.id} variant="secondary" className="flex items-center gap-2 bg-primary/10 text-primary border-primary/20">
                         {broker.name}
                         <X 
                           className="w-3 h-3 cursor-pointer hover:text-destructive" 
@@ -676,33 +677,36 @@ const BrokerComparison = () => {
               {filteredBrokers.map((broker) => {
                 const isSelected = selectedBrokers.find(b => b.id === broker.id);
                 return (
-                  <Card key={broker.id} className={`cursor-pointer transition-all hover:shadow-md ${isSelected ? 'ring-2 ring-primary' : ''}`}>
+                  <Card key={broker.id} className={`cursor-pointer transition-all duration-300 hover:shadow-xl bg-white border ${isSelected ? 'ring-2 ring-primary border-primary shadow-lg' : 'border-slate-200 shadow-sm hover:border-primary/50'}`}>
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
-                          <img src={broker.logo} alt={broker.name} className="w-12 h-12 object-contain" />
+                          <div className="p-2 bg-white border border-slate-200 rounded-lg shadow-sm">
+                            <img src={broker.logo} alt={broker.name} className="w-12 h-12 object-contain" />
+                          </div>
                           <div>
-                            <h3 className="text-lg font-semibold">{broker.name}</h3>
+                            <h3 className="text-lg font-semibold text-slate-800">{broker.name}</h3>
                             <div className="flex items-center space-x-2">
                               <div className="flex">{renderStars(broker.rating)}</div>
-                              <span className="text-sm text-muted-foreground">({broker.rating})</span>
+                              <span className="text-sm text-slate-500">({broker.rating})</span>
                             </div>
                           </div>
                         </div>
                         
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-6">
                           <div className="text-right">
-                            <div className="text-sm text-muted-foreground">EUR/USD Spread</div>
-                            <div className="font-semibold">{broker.eurUsdSpread} pips</div>
+                            <div className="text-sm text-slate-500">EUR/USD Spread</div>
+                            <div className="font-semibold text-slate-800">{broker.eurUsdSpread} pips</div>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm text-muted-foreground">Min Deposit</div>
-                            <div className="font-semibold">${broker.minDeposit}</div>
+                            <div className="text-sm text-slate-500">Min Deposit</div>
+                            <div className="font-semibold text-green-600">${broker.minDeposit}</div>
                           </div>
                           <Button
                             variant={isSelected ? "secondary" : "default"}
                             onClick={() => toggleBrokerSelection(broker)}
                             disabled={!isSelected && selectedBrokers.length >= 4}
+                            className={isSelected ? "bg-slate-100 text-slate-700 hover:bg-slate-200" : "bg-primary text-white hover:bg-primary/90"}
                           >
                             {isSelected ? (
                               <>
@@ -727,12 +731,12 @@ const BrokerComparison = () => {
 
           <TabsContent value="compare" className="space-y-6">
             {selectedBrokers.length >= 2 ? (
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {/* Comparison Table */}
-                <Card>
+                <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl">
                   <CardHeader>
-                    <CardTitle>Broker Comparison</CardTitle>
-                    <CardDescription>Side-by-side comparison of selected brokers</CardDescription>
+                    <CardTitle className="text-slate-800">Broker Comparison</CardTitle>
+                    <CardDescription className="text-slate-600">Side-by-side comparison of selected brokers</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="overflow-x-auto">
