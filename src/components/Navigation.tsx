@@ -52,17 +52,17 @@ const navItems = [
   { name: "Scam Shield", href: "/scam-broker-shield", isRoute: true },
   { 
     name: "Tools", 
-    href: "#tools", 
-    isRoute: false,
+    href: "/interactive-tools", 
+    isRoute: true,
     submenu: [
-      { name: "Broker Comparison Tool", href: "#broker-comparison" },
-      { name: "Broker Finder", href: "#broker-finder" },
-      { name: "Trading Fee Calculator", href: "#fee-calculator" },
+      { name: "Interactive Tools Dashboard", href: "/interactive-tools" },
+      { name: "Broker Comparison Tool", href: "/interactive-tools#comparison" },
+      { name: "Trading Calculators", href: "/interactive-tools#calculators" },
+      { name: "Economic Calendar", href: "/interactive-tools#calendar" },
+      { name: "Market News", href: "/interactive-tools#news" },
       { name: "Forex Calculator", href: "#forex-calculator" },
       { name: "Pip Calculator", href: "#pip-calculator" },
-      { name: "Margin Calculator", href: "#margin-calculator" },
-      { name: "Currency Converter", href: "#currency-converter" },
-      { name: "Economic Calendar", href: "#economic-calendar" }
+      { name: "Currency Converter", href: "#currency-converter" }
     ]
   },
   { 
