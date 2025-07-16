@@ -16,17 +16,91 @@ interface Broker {
   logo: string;
   rating: number;
   regulation: string[];
+  regulationDetails: {
+    [key: string]: {
+      license: string;
+      compensation: string;
+      established: string;
+    };
+  };
   minDeposit: number;
+  maxLeverage: string;
+  
+  // Trading Costs
   eurUsdSpread: number;
-  leverage: string;
-  platforms: string[];
-  account_types: string[];
+  gbpUsdSpread: number;
+  usdJpySpread: number;
+  goldSpread: number;
   commission: string;
+  swapRates: {
+    long: string;
+    short: string;
+  };
+  
+  // Trading Platforms
+  platforms: string[];
+  platformFeatures: {
+    [key: string]: string[];
+  };
+  
+  // Account Types
+  account_types: string[];
+  accountDetails: {
+    [key: string]: {
+      minDeposit: number;
+      spread: string;
+      commission: string;
+      features: string[];
+    };
+  };
+  
+  // Instruments
+  instruments: {
+    forex: number;
+    stocks: number;
+    indices: number;
+    commodities: number;
+    crypto: number;
+    bonds: number;
+    etfs: number;
+  };
+  
+  // Execution & Technology
+  executionModel: string;
+  averageExecutionSpeed: string;
+  slippage: string;
+  requotes: string;
+  
+  // Funding
+  depositMethods: string[];
+  withdrawalMethods: string[];
+  depositFees: string;
+  withdrawalFees: string;
   withdrawal_time: string;
+  baseCurrencies: string[];
+  
+  // Support & Education
   customer_support: string;
+  supportLanguages: number;
   education: boolean;
+  educationFeatures: string[];
   demo_account: boolean;
   islamic_account: boolean;
+  
+  // Additional Features
+  socialTrading: boolean;
+  copyTrading: boolean;
+  algorithmicTrading: boolean;
+  apiAccess: boolean;
+  vpsOffered: boolean;
+  researchTools: string[];
+  
+  // Company Info
+  founded: number;
+  headquarters: string;
+  employees: string;
+  publiclyTraded: boolean;
+  
   pros: string[];
   cons: string[];
 }
@@ -38,17 +112,91 @@ const allBrokers: Broker[] = [
     logo: "/lovable-uploads/01ce80d9-1df7-4bb8-9445-5012485f2889.png",
     rating: 4.5,
     regulation: ["CySEC", "ASIC", "IFSC"],
+    regulationDetails: {
+      "CySEC": {
+        license: "120/10",
+        compensation: "€20,000",
+        established: "2010"
+      },
+      "ASIC": {
+        license: "443670",
+        compensation: "AU$1,000,000",
+        established: "2015"
+      }
+    },
     minDeposit: 5,
+    maxLeverage: "1:888",
     eurUsdSpread: 1.6,
-    leverage: "1:888",
-    platforms: ["MT4", "MT5", "WebTrader"],
-    account_types: ["Micro", "Standard", "XM Zero"],
+    gbpUsdSpread: 2.1,
+    usdJpySpread: 1.8,
+    goldSpread: 0.35,
     commission: "No commission on Standard",
+    swapRates: {
+      long: "-2.17",
+      short: "-4.93"
+    },
+    platforms: ["MT4", "MT5", "WebTrader", "Mobile"],
+    platformFeatures: {
+      "MT4": ["Expert Advisors", "Custom Indicators", "One-click Trading"],
+      "MT5": ["Advanced Charting", "Economic Calendar", "Market Depth"],
+      "WebTrader": ["No Download Required", "Cross-platform", "Real-time Quotes"]
+    },
+    account_types: ["Micro", "Standard", "XM Zero"],
+    accountDetails: {
+      "Micro": {
+        minDeposit: 5,
+        spread: "From 1.0 pips",
+        commission: "No commission",
+        features: ["Micro lot trading", "No commission", "Low minimum deposit"]
+      },
+      "Standard": {
+        minDeposit: 5,
+        spread: "From 1.0 pips",
+        commission: "No commission",
+        features: ["Standard lots", "No commission", "Bonus eligible"]
+      },
+      "XM Zero": {
+        minDeposit: 100,
+        spread: "From 0.0 pips",
+        commission: "$3.50 per lot",
+        features: ["Zero spreads", "Low commission", "Professional execution"]
+      }
+    },
+    instruments: {
+      forex: 57,
+      stocks: 1400,
+      indices: 24,
+      commodities: 8,
+      crypto: 31,
+      bonds: 0,
+      etfs: 0
+    },
+    executionModel: "Market Maker",
+    averageExecutionSpeed: "< 1 second",
+    slippage: "Minimal",
+    requotes: "Rare",
+    depositMethods: ["Credit/Debit Cards", "Bank Wire", "Skrill", "Neteller", "Local Bank Transfer"],
+    withdrawalMethods: ["Credit/Debit Cards", "Bank Wire", "Skrill", "Neteller"],
+    depositFees: "Free",
+    withdrawalFees: "Free (some payment methods)",
     withdrawal_time: "1-3 business days",
+    baseCurrencies: ["USD", "EUR", "GBP", "JPY", "AUD"],
     customer_support: "24/5 multilingual",
+    supportLanguages: 30,
     education: true,
+    educationFeatures: ["Daily Market Analysis", "Webinars", "Educational Videos", "Trading Academy"],
     demo_account: true,
     islamic_account: true,
+    socialTrading: false,
+    copyTrading: false,
+    algorithmicTrading: true,
+    apiAccess: false,
+    vpsOffered: true,
+    researchTools: ["Market Analysis", "Economic Calendar", "Trading Signals"],
+    founded: 2009,
+    headquarters: "Cyprus",
+    employees: "500+",
+    publiclyTraded: false,
     pros: ["Low minimum deposit", "High leverage", "Strong regulation", "Educational resources"],
     cons: ["Higher spreads on some pairs", "Limited cryptocurrency options"]
   },
@@ -58,79 +206,87 @@ const allBrokers: Broker[] = [
     logo: "/lovable-uploads/0211e090-45a0-45f5-bbaf-c9df5dde39e8.png",
     rating: 4.7,
     regulation: ["FCA", "ASIC", "MAS"],
+    regulationDetails: {
+      "FCA": {
+        license: "195355",
+        compensation: "£85,000",
+        established: "1974"
+      },
+      "ASIC": {
+        license: "515106",
+        compensation: "AU$1,000,000",
+        established: "2002"
+      }
+    },
     minDeposit: 250,
+    maxLeverage: "1:30",
     eurUsdSpread: 0.6,
-    leverage: "1:30",
-    platforms: ["IG Platform", "MT4", "ProRealTime"],
-    account_types: ["Standard", "Professional"],
+    gbpUsdSpread: 0.9,
+    usdJpySpread: 0.7,
+    goldSpread: 0.3,
     commission: "From $8 per lot",
+    swapRates: {
+      long: "-2.5",
+      short: "-1.2"
+    },
+    platforms: ["IG Platform", "MT4", "ProRealTime", "Mobile"],
+    platformFeatures: {
+      "IG Platform": ["Advanced Charting", "Price Alerts", "Risk Management"],
+      "MT4": ["Expert Advisors", "Custom Indicators", "Automated Trading"],
+      "ProRealTime": ["Professional Charting", "Backtesting", "Screening Tools"]
+    },
+    account_types: ["Standard", "Professional"],
+    accountDetails: {
+      "Standard": {
+        minDeposit: 250,
+        spread: "From 0.6 pips",
+        commission: "From $8 per lot",
+        features: ["Retail client protection", "Negative balance protection", "FSCS protection"]
+      },
+      "Professional": {
+        minDeposit: 250,
+        spread: "From 0.6 pips",
+        commission: "From $6 per lot",
+        features: ["Higher leverage", "Lower margins", "Professional execution"]
+      }
+    },
+    instruments: {
+      forex: 80,
+      stocks: 17000,
+      indices: 40,
+      commodities: 27,
+      crypto: 15,
+      bonds: 50,
+      etfs: 300
+    },
+    executionModel: "Market Maker / DMA",
+    averageExecutionSpeed: "< 0.5 seconds",
+    slippage: "Minimal",
+    requotes: "Very rare",
+    depositMethods: ["Credit/Debit Cards", "Bank Wire", "PayPal", "Debit Card"],
+    withdrawalMethods: ["Credit/Debit Cards", "Bank Wire", "PayPal"],
+    depositFees: "Free",
+    withdrawalFees: "Free",
     withdrawal_time: "1-2 business days",
+    baseCurrencies: ["USD", "EUR", "GBP", "AUD", "SGD"],
     customer_support: "24/5 phone & chat",
+    supportLanguages: 16,
     education: true,
+    educationFeatures: ["IG Academy", "Market Analysis", "Trading Guides", "Webinars"],
     demo_account: true,
     islamic_account: false,
+    socialTrading: false,
+    copyTrading: false,
+    algorithmicTrading: true,
+    apiAccess: true,
+    vpsOffered: false,
+    researchTools: ["Reuters News", "Market Screener", "Technical Analysis", "Fundamental Analysis"],
+    founded: 1974,
+    headquarters: "London, UK",
+    employees: "4000+",
+    publiclyTraded: true,
     pros: ["Tight spreads", "Strong regulation", "Advanced charting", "Wide market access"],
     cons: ["Higher minimum deposit", "Complex fee structure"]
-  },
-  {
-    id: "3",
-    name: "Pepperstone",
-    logo: "/lovable-uploads/04e39e67-4fc8-4df2-ba16-c215860693a6.png",
-    rating: 4.6,
-    regulation: ["ASIC", "FCA", "CySEC"],
-    minDeposit: 200,
-    eurUsdSpread: 0.8,
-    leverage: "1:500",
-    platforms: ["MT4", "MT5", "cTrader"],
-    account_types: ["Standard", "Razor"],
-    commission: "From $3.50 per lot",
-    withdrawal_time: "1-2 business days",
-    customer_support: "24/5 multilingual",
-    education: true,
-    demo_account: true,
-    islamic_account: true,
-    pros: ["Fast execution", "Low spreads", "Multiple platforms", "Good customer service"],
-    cons: ["Limited educational content", "Withdrawal fees on some methods"]
-  },
-  {
-    id: "4",
-    name: "OANDA",
-    logo: "/lovable-uploads/08a94209-3538-484a-9f2a-f19f59e5762e.png",
-    rating: 4.4,
-    regulation: ["NFA", "FCA", "ASIC"],
-    minDeposit: 0,
-    eurUsdSpread: 1.2,
-    leverage: "1:50",
-    platforms: ["OANDA Trade", "MT4", "TradingView"],
-    account_types: ["Standard", "Premium"],
-    commission: "No commission",
-    withdrawal_time: "1-5 business days",
-    customer_support: "24/5 phone & chat",
-    education: true,
-    demo_account: true,
-    islamic_account: false,
-    pros: ["No minimum deposit", "Fractional units", "Good research", "Reliable platform"],
-    cons: ["Higher spreads", "Limited leverage", "No MT5"]
-  },
-  {
-    id: "5",
-    name: "IC Markets",
-    logo: "/lovable-uploads/0eabf75e-7984-481a-85ea-46dfc5362774.png",
-    rating: 4.8,
-    regulation: ["ASIC", "CySEC"],
-    minDeposit: 200,
-    eurUsdSpread: 0.1,
-    leverage: "1:500",
-    platforms: ["MT4", "MT5", "cTrader"],
-    account_types: ["Standard", "Raw Spread"],
-    commission: "From $3 per lot",
-    withdrawal_time: "1-2 business days",
-    customer_support: "24/5 multilingual",
-    education: true,
-    demo_account: true,
-    islamic_account: true,
-    pros: ["Ultra-low spreads", "Fast execution", "Multiple platforms", "Strong regulation"],
-    cons: ["Commission-based pricing", "Limited educational resources"]
   }
 ];
 
@@ -375,9 +531,9 @@ const BrokerComparison = () => {
                       <Table>
                         <TableHeader>
                           <TableRow>
-                            <TableHead className="w-48">Feature</TableHead>
+                            <TableHead className="w-56 sticky left-0 bg-background z-10">Feature</TableHead>
                             {selectedBrokers.map((broker) => (
-                              <TableHead key={broker.id} className="text-center min-w-48">
+                              <TableHead key={broker.id} className="text-center min-w-56">
                                 <div className="flex flex-col items-center space-y-2">
                                   <img src={broker.logo} alt={broker.name} className="w-8 h-8 object-contain" />
                                   <span className="font-semibold">{broker.name}</span>
@@ -387,19 +543,25 @@ const BrokerComparison = () => {
                           </TableRow>
                         </TableHeader>
                         <TableBody>
+                          {/* Overall Rating */}
+                          <TableRow className="bg-muted/30">
+                            <TableCell className="font-bold sticky left-0 bg-muted/30 z-10" colSpan={selectedBrokers.length + 1}>
+                              OVERALL RATING & REGULATION
+                            </TableCell>
+                          </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Overall Rating</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Overall Rating</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center">
                                 <div className="flex justify-center items-center space-x-1">
                                   {renderStars(broker.rating)}
-                                  <span className="ml-2">({broker.rating})</span>
+                                  <span className="ml-2 font-semibold">({broker.rating})</span>
                                 </div>
                               </TableCell>
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Regulation</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Regulation</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center">
                                 <div className="flex flex-wrap justify-center gap-1">
@@ -413,15 +575,38 @@ const BrokerComparison = () => {
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Min Deposit</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Founded</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.founded}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Headquarters</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                {broker.headquarters}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          
+                          {/* Trading Costs */}
+                          <TableRow className="bg-muted/30">
+                            <TableCell className="font-bold sticky left-0 bg-muted/30 z-10" colSpan={selectedBrokers.length + 1}>
+                              TRADING COSTS & SPREADS
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Min Deposit</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold text-green-600">
                                 ${broker.minDeposit}
                               </TableCell>
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">EUR/USD Spread</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">EUR/USD Spread</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center font-semibold">
                                 {broker.eurUsdSpread} pips
@@ -429,15 +614,54 @@ const BrokerComparison = () => {
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Max Leverage</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">GBP/USD Spread</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.leverage}
+                                {broker.gbpUsdSpread} pips
                               </TableCell>
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Platforms</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">USD/JPY Spread</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.usdJpySpread} pips
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Gold Spread</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.goldSpread} pips
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Commission</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                {broker.commission}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Max Leverage</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold text-orange-600">
+                                {broker.maxLeverage}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+
+                          {/* Trading Platforms */}
+                          <TableRow className="bg-muted/30">
+                            <TableCell className="font-bold sticky left-0 bg-muted/30 z-10" colSpan={selectedBrokers.length + 1}>
+                              TRADING PLATFORMS & TECHNOLOGY
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Platforms</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center">
                                 <div className="flex flex-wrap justify-center gap-1">
@@ -451,31 +675,101 @@ const BrokerComparison = () => {
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Commission</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Execution Model</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center">
-                                {broker.commission}
+                                {broker.executionModel}
                               </TableCell>
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Withdrawal Time</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Execution Speed</TableCell>
                             {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center">
-                                {broker.withdrawal_time}
+                              <TableCell key={broker.id} className="text-center font-semibold text-green-600">
+                                {broker.averageExecutionSpeed}
                               </TableCell>
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Customer Support</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">API Access</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center">
-                                {broker.customer_support}
+                                <Badge variant={broker.apiAccess ? "default" : "secondary"}>
+                                  {broker.apiAccess ? "Yes" : "No"}
+                                </Badge>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+
+                          {/* Available Instruments */}
+                          <TableRow className="bg-muted/30">
+                            <TableCell className="font-bold sticky left-0 bg-muted/30 z-10" colSpan={selectedBrokers.length + 1}>
+                              AVAILABLE INSTRUMENTS
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Forex Pairs</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.instruments.forex}
                               </TableCell>
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Demo Account</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Stocks</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.instruments.stocks.toLocaleString()}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Indices</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.instruments.indices}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Commodities</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.instruments.commodities}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Cryptocurrencies</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.instruments.crypto}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+
+                          {/* Account Features */}
+                          <TableRow className="bg-muted/30">
+                            <TableCell className="font-bold sticky left-0 bg-muted/30 z-10" colSpan={selectedBrokers.length + 1}>
+                              ACCOUNT FEATURES
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Account Types</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                <div className="flex flex-wrap justify-center gap-1">
+                                  {broker.account_types.map((type) => (
+                                    <Badge key={type} variant="outline" className="text-xs">
+                                      {type}
+                                    </Badge>
+                                  ))}
+                                </div>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Demo Account</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center">
                                 <Badge variant={broker.demo_account ? "default" : "secondary"}>
@@ -485,11 +779,143 @@ const BrokerComparison = () => {
                             ))}
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">Islamic Account</TableCell>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Islamic Account</TableCell>
                             {selectedBrokers.map((broker) => (
                               <TableCell key={broker.id} className="text-center">
                                 <Badge variant={broker.islamic_account ? "default" : "secondary"}>
                                   {broker.islamic_account ? "Yes" : "No"}
+                                </Badge>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Base Currencies</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                <div className="flex flex-wrap justify-center gap-1">
+                                  {broker.baseCurrencies.map((currency) => (
+                                    <Badge key={currency} variant="outline" className="text-xs">
+                                      {currency}
+                                    </Badge>
+                                  ))}
+                                </div>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+
+                          {/* Deposits & Withdrawals */}
+                          <TableRow className="bg-muted/30">
+                            <TableCell className="font-bold sticky left-0 bg-muted/30 z-10" colSpan={selectedBrokers.length + 1}>
+                              DEPOSITS & WITHDRAWALS
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Deposit Methods</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                <div className="space-y-1">
+                                  {broker.depositMethods.slice(0, 3).map((method) => (
+                                    <div key={method} className="text-xs">{method}</div>
+                                  ))}
+                                  {broker.depositMethods.length > 3 && (
+                                    <div className="text-xs text-muted-foreground">
+                                      +{broker.depositMethods.length - 3} more
+                                    </div>
+                                  )}
+                                </div>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Deposit Fees</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold text-green-600">
+                                {broker.depositFees}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Withdrawal Time</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                {broker.withdrawal_time}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Withdrawal Fees</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                {broker.withdrawalFees}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+
+                          {/* Support & Education */}
+                          <TableRow className="bg-muted/30">
+                            <TableCell className="font-bold sticky left-0 bg-muted/30 z-10" colSpan={selectedBrokers.length + 1}>
+                              SUPPORT & EDUCATION
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Customer Support</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                {broker.customer_support}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Support Languages</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center font-semibold">
+                                {broker.supportLanguages}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Educational Resources</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                <Badge variant={broker.education ? "default" : "secondary"}>
+                                  {broker.education ? "Comprehensive" : "Limited"}
+                                </Badge>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+
+                          {/* Additional Features */}
+                          <TableRow className="bg-muted/30">
+                            <TableCell className="font-bold sticky left-0 bg-muted/30 z-10" colSpan={selectedBrokers.length + 1}>
+                              ADDITIONAL FEATURES
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Copy Trading</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                <Badge variant={broker.copyTrading ? "default" : "secondary"}>
+                                  {broker.copyTrading ? "Yes" : "No"}
+                                </Badge>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">Algorithmic Trading</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                <Badge variant={broker.algorithmicTrading ? "default" : "secondary"}>
+                                  {broker.algorithmicTrading ? "Yes" : "No"}
+                                </Badge>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium sticky left-0 bg-background z-10">VPS Offered</TableCell>
+                            {selectedBrokers.map((broker) => (
+                              <TableCell key={broker.id} className="text-center">
+                                <Badge variant={broker.vpsOffered ? "default" : "secondary"}>
+                                  {broker.vpsOffered ? "Yes" : "No"}
                                 </Badge>
                               </TableCell>
                             ))}
