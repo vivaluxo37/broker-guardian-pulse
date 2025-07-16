@@ -2,7 +2,6 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { EconomicCalendar } from "@/components/EconomicCalendar";
 import { TradingCalculators } from "@/components/TradingCalculators";
-import { BrokerComparisonTool } from "@/components/BrokerComparisonTool";
 import { MarketNewsWidget } from "@/components/MarketNewsWidget";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,7 +32,7 @@ const InteractiveTools = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="grid w-full grid-cols-5 mb-8">
+            <TabsList className="grid w-full grid-cols-4 mb-8">
               <TabsTrigger value="overview" className="flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" />
                 <span className="hidden sm:inline">Overview</span>
@@ -49,10 +48,6 @@ const InteractiveTools = () => {
               <TabsTrigger value="calculators" className="flex items-center gap-2">
                 <Calculator className="h-4 w-4" />
                 <span className="hidden sm:inline">Calculators</span>
-              </TabsTrigger>
-              <TabsTrigger value="comparison" className="flex items-center gap-2">
-                <BarChart3 className="h-4 w-4" />
-                <span className="hidden sm:inline">Compare</span>
               </TabsTrigger>
             </TabsList>
 
@@ -141,10 +136,6 @@ const InteractiveTools = () => {
 
             <TabsContent value="calculators">
               <TradingCalculators />
-            </TabsContent>
-
-            <TabsContent value="comparison">
-              <BrokerComparisonTool />
             </TabsContent>
           </Tabs>
         </div>

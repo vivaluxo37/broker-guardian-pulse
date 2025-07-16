@@ -56,7 +56,7 @@ const navItems = [
     isRoute: true,
     submenu: [
       { name: "Interactive Tools Dashboard", href: "/interactive-tools" },
-      { name: "Broker Comparison Tool", href: "/interactive-tools#comparison" },
+      { name: "Broker Comparison", href: "/broker-comparison" },
       { name: "Trading Calculators", href: "/interactive-tools#calculators" },
       { name: "Economic Calendar", href: "/interactive-tools#calendar" },
       { name: "Market News", href: "/interactive-tools#news" },

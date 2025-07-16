@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import ScamBrokerShield from "./pages/ScamBrokerShield";
 import BrokerReviews from "./pages/BrokerReviews";
 import InteractiveTools from "./pages/InteractiveTools";
+import BrokerComparison from "./pages/BrokerComparison";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/scam-broker-shield" element={<ScamBrokerShield />} />
           <Route path="/broker-reviews" element={<BrokerReviews />} />
           <Route path="/interactive-tools" element={<InteractiveTools />} />
+          <Route path="/broker-comparison" element={<BrokerComparison />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
