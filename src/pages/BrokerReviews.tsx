@@ -1486,11 +1486,12 @@ const BrokerReviews = () => {
               
               <CardHeader className="space-y-6 p-8">
                 <div className="flex items-start justify-between">
-                  <div className="p-3 bg-slate-50 rounded-2xl">
+                  <div className="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
                     <img 
                       src={broker.logo} 
                       alt={broker.name}
-                      className="w-12 h-12 object-contain"
+                      className="w-14 h-14 object-contain filter contrast-110 brightness-110"
+                      style={{ maxWidth: '100%', maxHeight: '100%' }}
                     />
                   </div>
                   {broker.isAwardWinner && (
