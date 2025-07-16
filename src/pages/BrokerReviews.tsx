@@ -1295,277 +1295,347 @@ const BrokerReviews = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
       <Navigation />
       
       <div className="container mx-auto px-4 py-8 mt-20 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
             Broker Reviews
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-3xl mx-auto leading-relaxed">
             Find the right broker and invest on your own
           </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
         </div>
 
         {/* Filters */}
-        <div className="mb-12 space-y-6">
+        <div className="mb-16">
           {/* Filter Header with Reset */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <h3 className="text-xl font-semibold">Filter Brokers</h3>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={resetFilters}
-              className="flex items-center gap-2 self-start sm:self-auto"
-            >
-              <FilterX size={16} />
-              Clear Filters
-            </Button>
-          </div>
-
-          {/* Filter Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
-            {/* Search Filter */}
-            <div>
-              <label className="text-sm font-medium mb-2 block">Search by name</label>
-              <Input
-                placeholder="Type broker name"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-
-            {/* Fee Level Filter */}
-            <div>
-              <label className="text-sm font-medium mb-2 block">Fee Level</label>
-              <Select value={selectedFeeLevel} onValueChange={setSelectedFeeLevel}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select fee level" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All levels</SelectItem>
-                  <SelectItem value="Low">Low fees</SelectItem>
-                  <SelectItem value="Average">Average fees</SelectItem>
-                  <SelectItem value="High">High fees</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Minimum Rating Filter */}
-            <div>
-              <label className="text-sm font-medium mb-2 block">Minimum Rating</label>
-              <Select value={minRating.toString()} onValueChange={(value) => setMinRating(Number(value))}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select minimum rating" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="0">Any rating</SelectItem>
-                  <SelectItem value="3">3+ stars</SelectItem>
-                  <SelectItem value="4">4+ stars</SelectItem>
-                  <SelectItem value="4.5">4.5+ stars</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Award Winner Filter */}
-            <div>
-              <label className="text-sm font-medium mb-2 block">Award Winners</label>
-              <Select 
-                value={isAwardWinner === null ? "all" : isAwardWinner.toString()} 
-                onValueChange={(value) => setIsAwardWinner(value === "all" ? null : value === "true")}
+          <div className="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+              <div>
+                <h3 className="text-2xl font-bold text-slate-800 mb-2">Filter Brokers</h3>
+                <p className="text-slate-600">Customize your search to find the perfect broker</p>
+              </div>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                onClick={resetFilters}
+                className="flex items-center gap-2 hover:bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-900 transition-all duration-200"
               >
-                <SelectTrigger>
-                  <SelectValue placeholder="Filter by awards" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All brokers</SelectItem>
-                  <SelectItem value="true">Award winners only</SelectItem>
-                  <SelectItem value="false">Non-award winners</SelectItem>
-                </SelectContent>
-              </Select>
+                <FilterX size={18} />
+                Clear All Filters
+              </Button>
             </div>
 
-            {/* Investor Protection Filter */}
-            <div>
-              <label className="text-sm font-medium mb-2 block">Investor Protection</label>
-              <Select 
-                value={hasInvestorProtection === null ? "all" : hasInvestorProtection.toString()} 
-                onValueChange={(value) => setHasInvestorProtection(value === "all" ? null : value === "true")}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Protection status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All brokers</SelectItem>
-                  <SelectItem value="true">With protection</SelectItem>
-                  <SelectItem value="false">Without protection</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            {/* Filter Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+              {/* Search Filter */}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-700 block">Search by name</label>
+                <Input
+                  placeholder="Type broker name..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="border-slate-200 focus:border-primary transition-colors duration-200"
+                />
+              </div>
 
-            {/* Mobile Platform Filter */}
-            <div>
-              <label className="text-sm font-medium mb-2 block">Mobile Platform</label>
-              <Select 
-                value={hasMobilePlatform === null ? "all" : hasMobilePlatform.toString()} 
-                onValueChange={(value) => setHasMobilePlatform(value === "all" ? null : value === "true")}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Mobile app availability" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All brokers</SelectItem>
-                  <SelectItem value="true">With mobile app</SelectItem>
-                  <SelectItem value="false">No mobile app</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+              {/* Fee Level Filter */}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-700 block">Fee Level</label>
+                <Select value={selectedFeeLevel} onValueChange={setSelectedFeeLevel}>
+                  <SelectTrigger className="border-slate-200 focus:border-primary">
+                    <SelectValue placeholder="Select fee level" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border-slate-200">
+                    <SelectItem value="all">All levels</SelectItem>
+                    <SelectItem value="Low">Low fees</SelectItem>
+                    <SelectItem value="Average">Average fees</SelectItem>
+                    <SelectItem value="High">High fees</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
-          {/* Asset Type Filters */}
-          <div>
-            <label className="text-sm font-medium mb-3 block">Asset Types</label>
-            <div className="flex flex-wrap gap-2">
-              {assetTypes.map((asset) => (
-                <Badge
-                  key={asset}
-                  variant={selectedAssets.includes(asset) ? "default" : "outline"}
-                  className="cursor-pointer hover:bg-primary/90 transition-colors"
-                  onClick={() => toggleAssetFilter(asset)}
+              {/* Minimum Rating Filter */}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-700 block">Minimum Rating</label>
+                <Select value={minRating.toString()} onValueChange={(value) => setMinRating(Number(value))}>
+                  <SelectTrigger className="border-slate-200 focus:border-primary">
+                    <SelectValue placeholder="Select minimum rating" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border-slate-200">
+                    <SelectItem value="0">Any rating</SelectItem>
+                    <SelectItem value="3">3+ stars</SelectItem>
+                    <SelectItem value="4">4+ stars</SelectItem>
+                    <SelectItem value="4.5">4.5+ stars</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Award Winner Filter */}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-700 block">Award Winners</label>
+                <Select 
+                  value={isAwardWinner === null ? "all" : isAwardWinner.toString()} 
+                  onValueChange={(value) => setIsAwardWinner(value === "all" ? null : value === "true")}
                 >
-                  {asset}
-                </Badge>
-              ))}
-            </div>
-          </div>
+                  <SelectTrigger className="border-slate-200 focus:border-primary">
+                    <SelectValue placeholder="Filter by awards" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border-slate-200">
+                    <SelectItem value="all">All brokers</SelectItem>
+                    <SelectItem value="true">Award winners only</SelectItem>
+                    <SelectItem value="false">Non-award winners</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
-          {/* Results Counter */}
-          <div className="flex items-center justify-between border-t pt-4">
-            <p className="text-sm text-muted-foreground">
-              Showing {filteredBrokers.length} of {brokers.length} brokers
-            </p>
-            <p className="text-lg font-medium text-center">
-              Brokers available in France in 2025
-            </p>
+              {/* Investor Protection Filter */}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-700 block">Investor Protection</label>
+                <Select 
+                  value={hasInvestorProtection === null ? "all" : hasInvestorProtection.toString()} 
+                  onValueChange={(value) => setHasInvestorProtection(value === "all" ? null : value === "true")}
+                >
+                  <SelectTrigger className="border-slate-200 focus:border-primary">
+                    <SelectValue placeholder="Protection status" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border-slate-200">
+                    <SelectItem value="all">All brokers</SelectItem>
+                    <SelectItem value="true">With protection</SelectItem>
+                    <SelectItem value="false">Without protection</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Mobile Platform Filter */}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-700 block">Mobile Platform</label>
+                <Select 
+                  value={hasMobilePlatform === null ? "all" : hasMobilePlatform.toString()} 
+                  onValueChange={(value) => setHasMobilePlatform(value === "all" ? null : value === "true")}
+                >
+                  <SelectTrigger className="border-slate-200 focus:border-primary">
+                    <SelectValue placeholder="Mobile app availability" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border-slate-200">
+                    <SelectItem value="all">All brokers</SelectItem>
+                    <SelectItem value="true">With mobile app</SelectItem>
+                    <SelectItem value="false">No mobile app</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Asset Type Filters */}
+            <div className="space-y-4">
+              <label className="text-sm font-semibold text-slate-700 block">Asset Types</label>
+              <div className="flex flex-wrap gap-3">
+                {assetTypes.map((asset) => (
+                  <Badge
+                    key={asset}
+                    variant={selectedAssets.includes(asset) ? "default" : "outline"}
+                    className={`cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                      selectedAssets.includes(asset) 
+                        ? "bg-primary text-white hover:bg-primary/90 shadow-md" 
+                        : "border-slate-300 text-slate-600 hover:border-primary hover:text-primary hover:bg-primary/5"
+                    }`}
+                    onClick={() => toggleAssetFilter(asset)}
+                  >
+                    {asset}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Results Counter */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-t border-slate-200 pt-6 mt-8 gap-4">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-primary rounded-full"></div>
+                <p className="text-sm font-medium text-slate-700">
+                  Showing <span className="text-primary font-bold">{filteredBrokers.length}</span> of {brokers.length} brokers
+                </p>
+              </div>
+              <p className="text-lg font-semibold text-slate-800 text-center">
+                Brokers available in France • 2025
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Recommended Section */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold mb-6">Recommended for you</h2>
+        <div className="mb-12">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
+            <h2 className="text-3xl font-bold text-slate-800">Recommended for you</h2>
+          </div>
         </div>
 
         {/* Broker Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredBrokers.map((broker) => (
-            <Card key={broker.id} className="relative hover:shadow-lg transition-shadow">
+            <Card key={broker.id} className="group relative hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm overflow-hidden">
               {broker.recommended && (
-                <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
-                  Recommended for you
+                <div className="absolute -top-3 -right-3 bg-gradient-to-r from-accent to-accent/80 text-slate-800 px-4 py-2 rounded-full text-sm font-bold shadow-lg z-10">
+                  ⭐ Recommended
                 </div>
               )}
               
-              <CardHeader className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <img 
-                    src={broker.logo} 
-                    alt={broker.name}
-                    className="w-12 h-12 object-contain"
-                  />
+              <CardHeader className="space-y-6 p-8">
+                <div className="flex items-start justify-between">
+                  <div className="p-3 bg-slate-50 rounded-2xl">
+                    <img 
+                      src={broker.logo} 
+                      alt={broker.name}
+                      className="w-12 h-12 object-contain"
+                    />
+                  </div>
                   {broker.isAwardWinner && (
-                    <div className="flex items-center gap-1 text-yellow-600">
+                    <div className="flex items-center gap-2 bg-gradient-to-r from-amber-400 to-amber-500 text-amber-900 px-3 py-2 rounded-full shadow-md">
                       <Trophy size={16} />
-                      <span className="text-xs">2025 Award Winner</span>
+                      <span className="text-xs font-bold">2025 Winner</span>
                     </div>
                   )}
                 </div>
                 
-                <div>
-                  <h3 className="text-lg font-semibold">{broker.name}</h3>
-                  {renderStars(broker.rating)}
+                <div className="space-y-3">
+                  <h3 className="text-xl font-bold text-slate-800 group-hover:text-primary transition-colors duration-200">
+                    {broker.name}
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    {renderStars(broker.rating)}
+                  </div>
                 </div>
                 
-                <div className="text-sm text-muted-foreground">
-                  {broker.peopleCount.toLocaleString()} people chose this broker
+                <div className="text-sm text-slate-600 bg-slate-50 px-4 py-2 rounded-lg">
+                  <span className="font-semibold text-primary">{broker.peopleCount.toLocaleString()}</span> traders chose this broker
                 </div>
               </CardHeader>
 
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6 p-8 pt-0">
                 {/* Fee Level */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Fee level:</span>
-                  <div className="flex items-center gap-2">
-                    <span className={`text-sm font-medium ${getFeeColor(broker.feeLevel)}`}>
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-sm font-medium text-slate-600">Fee level:</span>
+                  <div className="flex items-center gap-3">
+                    <span className={`text-sm font-bold px-3 py-1 rounded-full ${
+                      broker.feeLevel === 'Low' ? 'bg-green-100 text-green-700' :
+                      broker.feeLevel === 'Average' ? 'bg-yellow-100 text-yellow-700' :
+                      'bg-red-100 text-red-700'
+                    }`}>
                       {broker.feeLevel}
                     </span>
-                    {renderStars(broker.feeRating)}
+                    <div className="flex items-center">
+                      {renderStars(broker.feeRating)}
+                    </div>
                   </div>
                 </div>
 
                 {/* Inactivity Fee */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Inactivity fee:</span>
-                  <div className="flex items-center gap-1">
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-sm font-medium text-slate-600">Inactivity fee:</span>
+                  <div className="flex items-center gap-2">
                     {broker.inactivityFee ? (
-                      <XCircle className="text-red-500" size={16} />
+                      <>
+                        <XCircle className="text-red-500" size={18} />
+                        <span className="text-sm font-medium text-red-600">Yes</span>
+                      </>
                     ) : (
-                      <CheckCircle className="text-green-500" size={16} />
+                      <>
+                        <CheckCircle className="text-green-500" size={18} />
+                        <span className="text-sm font-medium text-green-600">No</span>
+                      </>
                     )}
-                    <span className="text-sm">{broker.inactivityFee ? "Yes" : "No"}</span>
                   </div>
                 </div>
 
                 {/* Investor Protection */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Investor protection:</span>
-                  <div className="flex items-center gap-1">
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-sm font-medium text-slate-600">Investor protection:</span>
+                  <div className="flex items-center gap-2">
                     {broker.investorProtection ? (
-                      <CheckCircle className="text-green-500" size={16} />
+                      <>
+                        <CheckCircle className="text-green-500" size={18} />
+                        <span className="text-sm font-medium text-green-600">Protected</span>
+                      </>
                     ) : (
-                      <XCircle className="text-red-500" size={16} />
+                      <>
+                        <XCircle className="text-red-500" size={18} />
+                        <span className="text-sm font-medium text-red-600">Not protected</span>
+                      </>
                     )}
-                    <span className="text-sm">{broker.investorProtection ? "Yes" : "No"}</span>
                   </div>
                 </div>
 
                 {/* Mobile Platform */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Mobile platform:</span>
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1">
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-sm font-medium text-slate-600">Mobile platform:</span>
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
                       {broker.mobilePlatform ? (
-                        <CheckCircle className="text-green-500" size={16} />
+                        <>
+                          <Smartphone className="text-green-500" size={16} />
+                          <span className="text-sm font-medium text-green-600">Available</span>
+                        </>
                       ) : (
-                        <XCircle className="text-red-500" size={16} />
+                        <>
+                          <XCircle className="text-red-500" size={16} />
+                          <span className="text-sm font-medium text-red-600">Not available</span>
+                        </>
                       )}
-                      <span className="text-sm">{broker.mobilePlatform ? "Yes" : "No"}</span>
                     </div>
-                    {broker.mobileRating && renderStars(broker.mobileRating)}
+                    {broker.mobileRating && (
+                      <div className="flex items-center">
+                        {renderStars(broker.mobileRating)}
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Risk Disclaimer */}
                 {broker.riskDisclaimer && (
-                  <div className="text-xs text-muted-foreground bg-muted p-2 rounded">
-                    {broker.riskDisclaimer}
+                  <div className="text-xs text-slate-600 bg-amber-50 border border-amber-200 p-4 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full mt-1.5 flex-shrink-0"></div>
+                      <span>{broker.riskDisclaimer}</span>
+                    </div>
                   </div>
                 )}
 
                 {/* Action Buttons */}
-                <div className="flex gap-2">
-                  <Button className="flex-1" variant="outline">
-                    Read review
+                <div className="flex gap-3 pt-4">
+                  <Button 
+                    className="flex-1 border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200" 
+                    variant="outline"
+                  >
+                    Read Review
                   </Button>
-                  <Button className="flex-1">
-                    Visit broker
+                  <Button className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white shadow-lg hover:shadow-xl transition-all duration-200">
+                    Visit Broker
                   </Button>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        {/* No Results Message */}
+        {filteredBrokers.length === 0 && (
+          <div className="text-center py-16">
+            <div className="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl p-12 max-w-md mx-auto">
+              <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FilterX className="text-slate-400" size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-800 mb-4">No brokers found</h3>
+              <p className="text-slate-600 mb-6">Try adjusting your filters to see more results.</p>
+              <Button onClick={resetFilters} className="bg-primary hover:bg-primary/90">
+                Clear All Filters
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
 
       <Footer />
