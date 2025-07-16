@@ -747,6 +747,64 @@ const brokers: Broker[] = [
     mobilePlatform: true,
     mobileRating: 4.1,
     riskDisclaimer: "73-89% of retail CFD accounts lose money"
+  },
+  {
+    id: "webull",
+    name: "Webull",
+    logo: "/lovable-uploads/16ad8949-08ad-42b9-ab77-3855280f1a1e.png",
+    rating: 4.4,
+    isAwardWinner: false,
+    peopleCount: 12450,
+    feeLevel: "Low",
+    feeRating: 4.6,
+    inactivityFee: false,
+    investorProtection: true,
+    mobilePlatform: true,
+    mobileRating: 4.7
+  },
+  {
+    id: "plus500",
+    name: "Plus500",
+    logo: "/lovable-uploads/f31b4c86-46c2-4dd3-a62f-a9e5e1c97da7.png",
+    rating: 4.2,
+    isAwardWinner: true,
+    peopleCount: 18760,
+    feeLevel: "Low",
+    feeRating: 3.8,
+    inactivityFee: true,
+    investorProtection: true,
+    mobilePlatform: true,
+    mobileRating: 4.5,
+    riskDisclaimer: "82% of retail CFD accounts lose money"
+  },
+  {
+    id: "multibank",
+    name: "MultiBank",
+    logo: "/lovable-uploads/c5ec2fd7-323e-4410-81f5-10be88664232.png",
+    rating: 4.1,
+    isAwardWinner: true,
+    peopleCount: 8900,
+    feeLevel: "Low",
+    feeRating: 4.0,
+    inactivityFee: false,
+    investorProtection: true,
+    mobilePlatform: true,
+    mobileRating: 4.2,
+    riskDisclaimer: "76% of retail CFD accounts lose money"
+  },
+  {
+    id: "optimus-futures",
+    name: "Optimus Futures",
+    logo: "/lovable-uploads/eeb17070-137c-48df-8612-b92cf31cf4f5.png",
+    rating: 4.5,
+    isAwardWinner: false,
+    peopleCount: 3200,
+    feeLevel: "Low",
+    feeRating: 4.4,
+    inactivityFee: false,
+    investorProtection: true,
+    mobilePlatform: true,
+    mobileRating: 4.1
   }
 ];
 
