@@ -16,7 +16,7 @@ interface Broker {
   logo: string;
   rating: number;
   regulation: string[];
-  regulationDetails: {
+  regulationDetails?: {
     [key: string]: {
       license: string;
       compensation: string;
@@ -106,7 +106,7 @@ interface Broker {
 }
 
 // Exact 88 brokers from the broker reviews page
-const allBrokers = [
+const allBrokers: any[] = [
   {
     id: "interactive-brokers",
     name: "Interactive Brokers",
@@ -394,7 +394,7 @@ const allBrokers = [
   publiclyTraded: false,
   pros: ["Professional platform"],
   cons: ["Minimum deposit required"]
-})))
+})) as any) as Broker[])
 
 const BrokerComparison = () => {
   const [selectedBrokers, setSelectedBrokers] = useState<Broker[]>([]);
