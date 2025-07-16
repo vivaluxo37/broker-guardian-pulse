@@ -29,7 +29,7 @@ const brokers: Broker[] = [
   {
     id: "interactive-brokers",
     name: "Interactive Brokers",
-    logo: "/lovable-uploads/af8d1c16-b424-4842-813a-c6c4f0033292.png",
+    logo: "/lovable-uploads/a278588e-21c7-4534-bd33-a5e69e619191.png",
     rating: 4.9,
     isAwardWinner: true,
     peopleCount: 250621,
