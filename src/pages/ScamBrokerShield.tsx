@@ -501,84 +501,94 @@ export default function ScamBrokerShield() {
         <section className="py-16">
           <div className="container mx-auto px-4 max-w-7xl">
             <Tabs defaultValue="scam-database" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger value="scam-database">Scam Database</TabsTrigger>
-                <TabsTrigger value="trusted-brokers">Trusted Brokers</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 mb-8 bg-white/80 backdrop-blur-sm border border-slate-200">
+                <TabsTrigger value="scam-database" className="data-[state=active]:bg-primary data-[state=active]:text-white">Scam Database</TabsTrigger>
+                <TabsTrigger value="trusted-brokers" className="data-[state=active]:bg-primary data-[state=active]:text-white">Trusted Brokers</TabsTrigger>
               </TabsList>
 
               <TabsContent value="scam-database">
-                <div className="mb-8">
-                  <h2 className="text-3xl font-bold mb-4">Comprehensive Scam Broker Database</h2>
-                  <p className="text-muted-foreground mb-6">
-                    Our database includes brokers flagged by FCA, SEC, CFTC, ASIC, and other major regulatory authorities worldwide.
-                  </p>
+                <div className="mb-12">
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">Comprehensive Scam Broker Database</h2>
+                    <p className="text-lg text-slate-600 mb-6 max-w-4xl mx-auto">
+                      Our database includes brokers flagged by FCA, SEC, CFTC, ASIC, and other major regulatory authorities worldwide.
+                    </p>
+                  </div>
                   
                   {/* Filters */}
-                  <div className="flex gap-4 mb-6">
-                    <Select value={filterType} onValueChange={setFilterType}>
-                      <SelectTrigger className="w-[200px]">
-                        <SelectValue placeholder="Filter by type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Types</SelectItem>
-                        <SelectItem value="Binary Options">Binary Options</SelectItem>
-                        <SelectItem value="Forex">Forex</SelectItem>
-                        <SelectItem value="Crypto">Crypto</SelectItem>
-                        <SelectItem value="Multi-Asset">Multi-Asset</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    
-                    <Select value={filterRisk} onValueChange={setFilterRisk}>
-                      <SelectTrigger className="w-[200px]">
-                        <SelectValue placeholder="Filter by risk" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Risk Levels</SelectItem>
-                        <SelectItem value="Critical">Critical</SelectItem>
-                        <SelectItem value="High">High</SelectItem>
-                        <SelectItem value="Medium">Medium</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  <Card className="bg-white/80 backdrop-blur-sm border border-slate-200 shadow-xl max-w-2xl mx-auto mb-8">
+                    <CardContent className="p-6">
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <Select value={filterType} onValueChange={setFilterType}>
+                          <SelectTrigger className="w-full sm:w-[200px] border-slate-200 focus:border-primary bg-white z-50">
+                            <SelectValue placeholder="Filter by type" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-white border-slate-200 shadow-xl z-50">
+                            <SelectItem value="all">All Types</SelectItem>
+                            <SelectItem value="Binary Options">Binary Options</SelectItem>
+                            <SelectItem value="Forex">Forex</SelectItem>
+                            <SelectItem value="Crypto">Crypto</SelectItem>
+                            <SelectItem value="Multi-Asset">Multi-Asset</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        
+                        <Select value={filterRisk} onValueChange={setFilterRisk}>
+                          <SelectTrigger className="w-full sm:w-[200px] border-slate-200 focus:border-primary bg-white z-50">
+                            <SelectValue placeholder="Filter by risk" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-white border-slate-200 shadow-xl z-50">
+                            <SelectItem value="all">All Risk Levels</SelectItem>
+                            <SelectItem value="Critical">Critical</SelectItem>
+                            <SelectItem value="High">High</SelectItem>
+                            <SelectItem value="Medium">Medium</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                   {filteredScamBrokers.map((broker, index) => (
-                    <Card key={index} className="shadow-elegant border-red-200 dark:border-red-800 hover:shadow-lg transition-shadow">
-                      <CardHeader>
+                    <Card key={index} className="group relative hover:shadow-2xl transition-all duration-300 border border-red-200 bg-white shadow-sm overflow-hidden">
+                      <CardHeader className="space-y-4 p-6">
                         <div className="flex items-start justify-between">
-                          <div>
-                            <CardTitle className="flex items-center text-lg">
+                          <div className="flex-1">
+                            <CardTitle className="flex items-center text-xl font-bold text-slate-800 mb-3">
                               <AlertTriangle className="h-5 w-5 text-red-500 mr-2" />
                               {broker.name}
                             </CardTitle>
-                            <div className="flex items-center gap-2 mt-2">
-                              <Badge variant={getRiskBadgeColor(broker.riskLevel)}>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <Badge variant={getRiskBadgeColor(broker.riskLevel)} className="font-semibold">
                                 {broker.riskLevel} Risk
                               </Badge>
-                              <Badge variant="outline">{broker.type}</Badge>
+                              <Badge variant="outline" className="border-slate-300 text-slate-600">{broker.type}</Badge>
+                              <Badge variant="destructive" className="bg-red-100 text-red-700 border-red-200">
+                                {broker.status}
+                              </Badge>
                             </div>
                           </div>
                         </div>
                       </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-muted-foreground mb-3">{broker.reason}</p>
-                        <div className="space-y-2 text-xs">
-                          <div className="flex justify-between">
-                            <span>Regulatory Warning:</span>
-                            <span className="font-medium text-red-600">{broker.regulatoryWarning}</span>
+                      <CardContent className="space-y-4 p-6 pt-0">
+                        <p className="text-slate-600 leading-relaxed bg-red-50 p-3 rounded-lg border border-red-100">{broker.reason}</p>
+                        
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                            <span className="text-sm font-medium text-slate-600">Regulatory Warning:</span>
+                            <span className="font-semibold text-red-600 bg-red-100 px-2 py-1 rounded text-sm">{broker.regulatoryWarning}</span>
                           </div>
-                          <div className="flex justify-between">
-                            <span>Complaints:</span>
-                            <span className="font-medium">{broker.complaints}</span>
+                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                            <span className="text-sm font-medium text-slate-600">Complaints:</span>
+                            <span className="font-semibold text-slate-800">{broker.complaints}</span>
                           </div>
-                          <div className="flex justify-between">
-                            <span>Website:</span>
-                            <span className="font-medium">{broker.website}</span>
+                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                            <span className="text-sm font-medium text-slate-600">Website:</span>
+                            <span className="font-medium text-slate-600 text-sm">{broker.website}</span>
                           </div>
-                          <div className="flex justify-between">
-                            <span>Last Updated:</span>
-                            <span className="font-medium">{broker.lastUpdate}</span>
+                          <div className="flex justify-between items-center py-2">
+                            <span className="text-sm font-medium text-slate-600">Last Updated:</span>
+                            <span className="font-medium text-slate-600 text-sm">{broker.lastUpdate}</span>
                           </div>
                         </div>
                       </CardContent>
@@ -588,53 +598,61 @@ export default function ScamBrokerShield() {
               </TabsContent>
 
               <TabsContent value="trusted-brokers">
-                <div className="mb-8">
-                  <h2 className="text-3xl font-bold mb-4">Verified Trusted Brokers</h2>
-                  <p className="text-muted-foreground mb-6">
-                    These brokers are properly regulated by top-tier financial authorities and have excellent track records.
-                  </p>
+                <div className="mb-12">
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">Verified Trusted Brokers</h2>
+                    <p className="text-lg text-slate-600 mb-6 max-w-4xl mx-auto">
+                      These brokers are properly regulated by top-tier financial authorities and have excellent track records.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                   {trustedBrokers.map((broker, index) => (
-                    <Card key={index} className="shadow-elegant border-green-200 dark:border-green-800 hover:shadow-lg transition-shadow">
-                      <CardHeader>
-                        <CardTitle className="flex items-center text-lg">
-                          <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-                          {broker.name}
-                        </CardTitle>
-                        <div className="flex items-center gap-2 mt-2">
-                          <Badge variant="outline" className="border-green-500 text-green-700">
-                            Trusted
-                          </Badge>
-                          <Badge variant="outline">{broker.type}</Badge>
-                          <div className="flex items-center">
-                            <Star className="h-3 w-3 text-yellow-500 mr-1" />
-                            <span className="text-xs font-medium">{broker.rating}</span>
+                    <Card key={index} className="group relative hover:shadow-2xl transition-all duration-300 border border-green-200 bg-white shadow-sm overflow-hidden">
+                      <CardHeader className="space-y-4 p-6">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <CardTitle className="flex items-center text-xl font-bold text-slate-800 mb-3">
+                              <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                              {broker.name}
+                            </CardTitle>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <Badge variant="outline" className="border-green-500 text-green-700 bg-green-50 font-semibold">
+                                Trusted
+                              </Badge>
+                              <Badge variant="outline" className="border-slate-300 text-slate-600">{broker.type}</Badge>
+                              <div className="flex items-center bg-yellow-50 px-2 py-1 rounded border border-yellow-200">
+                                <Star className="h-3 w-3 text-yellow-500 mr-1" />
+                                <span className="text-xs font-medium text-yellow-700">{broker.rating}</span>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-muted-foreground mb-3">{broker.reason}</p>
-                        <div className="space-y-2 text-xs">
-                          <div className="flex justify-between">
-                            <span>Regulation:</span>
-                            <span className="font-medium text-green-600">{broker.regulation}</span>
+                      <CardContent className="space-y-4 p-6 pt-0">
+                        <p className="text-slate-600 leading-relaxed bg-green-50 p-3 rounded-lg border border-green-100">{broker.reason}</p>
+                        
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                            <span className="text-sm font-medium text-slate-600">Regulation:</span>
+                            <span className="font-semibold text-green-600 bg-green-100 px-2 py-1 rounded text-sm">{broker.regulation}</span>
                           </div>
-                          <div className="flex justify-between">
-                            <span>Satisfaction Rate:</span>
-                            <span className="font-medium">{broker.satisfactionRate}</span>
+                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                            <span className="text-sm font-medium text-slate-600">Satisfaction Rate:</span>
+                            <span className="font-semibold text-slate-800">{broker.satisfactionRate}</span>
                           </div>
-                          <div className="flex justify-between">
-                            <span>Website:</span>
-                            <span className="font-medium">{broker.website}</span>
+                          <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                            <span className="text-sm font-medium text-slate-600">Website:</span>
+                            <span className="font-medium text-slate-600 text-sm">{broker.website}</span>
                           </div>
-                          <div className="flex justify-between">
-                            <span>Last Updated:</span>
-                            <span className="font-medium">{broker.lastUpdate}</span>
+                          <div className="flex justify-between items-center py-2">
+                            <span className="text-sm font-medium text-slate-600">Last Updated:</span>
+                            <span className="font-medium text-slate-600 text-sm">{broker.lastUpdate}</span>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm" className="w-full mt-4">
+                        
+                        <Button variant="outline" size="sm" className="w-full mt-4 border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900">
                           <ExternalLink className="h-3 w-3 mr-2" />
                           View Review
                         </Button>
@@ -648,26 +666,26 @@ export default function ScamBrokerShield() {
         </section>
 
         {/* Warning Notice */}
-        <section className="py-12 bg-gradient-subtle">
-          <div className="container mx-auto px-4">
-            <Card className="max-w-4xl mx-auto shadow-elegant border-yellow-200 dark:border-yellow-800">
+        <section className="py-12 bg-gradient-to-br from-slate-50 via-white to-primary/5">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <Card className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm border border-yellow-200 shadow-xl">
               <CardContent className="pt-6">
                 <div className="flex items-start">
                   <AlertTriangle className="h-6 w-6 text-yellow-500 mr-4 mt-1" />
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Important Warning</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <h3 className="text-lg font-semibold mb-2 text-slate-800">Important Warning</h3>
+                    <p className="text-slate-600 mb-4 leading-relaxed">
                       Always verify a broker's regulatory status before investing. Check with official regulatory bodies like FCA (UK), 
                       SEC/CFTC (US), ASIC (Australia), or CySEC (Cyprus). Never invest more than you can afford to lose.
                     </p>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm">
+                    <div className="flex flex-wrap gap-2">
+                      <Button variant="outline" size="sm" className="border-slate-200 text-slate-700 hover:bg-slate-50">
                         FCA Check
                       </Button>
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="border-slate-200 text-slate-700 hover:bg-slate-50">
                         SEC Check
                       </Button>
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="border-slate-200 text-slate-700 hover:bg-slate-50">
                         ASIC Check
                       </Button>
                     </div>
