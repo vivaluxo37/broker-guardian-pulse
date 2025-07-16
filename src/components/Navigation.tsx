@@ -34,8 +34,8 @@ const navItems = [
   },
   { 
     name: "Broker Reviews", 
-    href: "#reviews", 
-    isRoute: false,
+    href: "/broker-reviews", 
+    isRoute: true,
     submenu: [
       { name: "Interactive Brokers Review", href: "#interactive-brokers-review" },
       { name: "XTB Review", href: "#xtb-review" },

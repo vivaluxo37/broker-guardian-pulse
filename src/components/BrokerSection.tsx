@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, TrendingUp, Shield, Award, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const topBrokers = [
   {
@@ -45,6 +46,8 @@ const brokerOfMonth = {
 };
 
 export function BrokerSection() {
+  const navigate = useNavigate();
+  
   return (
     <section id="brokers" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -194,8 +197,13 @@ export function BrokerSection() {
           <p className="text-lg text-foreground/70 mb-6">
             Check out our top broker recommendations in the Philippines
           </p>
-          <Button variant="outline" size="lg" className="group">
-            See All Brokers
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="group"
+            onClick={() => navigate("/broker-reviews")}
+          >
+            See All Broker Reviews
             <TrendingUp className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
           </Button>
         </div>

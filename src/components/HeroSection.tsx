@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, TrendingUp, Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export function HeroSection() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -53,9 +55,9 @@ export function HeroSection() {
             <Button 
               variant="glass" 
               size="xl"
-              onClick={() => scrollToSection("#brokers")}
+              onClick={() => navigate("/broker-reviews")}
             >
-              {t('hero.learnMore')}
+              View All Broker Reviews
             </Button>
           </div>
 
