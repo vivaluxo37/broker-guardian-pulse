@@ -707,62 +707,62 @@ const BrokerComparison = () => {
                               TRADING COSTS & SPREADS
                             </TableCell>
                           </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Min Deposit</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold text-green-600">
-                                ${broker.minDeposit}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">EUR/USD Spread</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.eurUsdSpread} pips
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">GBP/USD Spread</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.gbpUsdSpread} pips
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">USD/JPY Spread</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.usdJpySpread} pips
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Gold Spread</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.goldSpread} pips
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Commission</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center">
-                                {broker.commission}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Max Leverage</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold text-orange-600">
-                                {broker.maxLeverage}
-                              </TableCell>
-                            ))}
-                          </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Min Deposit</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-primary">
+                                 ${broker.minDeposit}
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">EUR/USD Spread</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.eurUsdSpread} pips
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">GBP/USD Spread</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.gbpUsdSpread} pips
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">USD/JPY Spread</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.usdJpySpread} pips
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Gold Spread</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.goldSpread} pips
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Commission</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center text-foreground">
+                                 {broker.commission}
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Max Leverage</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-primary">
+                                 {broker.maxLeverage}
+                               </TableCell>
+                             ))}
+                           </TableRow>
 
                           {/* Trading Platforms */}
                           <TableRow className="bg-muted/30">
@@ -770,46 +770,46 @@ const BrokerComparison = () => {
                               TRADING PLATFORMS & TECHNOLOGY
                             </TableCell>
                           </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Platforms</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center">
-                                <div className="flex flex-wrap justify-center gap-1">
-                                  {broker.platforms.map((platform) => (
-                                    <Badge key={platform} variant="secondary" className="text-xs">
-                                      {platform}
-                                    </Badge>
-                                  ))}
-                                </div>
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Execution Model</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center">
-                                {broker.executionModel}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Execution Speed</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold text-green-600">
-                                {broker.averageExecutionSpeed}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">API Access</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center">
-                                <Badge variant={broker.apiAccess ? "default" : "secondary"}>
-                                  {broker.apiAccess ? "Yes" : "No"}
-                                </Badge>
-                              </TableCell>
-                            ))}
-                          </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Platforms</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center">
+                                 <div className="flex flex-wrap justify-center gap-1">
+                                   {broker.platforms.map((platform) => (
+                                     <Badge key={platform} variant="secondary" className="text-xs">
+                                       {platform}
+                                     </Badge>
+                                   ))}
+                                 </div>
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Execution Model</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center text-foreground">
+                                 {broker.executionModel}
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Execution Speed</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-primary">
+                                 {broker.averageExecutionSpeed}
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">API Access</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center">
+                                 <Badge variant={broker.apiAccess ? "default" : "secondary"}>
+                                   {broker.apiAccess ? "Yes" : "No"}
+                                 </Badge>
+                               </TableCell>
+                             ))}
+                           </TableRow>
 
                           {/* Available Instruments */}
                           <TableRow className="bg-muted/30">
@@ -817,46 +817,46 @@ const BrokerComparison = () => {
                               AVAILABLE INSTRUMENTS
                             </TableCell>
                           </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Forex Pairs</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.instruments.forex}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Stocks</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.instruments.stocks.toLocaleString()}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Indices</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.instruments.indices}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Commodities</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.instruments.commodities}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Cryptocurrencies</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center font-semibold">
-                                {broker.instruments.crypto}
-                              </TableCell>
-                            ))}
-                          </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Forex Pairs</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.instruments.forex}
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Stocks</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.instruments.stocks.toLocaleString()}
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Indices</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.instruments.indices}
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Commodities</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.instruments.commodities}
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Cryptocurrencies</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center font-semibold text-foreground">
+                                 {broker.instruments.crypto}
+                               </TableCell>
+                             ))}
+                           </TableRow>
 
                           {/* Account Features */}
                           <TableRow className="bg-muted/30">
@@ -864,40 +864,40 @@ const BrokerComparison = () => {
                               ACCOUNT FEATURES
                             </TableCell>
                           </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Account Types</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center">
-                                <div className="flex flex-wrap justify-center gap-1">
-                                  {broker.account_types.map((type) => (
-                                    <Badge key={type} variant="outline" className="text-xs">
-                                      {type}
-                                    </Badge>
-                                  ))}
-                                </div>
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Demo Account</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center">
-                                <Badge variant={broker.demo_account ? "default" : "secondary"}>
-                                  {broker.demo_account ? "Yes" : "No"}
-                                </Badge>
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-medium sticky left-0 bg-background z-10">Islamic Account</TableCell>
-                            {selectedBrokers.map((broker) => (
-                              <TableCell key={broker.id} className="text-center">
-                                <Badge variant={broker.islamic_account ? "default" : "secondary"}>
-                                  {broker.islamic_account ? "Yes" : "No"}
-                                </Badge>
-                              </TableCell>
-                            ))}
-                          </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Account Types</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center">
+                                 <div className="flex flex-wrap justify-center gap-1">
+                                   {broker.account_types.map((type) => (
+                                     <Badge key={type} variant="outline" className="text-xs">
+                                       {type}
+                                     </Badge>
+                                   ))}
+                                 </div>
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Demo Account</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center">
+                                 <Badge variant={broker.demo_account ? "default" : "secondary"}>
+                                   {broker.demo_account ? "Yes" : "No"}
+                                 </Badge>
+                               </TableCell>
+                             ))}
+                           </TableRow>
+                           <TableRow>
+                             <TableCell className="font-medium sticky left-0 bg-background z-10 text-foreground">Islamic Account</TableCell>
+                             {selectedBrokers.map((broker) => (
+                               <TableCell key={broker.id} className="text-center">
+                                 <Badge variant={broker.islamic_account ? "default" : "secondary"}>
+                                   {broker.islamic_account ? "Yes" : "No"}
+                                 </Badge>
+                               </TableCell>
+                             ))}
+                           </TableRow>
                           <TableRow>
                             <TableCell className="font-medium sticky left-0 bg-background z-10">Base Currencies</TableCell>
                             {selectedBrokers.map((broker) => (
