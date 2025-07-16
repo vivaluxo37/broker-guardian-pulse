@@ -1240,7 +1240,7 @@ const BrokerReviews = () => {
   const resetFilters = () => {
     setSearchTerm("");
     setSelectedAssets([]);
-    setSelectedFeeLevel("");
+    setSelectedFeeLevel("all");
     setMinRating(0);
     setHasInvestorProtection(null);
     setHasMobilePlatform(null);
@@ -1260,7 +1260,7 @@ const BrokerReviews = () => {
       return true; // Show all for other asset types
     });
     
-    const matchesFeeLevel = !selectedFeeLevel || broker.feeLevel === selectedFeeLevel;
+    const matchesFeeLevel = !selectedFeeLevel || selectedFeeLevel === "all" || broker.feeLevel === selectedFeeLevel;
     const matchesRating = broker.rating >= minRating;
     const matchesInvestorProtection = hasInvestorProtection === null || broker.investorProtection === hasInvestorProtection;
     const matchesMobilePlatform = hasMobilePlatform === null || broker.mobilePlatform === hasMobilePlatform;
@@ -1343,7 +1343,7 @@ const BrokerReviews = () => {
                   <SelectValue placeholder="Select fee level" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All levels</SelectItem>
+                  <SelectItem value="all">All levels</SelectItem>
                   <SelectItem value="Low">Low fees</SelectItem>
                   <SelectItem value="Average">Average fees</SelectItem>
                   <SelectItem value="High">High fees</SelectItem>
@@ -1371,14 +1371,14 @@ const BrokerReviews = () => {
             <div>
               <label className="text-sm font-medium mb-2 block">Award Winners</label>
               <Select 
-                value={isAwardWinner === null ? "" : isAwardWinner.toString()} 
-                onValueChange={(value) => setIsAwardWinner(value === "" ? null : value === "true")}
+                value={isAwardWinner === null ? "all" : isAwardWinner.toString()} 
+                onValueChange={(value) => setIsAwardWinner(value === "all" ? null : value === "true")}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Filter by awards" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All brokers</SelectItem>
+                  <SelectItem value="all">All brokers</SelectItem>
                   <SelectItem value="true">Award winners only</SelectItem>
                   <SelectItem value="false">Non-award winners</SelectItem>
                 </SelectContent>
@@ -1389,14 +1389,14 @@ const BrokerReviews = () => {
             <div>
               <label className="text-sm font-medium mb-2 block">Investor Protection</label>
               <Select 
-                value={hasInvestorProtection === null ? "" : hasInvestorProtection.toString()} 
-                onValueChange={(value) => setHasInvestorProtection(value === "" ? null : value === "true")}
+                value={hasInvestorProtection === null ? "all" : hasInvestorProtection.toString()} 
+                onValueChange={(value) => setHasInvestorProtection(value === "all" ? null : value === "true")}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Protection status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All brokers</SelectItem>
+                  <SelectItem value="all">All brokers</SelectItem>
                   <SelectItem value="true">With protection</SelectItem>
                   <SelectItem value="false">Without protection</SelectItem>
                 </SelectContent>
@@ -1407,14 +1407,14 @@ const BrokerReviews = () => {
             <div>
               <label className="text-sm font-medium mb-2 block">Mobile Platform</label>
               <Select 
-                value={hasMobilePlatform === null ? "" : hasMobilePlatform.toString()} 
-                onValueChange={(value) => setHasMobilePlatform(value === "" ? null : value === "true")}
+                value={hasMobilePlatform === null ? "all" : hasMobilePlatform.toString()} 
+                onValueChange={(value) => setHasMobilePlatform(value === "all" ? null : value === "true")}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Mobile app availability" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All brokers</SelectItem>
+                  <SelectItem value="all">All brokers</SelectItem>
                   <SelectItem value="true">With mobile app</SelectItem>
                   <SelectItem value="false">No mobile app</SelectItem>
                 </SelectContent>
