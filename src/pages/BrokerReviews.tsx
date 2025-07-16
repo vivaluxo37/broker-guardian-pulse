@@ -1295,28 +1295,30 @@ const BrokerReviews = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8 mt-20">
+      <div className="container mx-auto px-4 py-8 mt-20 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Broker reviews</h1>
-          <p className="text-xl text-muted-foreground mb-8">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            Broker Reviews
+          </h1>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Find the right broker and invest on your own
           </p>
         </div>
 
         {/* Filters */}
-        <div className="mb-8 space-y-6">
+        <div className="mb-12 space-y-6">
           {/* Filter Header with Reset */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <h3 className="text-xl font-semibold">Filter Brokers</h3>
             <Button 
               variant="outline" 
               size="sm" 
               onClick={resetFilters}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 self-start sm:self-auto"
             >
               <FilterX size={16} />
               Clear Filters
@@ -1324,7 +1326,7 @@ const BrokerReviews = () => {
           </div>
 
           {/* Filter Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
             {/* Search Filter */}
             <div>
               <label className="text-sm font-medium mb-2 block">Search by name</label>
